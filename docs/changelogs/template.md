@@ -6,11 +6,10 @@
 - Once you have your remote set up, run the command `git pull RHH expansion/1.Y.Z`.
 ```
 
-## 🌋 *REFACTORS* 🌋
-📜 = Uses a migration script.
+## 🌋 *IMPORTANT CHANGES AND REFACTORS* 🌋
 * N/A
 
-## 💥 *Hardlock/Softlock/Crash/Compiling fixes* 💥
+## 💥 *Softlock/Crash fixes* 💥
 * N/A
 
 ## 🧬 General 🧬
@@ -44,13 +43,6 @@
 #### Fixed
 * N/A
 ### ***ghoulslash's Saveblock Cleansing***:
-#### Added
-* N/A
-#### Changed
-* N/A
-#### Fixed
-* N/A
-### ***merrp/aarant's Followers***
 #### Added
 * N/A
 #### Changed
@@ -122,18 +114,7 @@
 ### Fixed
 * N/A
 
-## 📚 Documentation 📚
-### Added
-* N/A
-### Changed
-* N/A
-### Fixed
-* N/A
-
-## 📦 Branch Synchronisation 📦
-### pret's base pokeemerald
-* N/A
-### merrp/aarant's followers
+## 📦 Pret merges 📦
 * N/A
 
 
@@ -143,4 +124,3 @@
 **Full Changelog**: https://github.com/rh-hideout/pokeemerald-expansion/compare/expansion/1.Y.Z...expansion/1.Y.Z
 
 <!--Last PR: ____-->
-<!--Used to keep track of the last PR merged in case new ones come in before the changelog is done.-->

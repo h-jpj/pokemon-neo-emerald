@@ -554,6 +554,33 @@ SlateportCity_PokemartDecor:
 	release
 	end
 
+SlateportCity_EventScript_PowerItems::
+	lock
+	faceplayer
+	message SlateportCity_Text_PowerItemsSellWhatYouNeed
+	waitmessage
+	pokemart SlateportCity_Pokemart_PowerItems
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+SlateportCity_Pokemart_PowerItems:
+	.2byte ITEM_POWER_BRACER
+	.2byte ITEM_POWER_BELT
+	.2byte ITEM_POWER_LENS
+	.2byte ITEM_POWER_BAND
+	.2byte ITEM_POWER_ANKLET
+	.2byte ITEM_POWER_WEIGHT
+	.2byte ITEM_NONE
+	release
+	end
+
+SlateportCity_Text_PowerItemsSellWhatYouNeed:
+	.string "Need to boost your Pokémon's\n"
+	.string "training?\p"
+	.string "Give these a try!$"
+
 SlateportCity_EventScript_PowerTMClerk::
 	lock
 	faceplayer

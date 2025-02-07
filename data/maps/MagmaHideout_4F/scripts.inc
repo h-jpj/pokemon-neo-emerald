@@ -133,6 +133,27 @@ MagmaHideout_4F_EventScript_Tabitha::
 	msgbox MagmaHideout_4F_Text_TabithaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+MagmaHideout_4F_EventScript_Courtney::
+	trainerbattle_single TRAINER_COURTNEY_MAGMA_HIDEOUT, MagmaHideout_4F_Text_CourtneyIntro, MagmaHideout_4F_Text_CourtneyDefeat
+	msgbox MagmaHideout_4F_Text_CourtneyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MagmaHideout_4F_Text_CourtneyIntro:
+	.string "Ahahaha!\n"
+	.string "So glad you could make it, brat!\p"
+	.string "You're just in time to watch Team Magma's\n"
+	.string "ambitions become reality!\p"
+	.string "With Groudon's power, we'll expand the\n"
+	.string "landmass for the good of all!$"
+
+MagmaHideout_4F_Text_CourtneyDefeat:
+	.string "Ahaha… ha…\n"
+	.string "That could have gone better…$"
+
+MagmaHideout_4F_Text_CourtneyPostBattle:
+	.string "You might have beaten us, but we're\n"
+	.string "still the winners here!$"
+
 MagmaHideout_4F_Text_Grunt11Intro:
 	.string "I want to see GROUDON, too, but they\n"
 	.string "won't let me see even its tail…\p"

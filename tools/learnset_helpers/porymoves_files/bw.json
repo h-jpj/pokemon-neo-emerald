@@ -45087,7 +45087,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM_PLANT": {
+  "WORMADAM_PLANT_CLOAK": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -72003,7 +72003,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM_SANDY": {
+  "WORMADAM_SANDY_CLOAK": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -72094,7 +72094,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM_TRASH": {
+  "WORMADAM_TRASH_CLOAK": {
     "LevelMoves": [
       {
         "Level": 1,

@@ -38,6 +38,7 @@ static void AnimCurseNail_Step2(struct Sprite *);
 static void AnimCurseNail_End(struct Sprite *);
 static void AnimGhostStatusSprite_Step(struct Sprite *);
 static void AnimGrudgeFlame(struct Sprite *);
+static void AnimKindleFlame(struct Sprite *);
 static void AnimMonMoveCircular(struct Sprite *);
 static void AnimMonMoveCircular_Step(struct Sprite *);
 static void AnimPoltergeistItem(struct Sprite *);
@@ -247,6 +248,30 @@ const struct SpriteTemplate gGrudgeFlameSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimGrudgeFlame,
+};
+
+static const union AnimCmd sAnim_KindleFlame[] =
+{
+    ANIMCMD_FRAME(16, 6),
+    ANIMCMD_FRAME(32, 6),
+    ANIMCMD_FRAME(48, 6),
+    ANIMCMD_JUMP(0),
+};
+
+const union AnimCmd *const gAnims_KindleFlame[] =
+{
+    sAnim_KindleFlame,
+};
+
+const struct SpriteTemplate gKindleFlameSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SMALL_EMBER,
+    .paletteTag = ANIM_TAG_SMALL_EMBER,
+    .oam = &gOamData_AffineOff_ObjBlend_32x16,
+    .anims = gAnims_KindleFlame,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimKindleFlame,
 };
 
 // Unused
@@ -1352,6 +1377,139 @@ void AnimTask_GrudgeFlames_Step(u8 taskId)
 }
 
 static void AnimGrudgeFlame(struct Sprite *sprite)
+{
+    u16 index;
+
+    if (sprite->data[1] == 0)
+        sprite->data[2] += 2;
+    else
+        sprite->data[2] -= 2;
+
+    sprite->data[2] &= 0xFF;
+    sprite->x2 = Sin(sprite->data[2], sprite->data[3]);
+
+    index = sprite->data[2] - 65;
+    if (index < 127)
+        sprite->oam.priority = gTasks[sprite->data[0]].data[5] + 1;
+    else
+        sprite->oam.priority = gTasks[sprite->data[0]].data[5];
+
+    sprite->data[5]++;
+    sprite->data[6] = (sprite->data[5] * 8) & 0xFF;
+    sprite->y2 = Sin(sprite->data[6], 7);
+    if (gTasks[sprite->data[0]].data[8])
+    {
+        gTasks[sprite->data[0]].data[7]--;
+        DestroySprite(sprite);
+    }
+}
+
+void AnimTask_KindleFlames(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    task->data[0] = 0;
+    task->data[1] = 16;
+    task->data[9] = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2);
+    task->data[10] = GetBattlerYCoordWithElevation(gBattleAnimAttacker);
+    task->data[11] = (GetBattlerSpriteCoordAttr(gBattleAnimAttacker, BATTLER_COORD_ATTR_WIDTH) / 2) + 8;
+    task->data[7] = 0;
+    task->data[5] = GetBattlerSpriteBGPriority(gBattleAnimAttacker);
+    task->data[6] = GetBattlerSpriteSubpriority(gBattleAnimAttacker) - 2;
+    task->data[3] = 0;
+    task->data[4] = 16;
+    SetGpuReg(REG_OFFSET_BLDCNT, (BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL));
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 0x10));
+    task->data[8] = 0;
+    task->func = AnimTask_KindleFlames_Step;
+}
+
+void AnimTask_KindleFlames_Step(u8 taskId)
+{
+    u16 i;
+    u8 spriteId;
+    struct Task *task = &gTasks[taskId];
+
+    switch (task->data[0])
+    {
+    case 0:
+        for (i = 0; i < 6; i++)
+        {
+            spriteId = CreateSprite(&gKindleFlameSpriteTemplate, task->data[9], task->data[10], task->data[6]);
+            if (spriteId != MAX_SPRITES)
+            {
+                gSprites[spriteId].data[0] = taskId;
+                gSprites[spriteId].data[1] = GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER;
+
+                gSprites[spriteId].data[2] = (i * 42) & 0xFF;
+                gSprites[spriteId].data[3] = task->data[11];
+                gSprites[spriteId].data[5] = i * 6;
+                task->data[7]++;
+            }
+        }
+
+        task->data[0]++;
+        break;
+    case 1:
+        if (++task->data[1] & 1)
+        {
+            if (task->data[3] < 14)
+                task->data[3]++;
+        }
+        else
+        {
+            if (task->data[4] > 4)
+                task->data[4]--;
+        }
+
+        if (task->data[3] == 14 && task->data[4] == 4)
+        {
+            task->data[1] = 0;
+            task->data[0]++;
+        }
+
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(task->data[3], task->data[4]));
+        break;
+    case 2:
+        if (++task->data[1] > 30)
+        {
+            task->data[1] = 0;
+            task->data[0]++;
+        }
+        break;
+    case 3:
+        if (++task->data[1] & 1)
+        {
+            if (task->data[3] > 0)
+                task->data[3]--;
+        }
+        else
+        {
+            if (task->data[4] < 16)
+                task->data[4]++;
+        }
+
+        if (task->data[3] == 0 && task->data[4] == 16)
+        {
+            task->data[8] = 1;
+            task->data[0]++;
+        }
+
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(task->data[3], task->data[4]));
+        break;
+    case 4:
+        if (task->data[7] == 0)
+            task->data[0]++;
+        break;
+    case 5:
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+        SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+        DestroyAnimVisualTask(taskId);
+        break;
+    }
+}
+
+static void AnimKindleFlame(struct Sprite *sprite)
 {
     u16 index;
 

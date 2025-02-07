@@ -60,6 +60,10 @@ gSpecials::
 	def_special ObjectEventInteractionPickBerryTree
 	def_special ObjectEventInteractionRemoveBerryTree
 	def_special ObjectEventInteractionWaterBerryTree
+	def_special ObjectEventInteractionBerryTreePokemonEncounter
+	def_special SetBerryEncounters
+	def_special GetBerryEncounter
+	def_special DoBerryEncounter
 	def_special PlayerHasBerries
 	def_special IsEnigmaBerryValid
 	def_special GetTrainerBattleMode
@@ -534,6 +538,7 @@ gSpecials::
 	def_special RemoveRecordsWindow
 	def_special CloseDeptStoreElevatorWindow
 	def_special TrySetBattleTowerLinkType
+	def_special SetTotemBoost
 	def_special TrySpecialOverworldEvo
 	def_special GetNumberSprayStrength
 	def_special GetSprayId
@@ -553,4 +558,3 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveEVs
 	def_special Script_GetChosenMonOffensiveIVs
 	def_special Script_GetChosenMonDefensiveIVs
-	def_special UseBlankMessageToCancelPokemonPic

@@ -27,8 +27,8 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 18,
-      "y": 68,
+      "x": 12,
+      "y": 65,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -170,8 +170,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 23,
-      "y": 29,
+      "x": 24,
+      "y": 22,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -323,6 +323,19 @@
       "trainer_sight_or_berry_tree_id": "ITEM_HEAL_POWDER",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_ROUTE_115_HEAL_POWDER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 23,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_HERACRONITE",
+      "script": "Route115_Heracronite",
+      "flag": "FLAG_ITEM_HERACRONITE"
     }
   ],
   "warp_events": [
@@ -346,9 +359,18 @@
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 70,
+      "elevation": 0,
+      "dest_map": "MAP_SEASPRAY_CAVE",
+      "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "secret_base",

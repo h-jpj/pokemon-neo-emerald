@@ -27,8 +27,6 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions in sun")
     }
 }
 
-TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field");
-
 SINGLE_BATTLE_TEST("Leaf Guard prevents status conditions from Flame Orb and Toxic Orb")
 {
     u32 item;
@@ -46,12 +44,10 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents status conditions from Flame Orb and Tox
             NONE_OF { MESSAGE("Leafeon was burned!"); STATUS_ICON(player, burn: TRUE); }
         }
         else {
-            NONE_OF { MESSAGE("Leafeon was badly poisoned!"); STATUS_ICON(player, poison: TRUE); }
+            NONE_OF { MESSAGE("Leafeon is badly poisoned!"); STATUS_ICON(player, poison: TRUE); }
         }
     }
 }
-
-TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field");
 
 SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun")
 {
@@ -70,5 +66,3 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun")
         }
     }
 }
-
-TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field");

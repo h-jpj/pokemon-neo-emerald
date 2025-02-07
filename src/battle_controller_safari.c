@@ -20,7 +20,6 @@
 #include "text.h"
 #include "util.h"
 #include "window.h"
-#include "line_break.h"
 #include "constants/battle_anim.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
@@ -113,7 +112,7 @@ void SetControllerToSafari(u32 battler)
 
 static void SafariBufferRunCommand(u32 battler)
 {
-    if (gBattleControllerExecFlags & (1u << battler))
+    if (gBattleControllerExecFlags & gBitTable[battler])
     {
         if (gBattleResources->bufferA[battler][0] < ARRAY_COUNT(sSafariBufferCommands))
             sSafariBufferCommands[gBattleResources->bufferA[battler][0]](battler);
@@ -241,7 +240,7 @@ static void SafariBufferExecCompleted(u32 battler)
     }
     else
     {
-        gBattleControllerExecFlags &= ~(1u << battler);
+        gBattleControllerExecFlags &= ~gBitTable[battler];
     }
 }
 
@@ -299,7 +298,6 @@ static void SafariHandleChooseAction(u32 battler)
 
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo2);
-    BreakStringAutomatic(gDisplayedStringBattle, WindowWidthPx(B_WIN_ACTION_PROMPT), 2, FONT_NORMAL);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
 

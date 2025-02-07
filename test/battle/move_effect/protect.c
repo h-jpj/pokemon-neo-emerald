@@ -48,9 +48,9 @@ SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield, Baneful Bunker and Burning Bu
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, protectMove, opponent);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         if (usedMove == MOVE_LEER) {
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         } else {
@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
     u32 j;
     static const u16 protectMoves[][3] =
     {   // Move             Stat      Stages
-        {MOVE_KINGS_SHIELD, STAT_ATK,   (B_KINGS_SHIELD_LOWER_ATK >= GEN_8) ? 1 : 2},
+        {MOVE_KINGS_SHIELD, STAT_ATK,   1},
         {MOVE_SILK_TRAP,    STAT_SPEED, 1},
         {MOVE_OBSTRUCT,     STAT_DEF,   2},
     };
@@ -87,23 +87,19 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, protectMove, opponent);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         if (usedMove == MOVE_LEER) {
             ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            NOT MESSAGE("The opposing Wobbuffet protected itself!");
+            NOT MESSAGE("Foe Wobbuffet protected itself!");
         } else {
             NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             if (usedMove == MOVE_TACKLE) {
                 NOT HP_BAR(opponent);
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
                 if (statId == STAT_ATK) {
-                    #if B_KINGS_SHIELD_LOWER_ATK >= GEN_8
                     MESSAGE("Wobbuffet's Attack fell!");
-                    #else
-                    MESSAGE("Wobbuffet's Attack harshly fell!");
-                    #endif
                 } else if (statId == STAT_SPEED) {
                     MESSAGE("Wobbuffet's Speed fell!");
                 } else if (statId == STAT_DEF) {
@@ -148,15 +144,15 @@ SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp of attackers making cont
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKY_SHIELD, opponent);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         NOT HP_BAR(opponent);
         if (usedMove == MOVE_TACKLE) {
             HP_BAR(player, maxHp / 8);
             if (hp == 1) {
                 MESSAGE("Wobbuffet fainted!");
-                SEND_IN_MESSAGE("Wobbuffet");
+                MESSAGE("Go! Wobbuffet!");
             }
         }
     }
@@ -179,9 +175,9 @@ SINGLE_BATTLE_TEST("Baneful Bunker poisons pokemon for moves making contact")
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BANEFUL_BUNKER, opponent);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         if (usedMove == MOVE_TACKLE) {
             NOT HP_BAR(opponent);
             STATUS_ICON(player, STATUS1_POISON);
@@ -211,9 +207,9 @@ SINGLE_BATTLE_TEST("Burning Bulwark burns pokemon for moves making contact")
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BURNING_BULWARK, opponent);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
-        MESSAGE("The opposing Wobbuffet protected itself!");
+        MESSAGE("Foe Wobbuffet protected itself!");
         if (usedMove == MOVE_TACKLE) {
             NOT HP_BAR(opponent);
             STATUS_ICON(player, STATUS1_BURN);
@@ -256,15 +252,15 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
         TURN {}
     } SCENE {
         // 1st turn
-        MESSAGE("The opposing Beautifly used Tackle!");
+        MESSAGE("Foe Beautifly used Tackle!");
         MESSAGE("Rapidash used Tackle!");
         // 2nd turn
         ANIMATION(ANIM_TYPE_MOVE, protectMove, opponent);
-        MESSAGE("The opposing Beautifly protected itself!");
+        MESSAGE("Foe Beautifly protected itself!");
         // MESSAGE("Rapidash used recoilMove!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, recoilMove, player);
-            MESSAGE("Rapidash was damaged by the recoil!");
+            MESSAGE("Rapidash is hit with recoil!");
         }
     }
 }
@@ -290,10 +286,10 @@ SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only o
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-        MESSAGE("The opposing Beautifly protected itself!");
+        MESSAGE("Foe Beautifly protected itself!");
         MESSAGE("Rapidash used Arm Thrust!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ARM_THRUST, player);
-        MESSAGE("The opposing Beautifly protected itself!");
+        MESSAGE("Foe Beautifly protected itself!");
         // Each effect happens only once.
         if (move == MOVE_KINGS_SHIELD || move == MOVE_SILK_TRAP || move == MOVE_OBSTRUCT) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -308,10 +304,10 @@ SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only o
             } else if (move == MOVE_SPIKY_SHIELD) {
                 HP_BAR(player);
             }
-            MESSAGE("The Pokémon was hit 2 time(s)!");
-            MESSAGE("The Pokémon was hit 3 time(s)!");
-            MESSAGE("The Pokémon was hit 4 time(s)!");
-            MESSAGE("The Pokémon was hit 5 time(s)!");
+            MESSAGE("Hit 2 time(s)!");
+            MESSAGE("Hit 3 time(s)!");
+            MESSAGE("Hit 4 time(s)!");
+            MESSAGE("Hit 5 time(s)!");
         }
     }
 }
@@ -336,7 +332,7 @@ DOUBLE_BATTLE_TEST("Wide Guard protects self and ally from multi-target moves")
         TURN { MOVE(opponentLeft, MOVE_WIDE_GUARD); MOVE(playerLeft, move, target: opponentLeft); }
         TURN {}
     } SCENE {
-        MESSAGE("The opposing Wobbuffet used Wide Guard!");
+        MESSAGE("Foe Wobbuffet used Wide Guard!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WIDE_GUARD, opponentLeft);
         if (move == MOVE_TACKLE) {
             MESSAGE("Wobbuffet used Tackle!");
@@ -344,15 +340,15 @@ DOUBLE_BATTLE_TEST("Wide Guard protects self and ally from multi-target moves")
             HP_BAR(opponentLeft);
         } else if (move == MOVE_HYPER_VOICE) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentRight);
         } else { // Surf
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentLeft);
             HP_BAR(playerRight);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentRight);
         }
     }
@@ -375,12 +371,12 @@ DOUBLE_BATTLE_TEST("Wide Guard can not fail on consecutive turns")
         TURN {}
     } SCENE {
         for (turns = 0; turns < 2; turns++) {
-            MESSAGE("The opposing Wobbuffet used Wide Guard!");
+            MESSAGE("Foe Wobbuffet used Wide Guard!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_WIDE_GUARD, opponentLeft);
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentRight);
         }
     }
@@ -407,7 +403,7 @@ DOUBLE_BATTLE_TEST("Quick Guard protects self and ally from priority moves")
         TURN { MOVE(opponentLeft, MOVE_QUICK_GUARD); MOVE(playerLeft, move, target:targetOpponent); }
         TURN {}
     } SCENE {
-        MESSAGE("The opposing Wobbuffet used Quick Guard!");
+        MESSAGE("Foe Wobbuffet used Quick Guard!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_GUARD, opponentLeft);
         if (move == MOVE_TACKLE) {
             MESSAGE("Wobbuffet used Tackle!");
@@ -415,7 +411,7 @@ DOUBLE_BATTLE_TEST("Quick Guard protects self and ally from priority moves")
             HP_BAR(targetOpponent);
         } else if (move == MOVE_QUICK_ATTACK) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, playerLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(targetOpponent);
         }
     }
@@ -437,10 +433,10 @@ DOUBLE_BATTLE_TEST("Quick Guard can not fail on consecutive turns")
         TURN { MOVE(opponentLeft, MOVE_QUICK_GUARD); MOVE(playerLeft, MOVE_QUICK_ATTACK, target: opponentRight); }
     } SCENE {
         for (turns = 0; turns < 2; turns++) {
-            MESSAGE("The opposing Wobbuffet used Quick Guard!");
+            MESSAGE("Foe Wobbuffet used Quick Guard!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_GUARD, opponentLeft);
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, playerLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT HP_BAR(opponentRight);
         }
     }
@@ -471,115 +467,18 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from status moves")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CRAFTY_SHIELD, opponentLeft);
         if (move == MOVE_LEER) {
             MESSAGE("Wobbuffet used Leer!");
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("The opposing Wobbuffet protected itself!");
+            MESSAGE("Foe Wobbuffet protected itself!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
         } else {
             if (move == MOVE_HYPER_VOICE || targetOpponent == opponentLeft) {
-                NOT MESSAGE("The opposing Wobbuffet protected itself!");
+                NOT MESSAGE("Foe Wobbuffet protected itself!");
                 HP_BAR(opponentLeft);
             } else if (move == MOVE_HYPER_VOICE || targetOpponent == opponentRight) {
-                NOT MESSAGE("The opposing Wobbuffet protected itself!");
+                NOT MESSAGE("Foe Wobbuffet protected itself!");
                 HP_BAR(opponentRight);
             }
         }
     }
 }
-
-SINGLE_BATTLE_TEST("Protect does not block Confide or Decorate")
-{
-    u32 move;
-    PARAMETRIZE { move = MOVE_CONFIDE; }
-    PARAMETRIZE { move = MOVE_DECORATE; }
-
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_CONFIDE].effect == EFFECT_SPECIAL_ATTACK_DOWN);
-        ASSUME(gMovesInfo[MOVE_CONFIDE].ignoresProtect == TRUE);
-        ASSUME(gMovesInfo[MOVE_DECORATE].effect == EFFECT_DECORATE);
-        ASSUME(gMovesInfo[MOVE_DECORATE].ignoresProtect == TRUE);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, move); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, move, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        NOT MESSAGE("The opposing Wobbuffet protected itself!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from Confide and Decorate")
-{
-    u32 move;
-    PARAMETRIZE { move = MOVE_CONFIDE; }
-    PARAMETRIZE { move = MOVE_DECORATE; }
-
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_CONFIDE].effect == EFFECT_SPECIAL_ATTACK_DOWN);
-        ASSUME(gMovesInfo[MOVE_CONFIDE].ignoresProtect == TRUE);
-        ASSUME(gMovesInfo[MOVE_DECORATE].effect == EFFECT_DECORATE);
-        ASSUME(gMovesInfo[MOVE_DECORATE].ignoresProtect == TRUE);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_CRAFTY_SHIELD); MOVE(playerLeft, move, target: opponentLeft); MOVE(playerRight, move, target: opponentRight); }
-    } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
-        MESSAGE("The opposing Wobbuffet protected itself!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, move, playerRight);
-        MESSAGE("The opposing Wynaut protected itself!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("Crafty Shield does not protect against moves that target all battlers")
-{
-    GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_TANGELA].types[0] == TYPE_GRASS);
-        ASSUME(gSpeciesInfo[SPECIES_TANGROWTH].types[0] == TYPE_GRASS);
-        ASSUME(gSpeciesInfo[SPECIES_SUNKERN].types[0] == TYPE_GRASS);
-        ASSUME(gSpeciesInfo[SPECIES_SUNFLORA].types[0] == TYPE_GRASS);
-        PLAYER(SPECIES_TANGELA);
-        PLAYER(SPECIES_TANGROWTH);
-        OPPONENT(SPECIES_SUNKERN);
-        OPPONENT(SPECIES_SUNFLORA);
-    } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_CRAFTY_SHIELD); MOVE(opponentRight, MOVE_CELEBRATE); MOVE(playerLeft, MOVE_FLOWER_SHIELD); MOVE(playerRight, MOVE_CELEBRATE); }
-    } SCENE {
-        MESSAGE("Tangela used Flower Shield!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Tangela's Defense rose!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("The opposing Sunkern's Defense rose!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Tangrowth's Defense rose!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("The opposing Sunflora's Defense rose!");
-    }
-}
-
-SINGLE_BATTLE_TEST("Spiky Shield does not damage users on Counter or Mirror Coat")
-{
-    u32 move;
-    PARAMETRIZE { move = MOVE_MIRROR_COAT; }
-    PARAMETRIZE { move = MOVE_COUNTER; }
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_SPIKY_SHIELD); MOVE(opponent, move); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKY_SHIELD, player);
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-            HP_BAR(opponent);
-        }
-    }
-}
-

@@ -14,16 +14,16 @@ PetalburgCity_Mart_EventScript_Clerk::
 
 	.align 2
 PetalburgCity_Mart_Pokemart_Basic:
-	.2byte ITEM_POKE_BALL
-	.2byte ITEM_POTION
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	.2byte ITEM_ESCAPE_ROPE
-	.2byte ITEM_REPEL
-	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_X_SP_DEF
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
 	.2byte ITEM_ORANGE_MAIL
 	.2byte ITEM_NONE
 	release
@@ -37,26 +37,41 @@ PetalburgCity_Mart_EventScript_ExpandedItems::
 
 	.align 2
 PetalburgCity_Mart_Pokemart_Expanded:
-	.2byte ITEM_POKE_BALL
-	.2byte ITEM_GREAT_BALL
-	.2byte ITEM_POTION
-	.2byte ITEM_SUPER_POTION
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	.2byte ITEM_ESCAPE_ROPE
-	.2byte ITEM_REPEL
-	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_X_SP_DEF
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
 	.2byte ITEM_ORANGE_MAIL
 	.2byte ITEM_NONE
 	release
 	end
 
 PetalburgCity_Mart_EventScript_Woman::
-	msgbox PetalburgCity_Mart_Text_WeakWillGrowStronger, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_ITEM_SILVER_POWDER, PetalburgCity_Mart_Silver_Powder_Woman
+	msgbox PetalburgCity_Mart_Text_WeakWillGrowStronger, MSGBOX_DEFAULT
+	giveitem ITEM_SILVER_POWDER
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_ITEM_SILVER_POWDER
+	release
 	end
+
+PetalburgCity_Mart_Silver_Powder_Woman::
+	msgbox PetalburgCity_Mart_Howareyourbugpokemon, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_Mart_Howareyourbugpokemon::
+	.string "How are your Pokémon doing?\n"
+	.string "Is the powder helping your\p"
+	.string "bug Pokémon?$"
 
 PetalburgCity_Mart_EventScript_Boy::
 	msgbox PetalburgCity_Mart_Text_RepelIsUseful, MSGBOX_NPC
@@ -70,7 +85,10 @@ PetalburgCity_Mart_Text_WeakWillGrowStronger:
 	.string "Even if a POKéMON is weak now,\n"
 	.string "it will grow stronger.\p"
 	.string "The most important thing is love!\n"
-	.string "Love for your POKéMON!$"
+	.string "Love for your POKéMON!\p"
+	.string "Bug Pokémon tend to get strong\n"
+	.string "rather quick, here take this.\p"
+	.string "Remember to love your Pokémon!$"
 
 PetalburgCity_Mart_Text_RepelIsUseful:
 	.string "Do you use REPEL?\n"
@@ -83,4 +101,5 @@ PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou:
 	.string "If you walk around with a poisoned\n"
 	.string "POKéMON, it will lose HP until it faints.\l"
 	.string "Take some ANTIDOTES with you.$"
+
 

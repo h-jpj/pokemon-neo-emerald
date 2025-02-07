@@ -41,6 +41,8 @@ struct Weather
             struct Sprite *sandstormSprites2[NUM_SWIRL_SANDSTORM_SPRITES];
         } s2;
     } sprites;
+    u8 darkenedContrastColorMaps[NUM_WEATHER_COLOR_MAPS][32];
+    u8 contrastColorMaps[NUM_WEATHER_COLOR_MAPS][32];
     s8 colorMapIndex;
     s8 targetColorMapIndex;
     u8 colorMapStepDelay;
@@ -139,6 +141,15 @@ extern struct Weather gWeather;
 extern struct Weather *const gWeatherPtr;
 extern const u16 gFogPalette[];
 
+enum
+{
+    GAMMA_NONE,
+    GAMMA_NORMAL,
+    GAMMA_ALT,
+};
+
+void UpdatePaletteGammaType(u8 index, u8 gammaType);
+
 // field_weather_effect.c
 extern const u8 gWeatherFogHorizontalTiles[];
 
@@ -152,7 +163,7 @@ void FadeScreen(u8 mode, s8 delay);
 bool8 IsWeatherNotFadingIn(void);
 void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex);
 void ApplyWeatherColorMapToPal(u8 paletteIndex);
-void LoadCustomWeatherSpritePalette(const u16 *palette);
+void LoadCustomWeatherSpritePalette(const struct SpritePalette *palette);
 void ResetDroughtWeatherPaletteLoading(void);
 bool8 LoadDroughtWeatherPalettes(void);
 void DroughtStateInit(void);
@@ -168,7 +179,6 @@ void SetWeatherScreenFadeOut(void);
 void SetWeatherPalStateIdle(void);
 void PreservePaletteInWeather(u8 preservedPalIndex);
 void ResetPreservedPalettesInWeather(void);
-bool32 IsWeatherAlphaBlend(void);
 
 // field_weather_effect.c
 void Clouds_InitVars(void);

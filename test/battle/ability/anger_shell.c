@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% of its HP")
+SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% of its hp")
 {
     bool32 activates = FALSE;
     u16 maxHp = 500, hp = 0;

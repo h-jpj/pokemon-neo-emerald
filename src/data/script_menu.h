@@ -105,107 +105,107 @@ static const struct MenuAction MultichoiceList_LevelMode[] =
 
 static const struct MenuAction MultichoiceList_Mechadoll1_Q1[] =
 {
-    {COMPOUND_STRING("ODDISH")},
-    {COMPOUND_STRING("POOCHYENA")},
-    {COMPOUND_STRING("TAILLOW")},
+    {gTrickHouse_Mechadoll_Oddish},
+    {gTrickHouse_Mechadoll_Poochyena},
+    {gTrickHouse_Mechadoll_Taillow},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll1_Q2[] =
 {
-    {COMPOUND_STRING("AZURILL")},
-    {COMPOUND_STRING("LOTAD")},
-    {COMPOUND_STRING("WINGULL")},
+    {gTrickHouse_Mechadoll_Azurill},
+    {gTrickHouse_Mechadoll_Lotad},
+    {gTrickHouse_Mechadoll_Wingull},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll1_Q3[] =
 {
-    {COMPOUND_STRING("DUSTOX")},
-    {COMPOUND_STRING("ZUBAT")},
-    {COMPOUND_STRING("NINCADA")},
+    {gTrickHouse_Mechadoll_Dustox},
+    {gTrickHouse_Mechadoll_Zubat},
+    {gTrickHouse_Mechadoll_Nincada},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll2_Q1[] =
 {
-    {COMPOUND_STRING("RALTS")},
-    {COMPOUND_STRING("ZIGZAGOON")},
-    {COMPOUND_STRING("SLAKOTH")},
+    {gTrickHouse_Mechadoll_Ralts},
+    {gTrickHouse_Mechadoll_Zigzagoon},
+    {gTrickHouse_Mechadoll_Slakoth},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll2_Q2[] =
 {
-    {COMPOUND_STRING("POOCHYENA")},
-    {COMPOUND_STRING("SHROOMISH")},
-    {COMPOUND_STRING("ZIGZAGOON")},
+    {gTrickHouse_Mechadoll_Poochyena2},
+    {gTrickHouse_Mechadoll_Shroomish},
+    {gTrickHouse_Mechadoll_Zigzagoon2},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll2_Q3[] =
 {
-    {COMPOUND_STRING("POOCHYENA")},
-    {COMPOUND_STRING("ZUBAT")},
-    {COMPOUND_STRING("CARVANHA")},
+    {gTrickHouse_Mechadoll_Poochyena3},
+    {gTrickHouse_Mechadoll_Zubat2},
+    {gTrickHouse_Mechadoll_Carvanha},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll3_Q1[] =
 {
-    {COMPOUND_STRING("BURN HEAL")},
-    {COMPOUND_STRING("HARBOR MAIL")},
-    {COMPOUND_STRING("Same price")},
+    {gTrickHouse_Mechadoll_BurnHeal},
+    {gTrickHouse_Mechadoll_HarborMail},
+    {gTrickHouse_Mechadoll_SamePrice},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll3_Q2[] =
 {
-    {COMPOUND_STRING("¥60")},
-    {COMPOUND_STRING("¥55")},
-    {COMPOUND_STRING("Nothing")},
+    {gTrickHouse_Mechadoll_60Yen},
+    {gTrickHouse_Mechadoll_55Yen},
+    {gTrickHouse_Mechadoll_Nothing},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll3_Q3[] =
 {
-    {COMPOUND_STRING("They will cost more.")},
-    {COMPOUND_STRING("They will cost less.")},
-    {COMPOUND_STRING("Same price")},
+    {gTrickHouse_Mechadoll_CostMore},
+    {gTrickHouse_Mechadoll_CostLess},
+    {gTrickHouse_Mechadoll_SamePrice2},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll4_Q1[] =
 {
-    {COMPOUND_STRING("Male")},
-    {COMPOUND_STRING("Female")},
-    {COMPOUND_STRING("Neither")},
+    {gTrickHouse_Mechadoll_Male},
+    {gTrickHouse_Mechadoll_Female},
+    {gTrickHouse_Mechadoll_Neither},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll4_Q2[] =
 {
-    {COMPOUND_STRING("Elderly men")},
-    {COMPOUND_STRING("Elderly ladies")},
-    {COMPOUND_STRING("Same number")},
+    {gTrickHouse_Mechadoll_ElderlyMen},
+    {gTrickHouse_Mechadoll_ElderlyLadies},
+    {gTrickHouse_Mechadoll_SameNumber},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll4_Q3[] =
 {
-    {COMPOUND_STRING("None")},
-    {COMPOUND_STRING("1")},
-    {COMPOUND_STRING("2")},
+    {gTrickHouse_Mechadoll_None},
+    {gTrickHouse_Mechadoll_One},
+    {gTrickHouse_Mechadoll_Two},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll5_Q1[] =
 {
-    {COMPOUND_STRING("2")},
-    {COMPOUND_STRING("3")},
-    {COMPOUND_STRING("4")},
+    {gTrickHouse_Mechadoll_Two2},
+    {gTrickHouse_Mechadoll_Three},
+    {gTrickHouse_Mechadoll_Four},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll5_Q2[] =
 {
-    {COMPOUND_STRING("6")},
-    {COMPOUND_STRING("7")},
-    {COMPOUND_STRING("8")},
+    {gTrickHouse_Mechadoll_Six},
+    {gTrickHouse_Mechadoll_Seven},
+    {gTrickHouse_Mechadoll_Eight},
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll5_Q3[] =
 {
-    {COMPOUND_STRING("6")},
-    {COMPOUND_STRING("7")},
-    {COMPOUND_STRING("8")},
+    {gTrickHouse_Mechadoll_Six2},
+    {gTrickHouse_Mechadoll_Seven2},
+    {gTrickHouse_Mechadoll_Eight2},
 };
 
 static const struct MenuAction MultichoiceList_VendingMachine[] =
@@ -940,6 +940,11 @@ const u8 *const gStdStrings[] =
     [STDSTRING_BATTLE_ARENA] = gText_BattleArena,
     [STDSTRING_BATTLE_PIKE] = gText_BattlePike,
     [STDSTRING_BATTLE_PYRAMID] = gText_BattlePyramid,
+
+    [STDSTRING_MEDICINE] = gText_Medicine,
+    [STDSTRING_BATTLEITEMS] = gText_BattleItems,
+    [STDSTRING_TREASURES] = gText_Treasures,
+    [STDSTRING_MEGASTONES] = gText_Mega_Stones,
 };
 
 static const u8 sLinkServicesMultichoiceIds[] =

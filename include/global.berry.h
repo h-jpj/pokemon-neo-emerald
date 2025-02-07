@@ -79,6 +79,10 @@ struct BerryTree
     u16 minutesUntilNextStage:14;
     u16 mutationA:2;
     u8 berryYield:5;
+    u8 EncounterSproutStage:1;
+    u8 EncounterTallerStage:1;
+    u8 EncounterFlowerStage:1;
+    u8 EncounterBerryStage:1;
     u8 pests:1;
     u8 mutationB:2;
     u8 regrowthCount:4;

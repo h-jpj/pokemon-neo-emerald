@@ -191,6 +191,7 @@ enum
     LIST_STATUS4_SALT_CURE,
     LIST_STATUS4_SYRUP_BOMB,
     LIST_STATUS4_GLAIVE_RUSH,
+    LIST_STATUS4_KINDLED_UP,
 };
 
 enum
@@ -337,6 +338,7 @@ static const u8 sText_OnAir[] = _("On Air");
 static const u8 sText_Underground[] = _("Underground");
 static const u8 sText_Minimized[] = _("Minimized");
 static const u8 sText_ChargedUp[] = _("Charged Up");
+static const u8 sText_KindledUp[] = _("Kindled Up");
 static const u8 sText_Rooted[] = _("Rooted");
 static const u8 sText_Yawn[] = _("Yawn");
 static const u8 sText_ImprisonedOthers[] = _("Imprisoned Others");
@@ -599,6 +601,7 @@ static const struct ListMenuItem sStatus4ListItems[] =
     {sText_SaltCure, LIST_STATUS4_SALT_CURE},
     {sText_SyrupBomb, LIST_STATUS4_SYRUP_BOMB},
     {sText_GlaiveRush, LIST_STATUS4_GLAIVE_RUSH},
+    {sText_KindledUp, LIST_STATUS4_KINDLED_UP},
 };
 
 static const struct ListMenuItem sSideStatusListItems[] =
@@ -946,7 +949,7 @@ static void PutMovesPointsText(struct BattleDebugMenu *data)
             AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, text, 83 + count * 54, i * 15, 0, NULL);
 
             ConvertIntToDecimalStringN(text,
-                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i].expected,
+                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i],
                                        STR_CONV_MODE_RIGHT_ALIGN, 3);
             AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, text, 110 + count * 54, i * 15, 0, NULL);
 
@@ -1670,7 +1673,7 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
     case LIST_ITEM_TYPES:
         for (i = 0; i < 3; i++)
         {
-            u8 *types = &gBattleMons[data->battlerId].types[0];
+            u8 *types = &gBattleMons[data->battlerId].type1;
 
             PadString(gTypesInfo[types[i]].name, text);
             printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
@@ -2070,9 +2073,9 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.minValue = 0;
         data->modifyArrows.maxValue = NUMBER_OF_MON_TYPES - 1;
         data->modifyArrows.maxDigits = 2;
-        data->modifyArrows.modifiedValPtr = (u8 *)((&gBattleMons[data->battlerId].types[0]) + data->currentSecondaryListItemId);
+        data->modifyArrows.modifiedValPtr = (u8 *)((&gBattleMons[data->battlerId].type1) + data->currentSecondaryListItemId);
         data->modifyArrows.typeOfVal = VAL_U8;
-        data->modifyArrows.currValue = *(u8 *)((&gBattleMons[data->battlerId].types[0]) + data->currentSecondaryListItemId);
+        data->modifyArrows.currValue = *(u8 *)((&gBattleMons[data->battlerId].type1) + data->currentSecondaryListItemId);
         break;
     case LIST_ITEM_STATS:
         data->modifyArrows.minValue = 0;
@@ -2269,8 +2272,13 @@ static void UpdateMonData(struct BattleDebugMenu *data)
     {
         if (data->battlerWasChanged[i])
         {
-            struct Pokemon *mon = GetPartyBattlerData(i);
+            struct Pokemon *mon;
             struct BattlePokemon *battleMon = &gBattleMons[i];
+
+            if (GetBattlerSide(i) == B_SIDE_PLAYER)
+                mon = &gPlayerParty[gBattlerPartyIndexes[i]];
+            else
+                mon = &gEnemyParty[gBattlerPartyIndexes[i]];
 
             SetMonData(mon, MON_DATA_HELD_ITEM, &battleMon->item);
             SetMonData(mon, MON_DATA_STATUS, &battleMon->status1);
@@ -2430,7 +2438,6 @@ static const u8 sText_HoldEffectCovertCloak[] = _("Covert Cloak");
 static const u8 sText_HoldEffectLoadedDice[] = _("Loaded Dice");
 static const u8 sText_HoldEffectBoosterEnergy[] = _("Booster Energy");
 static const u8 sText_HoldEffectBerserkGene[] = _("Berserk Gene");
-static const u8 sText_HoldEffectOgerponMask[] = _("Ogerpon Mask");
 static const u8 *const sHoldEffectNames[] =
 {
     [HOLD_EFFECT_NONE] = sText_HoldEffectNone,
@@ -2581,7 +2588,6 @@ static const u8 *const sHoldEffectNames[] =
     [HOLD_EFFECT_LOADED_DICE] = sText_HoldEffectLoadedDice,
     [HOLD_EFFECT_BOOSTER_ENERGY] = sText_HoldEffectBoosterEnergy,
     [HOLD_EFFECT_BERSERK_GENE] = sText_HoldEffectBerserkGene,
-    [HOLD_EFFECT_OGERPON_MASK] = sText_HoldEffectOgerponMask,
 };
 static const u8 *GetHoldEffectName(u16 holdEffect)
 {

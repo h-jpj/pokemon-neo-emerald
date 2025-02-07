@@ -1,7 +1,6 @@
 #include "global.h"
 #include "item.h"
 #include "berry.h"
-#include "pokeball.h"
 #include "string_util.h"
 #include "text.h"
 #include "event_data.h"
@@ -14,10 +13,8 @@
 #include "item_use.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
-#include "graphics.h"
 #include "constants/battle.h"
 #include "constants/items.h"
-#include "constants/moves.h"
 #include "constants/item_effects.h"
 #include "constants/hold_effects.h"
 
@@ -82,30 +79,38 @@ void SetBagItemsPointers(void)
 
     gBagPockets[BERRIES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Berries;
     gBagPockets[BERRIES_POCKET].capacity = BAG_BERRIES_COUNT;
+
+    gBagPockets[MEDICINE_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Medicine;
+    gBagPockets[MEDICINE_POCKET].capacity = BAG_MEDICINE_COUNT;
+
+    gBagPockets[BATTLEITEMS_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_BattleItems;
+    gBagPockets[BATTLEITEMS_POCKET].capacity = BAG_BATTLEITEMS_COUNT;
+
+    gBagPockets[TREASURES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Treasures;
+    gBagPockets[TREASURES_POCKET].capacity = BAG_TREASURES_COUNT;
+
+    gBagPockets[MEGASTONES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_MegaStones;
+    gBagPockets[MEGASTONES_POCKET].capacity = BAG_MEGASTONES_COUNT;
 }
 
-u8 *CopyItemName(u16 itemId, u8 *dst)
+void CopyItemName(u16 itemId, u8 *dst)
 {
-    return StringCopy(dst, ItemId_GetName(itemId));
+    StringCopy(dst, ItemId_GetName(itemId));
 }
 
 const u8 sText_s[] =_("s");
 
-u8 *CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
+void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    if (quantity == 1)
-    {
-        return StringCopy(dst, ItemId_GetName(itemId));
-    }
-    else if (DoesItemHavePluralName(itemId))
-    {
-        return StringCopy(dst, ItemId_GetPluralName(itemId));
-    }
+    u8 *end = StringCopy(dst, ItemId_GetName(itemId)) - 1;
+
+    if (quantity < 2)
+        return;
+
+    if (DoesItemHavePluralName(itemId))
+        StringCopy(dst, ItemId_GetPluralName(itemId));
     else
-    {
-        u8 *end = StringCopy(dst, ItemId_GetName(itemId));
-        return StringCopy(end, sText_s);
-    }
+        StringAppend(end, sText_s);
 }
 
 bool8 IsBagPocketNonEmpty(u8 pocket)
@@ -162,18 +167,6 @@ bool8 HasAtLeastOneBerry(void)
         }
     }
     gSpecialVar_Result = FALSE;
-    return FALSE;
-}
-
-bool8 HasAtLeastOnePokeBall(void)
-{
-    u16 ballId;
-
-    for (ballId = BALL_STRANGE; ballId < POKEBALL_COUNT; ballId++)
-    {
-        if (CheckBagHasItem(ballId, 1) == TRUE)
-            return TRUE;
-    }
     return FALSE;
 }
 
@@ -917,11 +910,6 @@ u8 ItemId_GetImportance(u16 itemId)
     return gItemsInfo[SanitizeItemId(itemId)].importance;
 }
 
-u8 ItemId_GetConsumability(u16 itemId)
-{
-    return !gItemsInfo[SanitizeItemId(itemId)].notConsumed;
-}
-
 u8 ItemId_GetPocket(u16 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].pocket;
@@ -969,7 +957,7 @@ u8 ItemId_GetBattleUsage(u16 itemId)
         return gItemsInfo[item].battleUsage;
 }
 
-u32 ItemId_GetSecondaryId(u32 itemId)
+u8 ItemId_GetSecondaryId(u16 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].secondaryId;
 }

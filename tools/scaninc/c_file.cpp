@@ -33,11 +33,6 @@ CFile::CFile(std::string path)
 
     m_size = std::ftell(fp);
 
-    if (m_size < 0)
-        FATAL_ERROR("File size of \"%s\" is less than zero.\n", path.c_str());
-    else if (m_size == 0)
-        return; // Empty file
-
     m_buffer = new char[m_size + 1];
     m_buffer[m_size] = 0;
 
@@ -54,7 +49,7 @@ CFile::CFile(std::string path)
 
 CFile::~CFile()
 {
-    if (m_size > 0) delete[] m_buffer;
+    delete[] m_buffer;
 }
 
 void CFile::FindIncbins()
@@ -218,10 +213,10 @@ void CFile::CheckIncbin()
             return;
     }
 
-    std::string idents[7] = { "INCBIN_S8", "INCBIN_U8", "INCBIN_S16", "INCBIN_U16", "INCBIN_S32", "INCBIN_U32", "INCBIN_COMP"};
+    std::string idents[6] = { "INCBIN_S8", "INCBIN_U8", "INCBIN_S16", "INCBIN_U16", "INCBIN_S32", "INCBIN_U32" };
     int incbinType = -1;
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 6; i++)
     {
         if (CheckIdentifier(idents[i]))
         {
@@ -254,10 +249,6 @@ void CFile::CheckIncbin()
         SkipWhitespace();
 
         std::string path = ReadPath();
-
-        // INCBIN_COMP; include *compressed* version of file
-        if (incbinType == 6)
-            path = path.append(".lz");
 
         SkipWhitespace();
 
