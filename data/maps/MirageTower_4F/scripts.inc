@@ -46,10 +46,6 @@ MirageTower_4F_EventScript_LeaveClawFossil::
 	release
 	end
 
-MirageTower_F3_Aerodactyl::
-	finditem ITEM_OLD_AMBER
-	end
-
 MirageTower_4F_EventScript_CollapseMirageTower::
 	setvar VAR_0x8004, 1   @ vertical pan
 	setvar VAR_0x8005, 1   @ horizontal pan

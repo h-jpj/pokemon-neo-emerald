@@ -32,8 +32,7 @@ MauvilleCity_Mart_Pokemart:
 	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_REAPER_CLOTH
 	.2byte ITEM_NONE
-	release
-	end
+	pokemartlistend
 
 MauvilleCity_Mart_EventScript_ExpertM::
 	msgbox MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats, MSGBOX_NPC

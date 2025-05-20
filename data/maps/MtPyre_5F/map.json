@@ -28,7 +28,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_GOLD_ITEM_BALL",
       "x": 6,
       "y": 11,
       "elevation": 3,
@@ -82,6 +82,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 9,
+      "y": 10,
+      "elevation": 0,
+      "item": "ITEM_LINKING_CORD",
+      "flag": "FLAG_LINKING_CORD8"
+    }
   ]
 }

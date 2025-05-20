@@ -25,7 +25,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_PETALBURGWOODS_1"
+      "flag": "FLAG_TEMP_11"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
@@ -38,7 +38,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_PETALBURGWOODS_2"
+      "flag": "FLAG_TEMP_12"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
@@ -68,8 +68,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 39,
-      "y": 8,
+      "x": 45,
+      "y": 7,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -101,7 +101,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_ABILITY_PATCH",
+      "trainer_sight_or_berry_tree_id": "ITEM_ETHER",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_PETALBURG_WOODS_ETHER"
     },
@@ -166,7 +166,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_PARALYZE_HEAL",
+      "trainer_sight_or_berry_tree_id": "ITEM_ABILITY_CAPSULE",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL"
     },
@@ -182,6 +182,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_EventScript_Girl",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 43,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_INSECT_PLATE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_INSECT_PLATE_PETALBURG_WOODS"
     }
   ],
   "warp_events": [
@@ -226,20 +239,6 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE104",
       "dest_warp_id": "7"
-    },
-    {
-      "x": 43,
-      "y": 10,
-      "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS2",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 42,
-      "y": 10,
-      "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS2",
-      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -313,11 +312,11 @@
     },
     {
       "type": "hidden_item",
-      "x": 45,
-      "y": 19,
+      "x": 4,
+      "y": 33,
       "elevation": 0,
-      "item": "ITEM_SUN_STONE",
-      "flag": "FLAG_ITEM_SUN_STONE"
+      "item": "ITEM_FRIEND_BALL",
+      "flag": "FLAG_FRIEND_BALL"
     }
   ]
 }

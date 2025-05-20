@@ -135,7 +135,7 @@
       "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 3,
       "y": 3,
-      "elevation": 3,
+      "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,

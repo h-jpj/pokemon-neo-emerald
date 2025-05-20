@@ -13,6 +13,7 @@ FortreeCity_Mart_EventScript_Clerk::
 
 	.align 2
 FortreeCity_Mart_Pokemart:
+    .2byte ITEM_AIR_BALLOON
 	.2byte ITEM_PROTECTOR
 	.2byte ITEM_ELECTIRIZER
 	.2byte ITEM_MAGMARIZER
@@ -22,8 +23,7 @@ FortreeCity_Mart_Pokemart:
 	.2byte ITEM_REAPER_CLOTH
 	.2byte ITEM_DRAGON_SCALE
 	.2byte ITEM_NONE
-	release
-	end
+	pokemartlistend
 
 FortreeCity_Mart_EventScript_Woman::
 	msgbox FortreeCity_Mart_Text_SuperRepelBetter, MSGBOX_NPC

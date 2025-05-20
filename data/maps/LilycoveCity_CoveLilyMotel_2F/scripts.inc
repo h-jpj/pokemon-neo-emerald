@@ -66,50 +66,6 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_MetScott::
 	release
 	end
 
-LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsert::
-	lockall
-	faceplayer
-	goto_if_set FLAG_DAILY_REMATCH_HARVEY, LilycoveCity_CoveLilyMotel_2F_EventScript_HarveyDefeated
-	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ImHarvey, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsertNo
-	message LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertBattle
-	waitmessage
-	trainerbattle_no_intro TRAINER_HARVEY, LilycoveCity_CoveLilyMotel_2F_Text_HarveyDefeat
-	setflag FLAG_DAILY_REMATCH_HARVEY
-
-LilycoveCity_CoveLilyMotel_2F_EventScript_HarveyDefeated::
-	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ThanksAgain, MSGBOX_DEFAULT
-	release
-	end
-
-LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsertNo::
-	msgbox LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertNo, MSGBOX_DEFAULT
-	release
-	end
-
-LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertNo:
-	.string "Some other time, then?$"
-
-LilycoveCity_CoveLilyMotel_2F_Text_ImHarvey:
-	.string "Hey {PLAYER}!\p"
-	.string "I'm Harvey-Jay, the creator of this\n"
-	.string "mod (or ROM hack).\p"
-	.string "Thanks for playing!\p"
-	.string "I hope you had fun on your journey,\n"
-	.string "and didn't run in to too many bugs!\p"
-	.string "Now that you're the Champion, how about\n"
-	.string "we have a friendly battle?\p"
-	.string "Don't worry - I haven't given myself\n"
-	.string "any unfair advantages!\p"
-	.string "So, are you ready?$"
-
-LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertBattle:
-	.string "Great! let's see what you can do!$"
-
-LilycoveCity_CoveLilyMotel_2F_Text_HarveyDefeat:
-	.string "Well done, {PLAYER}!$"
-
 LilycoveCity_CoveLilyMotel_2F_Text_ShowMeCompletedDex:
 	.string "I'm the GAME DESIGNER.\p"
 	.string "Oh, is that right?\n"
@@ -118,11 +74,6 @@ LilycoveCity_CoveLilyMotel_2F_Text_ShowMeCompletedDex:
 	.string "but don't give up.\p"
 	.string "If you do complete it, please come\n"
 	.string "show me.$"
-
-LilycoveCity_CoveLilyMotel_2F_Text_ThanksAgain:
-	.string "Thanks again for playing!\p"
-	.string "If you want a rematch, come back\n"
-	.string "tomorrow!$"
 
 LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis:
 	.string "Wow! That's awesome!\n"

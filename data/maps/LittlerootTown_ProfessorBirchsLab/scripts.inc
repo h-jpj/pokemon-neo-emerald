@@ -276,8 +276,6 @@ LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForJohtoStarter:
 LittlerootTown_ProfessorBirchsLab_EventScript_Aide::
 	lock
 	faceplayer
-	giveitem ITEM_LINKING_CORD
-	setflag FLAG_LINKING_CORD
 	goto_if_ge VAR_BIRCH_LAB_STATE, 3, LittlerootTown_ProfessorBirchsLab_EventScript_AideReceivedStarter
 	goto_if_set FLAG_BIRCH_AIDE_MET, LittlerootTown_ProfessorBirchsLab_EventScript_AideAlreadyMet
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork, MSGBOX_DEFAULT
@@ -515,8 +513,6 @@ EventScript_RegisterProfBirch::
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
-	setflag FLAG_SYS_NATIONAL_DEX
-	special EnableNationalPokedex
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
@@ -556,6 +552,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET
 	special SetUnlockedPokedexFlags
+	setflag FLAG_SYS_NATIONAL_DEX
+	special EnableNationalPokedex
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	return

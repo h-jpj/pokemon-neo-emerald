@@ -1,6 +1,11 @@
 EventScript_UseSurf::
-	checkpartymove MOVE_SURF
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_EndUseSurf
+	checkpartycanlearnmove MOVE_SURF
+	goto_if_ne VAR_RESULT, PARTY_SIZE, EventScript_UseSurfWithMon
+	lockall
+	msgbox gText_CantSurf, MSGBOX_DEFAULT
+	goto EventScript_ReleaseUseSurf
+
+EventScript_UseSurfWithMon::
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	lockall

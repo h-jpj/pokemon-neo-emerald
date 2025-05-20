@@ -17,16 +17,6 @@
       "map": "MAP_ROUTE101",
       "offset": 0,
       "direction": "up"
-    },
-    {
-      "map": "MAP_LITTLEROOT_PATH",
-      "offset": -36,
-      "direction": "down"
-    },
-    {
-      "map": "MAP_LITTLEROOT_PATH",
-      "offset": -36,
-      "direction": "down"
     }
   ],
   "object_events": [
@@ -273,14 +263,6 @@
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LittlerootTown_EventScript_MaysHouseSign"
-    },
-    {
-      "type": "hidden_item",
-      "x": 7,
-      "y": 19,
-      "elevation": 0,
-      "item": "ITEM_GYARADOSITE_Y",
-      "flag": "FLAG_TEMP_1"
     }
   ]
 }

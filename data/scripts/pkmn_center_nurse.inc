@@ -33,13 +33,20 @@ EventScript_PkmnCenterNurse_IllTakeYourPkmn2::
 	return
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn::
-	applymovement VAR_0x800B, Common_Movement_WalkInPlaceFasterLeft
+	hidefollower 0
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Turn
 	waitmovement 0
 	dofieldeffect FLDEFF_POKECENTER_HEAL
+.if OW_UNION_DISABLE_CHECK == FALSE && OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
+	setflag OW_FLAG_MOVE_UNION_ROOM_CHECK
+	call CableClub_OnResume
+	clearflag OW_FLAG_MOVE_UNION_ROOM_CHECK
+.endif
 	waitfieldeffect FLDEFF_POKECENTER_HEAL
 	applymovement VAR_0x800B, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	special HealPlayerParty
+	callnative UpdateFollowingPokemon
 	return
 
 EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom::
@@ -121,12 +128,6 @@ Movement_PkmnCenterNurse_Bow:
 	delay_4
 	step_end
 
-PokeVialHealScript::
-	special HealPlayerParty
-	msgbox PokeVialText, MSGBOX_DEFAULT
-	releaseall
-	end
-
-PokeVialText::
-	.string "Your Pokemon are fully healed.$"
-
+Movement_PkmnCenterNurse_Turn:
+	walk_in_place_faster_left
+	step_end

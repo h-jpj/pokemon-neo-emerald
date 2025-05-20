@@ -13,6 +13,10 @@ SlateportCity_Mart_EventScript_Clerk::
 
 	.align 2
 SlateportCity_Mart_Pokemart:
+	.2byte ITEM_CELL_BATTERY
+	.2byte ITEM_MENTAL_HERB
+    .2byte ITEM_WHITE_HERB
+    .2byte ITEM_SNOWBALL
 	.2byte ITEM_FIRE_STONE
 	.2byte ITEM_WATER_STONE
 	.2byte ITEM_LEAF_STONE
@@ -21,9 +25,7 @@ SlateportCity_Mart_Pokemart:
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_SUN_STONE
 	.2byte ITEM_OVAL_STONE
-	.2byte ITEM_NONE
-	release
-	end
+	pokemartlistend
 
 SlateportCity_Mart_EventScript_BlackBelt::
 	msgbox SlateportCity_Mart_Text_SomeItemsOnlyAtMart, MSGBOX_NPC

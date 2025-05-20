@@ -159,7 +159,7 @@ static const struct YesNoFuncTable sDeleteRegistryYesNoFuncs =
     .noFunc = DeleteRegistry_No,
 };
 
-static const u8 sSecretBaseOwnerGfxIds[10] =
+static const u16 sSecretBaseOwnerGfxIds[10] =
 {
     // Male
     OBJ_EVENT_GFX_YOUNGSTER,
@@ -1163,7 +1163,7 @@ const u8 *GetSecretBaseTrainerLoseText(void)
 void PrepSecretBaseBattleFlags(void)
 {
     TryGainNewFanFromCounter(FANCOUNTER_BATTLED_AT_BASE);
-    gTrainerBattleOpponent_A = TRAINER_SECRET_BASE;
+    TRAINER_BATTLE_PARAM.opponentA = TRAINER_SECRET_BASE;
     gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_SECRET_BASE;
 }
 

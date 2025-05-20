@@ -142,6 +142,8 @@ BattleFrontier_ScottsHouse_EventScript_GivenBattlePoints::
 
 BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier::
 	msgbox BattleFrontier_ScottsHouse_Text_WelcomeToBattleFrontier, MSGBOX_DEFAULT
+	giveitem ITEM_MYSTIC_TICKET
+	setflag FLAG_RECEIVED_MYSTIC_TICKET
 	closemessage
 	delay 30
 	call_if_eq VAR_FACING, DIR_NORTH, BattleFrontier_ScottsHouse_EventScript_ScottFaceAwayNorth
@@ -217,8 +219,11 @@ BattleFrontier_ScottsHouse_Text_WelcomeToBattleFrontier:
 	.string "Anyway, {PLAYER}{KUN}, let me formally\n"
 	.string "welcome you to the BATTLE FRONTIER.\p"
 	.string "This is my dream come true.\n"
-	.string "It took me years and years, but I've\l"
-	.string "finally given shape to my dream.$"
+	.string "It took me years and years, but I've\p"
+	.string "finally given shape to my dream.\n"
+	.string "Last but not least, take this ticket\p"
+	.string "as a token of my appreciation for\n"
+	.string "your visit.$"
 
 BattleFrontier_ScottsHouse_Text_HowMuchEffortItTookToMakeReal:
 	.string "On reflection, it was a terribly long\n"

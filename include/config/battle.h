@@ -6,7 +6,7 @@
 #define B_CRIT_MULTIPLIER           GEN_LATEST // In Gen6+, critical hits multiply damage by 1.5 instead of 2.
 #define B_PARALYSIS_SPEED           GEN_LATEST // In Gen7+, Speed is decreased by 50% instead of 75%.
 #define B_CONFUSION_SELF_DMG_CHANCE GEN_LATEST // In Gen7+, confusion has a 33.3% of self-damage, instead of 50%.
-#define B_MULTI_HIT_CHANCE          GEN_LATEST // In Gen5+, multi-hit moves have different %. See Cmd_setmultihitcounter for values.
+#define B_MULTI_HIT_CHANCE          GEN_LATEST // In Gen5+, multi-hit moves have different %. See SetRandomMultiHitCounter for values.
 #define B_WHITEOUT_MONEY            GEN_LATEST // In Gen4+, the amount of money lost by losing a battle is determined by the amount of badges earned. Previously, it would cut the current money by half. (While this change was also in FRLG, for the sake of simplicity, setting this to GEN_3 will result in RSE behavior.)
 #define B_LIGHT_BALL_ATTACK_BOOST   GEN_LATEST // In Gen4+, Light Ball doubles the power of physical moves in addition to special moves.
 #define B_SANDSTORM_SPDEF_BOOST     GEN_LATEST // In Gen4+, Sandstorm weather multiplies the Sp. Defense of Rock-type Pokémon by x1.5.
@@ -20,7 +20,7 @@
 
 // Stat settings
 #define B_BADGE_BOOST               GEN_3 // In Gen4+, Gym Badges no longer boost a Pokémon's stats.
-#define B_FRIENDSHIP_BOOST          FALSE      // In LGPE only, all stats except HP are boosted up to 10% based on Friendship. Unlike B_BADGE_BOOST, these boosts are accounted when calculating base stats.
+#define B_FRIENDSHIP_BOOST          TRUE      // In LGPE only, all stats except HP are boosted up to 10% based on Friendship. Unlike B_BADGE_BOOST, these boosts are accounted when calculating base stats.
 #define B_MAX_LEVEL_EV_GAINS        GEN_LATEST // In Gen5+, Lv100 Pokémon can obtain Effort Values normally.
 #define B_RECALCULATE_STATS         GEN_LATEST // In Gen5+, the stats of the Pokémon who participate in battle are recalculated at the end of each battle.
 
@@ -42,7 +42,7 @@
 #define B_GHOSTS_ESCAPE             GEN_LATEST // In Gen6+, abilities like Shadow Tag or moves like Mean Look fail on Ghost-type Pokémon. They can also escape any Wild Battle.
 #define B_PARALYZE_ELECTRIC         GEN_LATEST // In Gen6+, Electric-type Pokémon can't be paralyzed.
 #define B_POWDER_GRASS              GEN_LATEST // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
-#define B_STEEL_RESISTANCES         GEN_LATEST // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
+#define B_UPDATED_TYPE_MATCHUPS     GEN_LATEST // Updates Type matchups. src/data/types_info.h for details.
 #define B_PRANKSTER_DARK_TYPES      GEN_LATEST // In Gen7+, Prankster-elevated status moves do not affect Dark type Pokémon.
 #define B_SHEER_COLD_IMMUNITY       GEN_LATEST // In Gen7+, Ice-types are immune to Sheer Cold
 #define B_ROOST_PURE_FLYING         GEN_LATEST // In Gen5+, Roost makes pure Flying-types into Normal-type.
@@ -69,6 +69,7 @@
 #define B_RECOIL_IF_MISS_DMG        GEN_LATEST // In Gen5+, Jump Kick and High Jump Kick will always do half of the user's max HP when missing.
 #define B_KLUTZ_FLING_INTERACTION   GEN_LATEST // In Gen5+, Pokémon with the Klutz ability can't use Fling.
 #define B_UPDATED_CONVERSION        GEN_LATEST // In Gen6+, Conversion changes the user's type to match their first move's. Before, it would choose a move at random.
+#define B_UPDATED_CONVERSION_2      GEN_LATEST // In Gen5+, Conversion 2 changes the user's type to a type that resists the last move used by the selected target. Before, it would consider the last move being successfully hit by. Additionally, Struggle is considered Normal type before Gen 5.
 #define B_PP_REDUCED_BY_SPITE       GEN_LATEST // In Gen4+, Spite reduces the foe's last move's PP by 4, instead of 2 to 5.
 #define B_EXTRAPOLATED_MOVE_FLAGS   TRUE       // Adds move flags to moves that they don't officially have but would likely have if they were in the latest core series game.
 
@@ -88,6 +89,7 @@
 #define B_CHARGE_SPDEF_RAISE        GEN_LATEST // In Gen5+, Charge raises the user's Special Defense by 1 stage.
 #define B_MINIMIZE_EVASION          GEN_LATEST // In Gen5+, Minimize raises evasion by 2 stages instead of 1.
 #define B_GROWTH_STAT_RAISE         GEN_LATEST // In Gen5+, Growth raises Attack in addition to Special Attack by 1 stage each. Under the effects of the sun, it raises them by 2 stages each instead.
+#define B_FOCUS_ENERGY_CRIT_RATIO   GEN_LATEST // In Gen3+, Focus Energy increases critical hit ratio by 2 instead of 1.
 
 // Other move settings
 #define B_INCINERATE_GEMS           GEN_LATEST // In Gen6+, Incinerate can destroy Gems.
@@ -109,7 +111,7 @@
 #define B_BURN_HIT_THAW             GEN_LATEST // In Gen6+, damaging moves with a chance of burn will thaw the target, regardless if they're fire-type moves or not.
 #define B_HEALING_WISH_SWITCH       GEN_LATEST // In Gen5+, the mon receiving Healing Wish is sent out at the end of the turn.
                                                // Additionally, in gen8+ the Healing Wish's effect will be stored until the user switches into a statused or hurt mon.
-#define B_DEFOG_CLEARS_TERRAIN      GEN_LATEST // In Gen8+, Defog also clears active Terrain.
+#define B_DEFOG_EFFECT_CLEARING     GEN_LATEST // In Gen6+, Defog clears Spikes, Toxic Spikes, Stealth Rock and Sticky Web from both sides. In Gen8+, Defog also clears active Terrain.
 #define B_STOCKPILE_RAISES_DEFS     GEN_LATEST // In Gen4+, Stockpile also raises Defense and Sp. Defense stats. Once Spit Up / Swallow is used, these stat changes are lost.
 #define B_TRANSFORM_SHINY           GEN_LATEST // In Gen4+, Transform will copy the shiny state of the opponent instead of maintaining its own shiny state.
 #define B_TRANSFORM_FORM_CHANGES    GEN_LATEST // In Gen5+, Transformed Pokemon cannot change forms.
@@ -118,9 +120,16 @@
 #define B_IMPRISON                  GEN_LATEST // In Gen5+, Imprison doesn't fail if opposing pokemon don't have any moves the user knows.
 #define B_ALLY_SWITCH_FAIL_CHANCE   GEN_LATEST // In Gen9, using Ally Switch consecutively decreases the chance of success for each consecutive use.
 #define B_SKETCH_BANS               GEN_LATEST // In Gen9+, Sketch is unable to copy more moves than in previous generations.
+#define B_KNOCK_OFF_REMOVAL         GEN_LATEST // In Gen5+, Knock Off removes the foe's item instead of rendering it unusable.
+#define B_HEAL_BELL_SOUNDPROOF      GEN_LATEST // In Gen5, Heal Bell affects all mons with Soundproof.  In Gen6-8 it affects inactive mons, but not battlers. In Gen9 it always affects the user.
+#define B_CHARGE                    GEN_LATEST // In Gen8-, Charge status is lost regardless of the typing of the next move.
+#define B_POWDER_RAIN               GEN_LATEST // In Gen7+, Powder doesn't damage the user of a Fire type move in heavy rain.
+#define B_AFTER_YOU_TURN_ORDER      GEN_LATEST // In Gen8+, After You doesn't fail if the turn order wouldn't change after use.
+#define B_QUASH_TURN_ORDER          GEN_LATEST // In Gen8+, Quash-affected battlers move according to speed order. Before Gen8, Quash-affected battlers move in the order they were affected by Quash.
+#define B_DESTINY_BOND_FAIL         GEN_LATEST // In Gen7+, Destiny Bond fails if used repeatedly.
+#define B_PURSUIT_TARGET            GEN_LATEST // In Gen4+, Pursuit attacks a switching opponent even if they weren't targeting them. Before Gen4, Pursuit only attacks a switching opponent that it originally targeted.
 
 // Ability settings
-#define B_EXPANDED_ABILITY_NAMES    TRUE       // If TRUE, ability names are increased from 12 characters to 16 characters.
 #define B_ABILITY_WEATHER           GEN_LATEST // In Gen6+, ability-induced weather lasts 5 turns. Before, it lasted until the battle ended or until it was changed by a move or a different weather-affecting ability.
 #define B_GALE_WINGS                GEN_LATEST // In Gen7+ requires full HP to trigger.
 #define B_STANCE_CHANGE_FAIL        GEN_LATEST // In Gen7+, Stance Change fails if the Pokémon is unable to use a move because of confusion, paralysis, etc. In Gen6, it doesn't.
@@ -136,6 +145,7 @@
 #define B_SYMBIOSIS_GEMS            GEN_LATEST // In Gen7+, Symbiosis passes an item after a gem-boosted attack. Previously, items are passed before the gem-boosted attack hits, making the item effect apply.
 #define B_ABSORBING_ABILITY_STRING  GEN_LATEST // In Gen5+, the abilities that absorb moves of a certain type use a generic string for stat increases and decreases.
 #define B_REDIRECT_ABILITY_IMMUNITY GEN_LATEST // In Gen5+, Pokémon with Lightning Rod/Storm Drain become immune to Electric/Water-type moves and increase their Sp. Attack by 1 stage on top of the redirecting effect.
+#define B_REDIRECT_ABILITY_ALLIES   GEN_LATEST // In Gen4+, Lightning Rod/Storm Drain redirect ally's moves as well.
 #define B_LEAF_GUARD_PREVENTS_REST  GEN_LATEST // In Gen5+, Leaf Guard prevents the use of Rest in harsh sunlight.
 #define B_SNOW_WARNING              GEN_LATEST // In Gen9+, Snow Warning will summon snow instead of hail.
 #define B_TRANSISTOR_BOOST          GEN_LATEST // In Gen9+, Transistor will only boost Electric-type moves by 1.3x as opposed to 1.5x.
@@ -145,6 +155,11 @@
 #define B_INTREPID_SWORD            GEN_LATEST // In Gen9+, Intrepid Sword raises Attack by one stage only once per Battle.
 #define B_DAUNTLESS_SHIELD          GEN_LATEST // In Gen9+, Dauntless Shield raises Defense by one stage only once per Battle.
 #define B_DISGUISE_HP_LOSS          GEN_LATEST // In Gen8+, when a Disguised Mimikyu's Disguise is busted, upon changing to its Busted Form it loses HP equal to 1/8 of its maximum HP.
+#define B_ABILITY_TRIGGER_CHANCE    GEN_LATEST // In Gen3, Shed Skin, Cute Charm, Flame Body, Static and Poison Point have a 1/3 chance to trigger. In Gen 4+ it's 30%.
+                                               // In Gen3, Effect Spore has a 10% chance to sleep, poison or paralyze, with an equal chance.
+                                               // In Gen4, it's 30%. In Gen5+ it has 11% to sleep, 9% chance to poison and 10% chance to paralyze.
+#define B_PICKUP_WILD               GEN_LATEST // In Gen9+, Pickup allows its user to pickup its own used item at the end of the turn in wild battles.
+#define B_MAGIC_GUARD               GEN_LATEST // In Gen4 only, Magic Guard ignores immobilization caused by paralysis
 
 // Item settings
 #define B_HP_BERRIES                GEN_LATEST // In Gen4+, berries which restore HP activate immediately after HP drops to half. In Gen3, the effect occurs at the end of the turn.
@@ -153,10 +168,12 @@
 #define B_X_ITEMS_BUFF              GEN_LATEST // In Gen7+, the X Items raise a stat by 2 stages instead of 1.
 #define B_MENTAL_HERB               GEN_LATEST // In Gen5+, the Mental Herb cures Taunt, Encore, Torment, Heal Block, and Disable in addition to Infatuation from before.
 #define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE       // If TRUE, trainers can steal/swap your items (non-berries are restored after battle). In vanilla games trainers cannot steal items.
+#define B_RETURN_STOLEN_NPC_ITEMS   GEN_LATEST // In Gen5+, Thief and Covet no longer steal items from NPCs.
+#define B_STEAL_WILD_ITEMS          GEN_LATEST // In Gen9, Thief and Covet steal a wild pokemon's item and send it to the bag. Before Gen9, the stolen item would be held by the Thief/Covet user.
 #define B_RESTORE_HELD_BATTLE_ITEMS GEN_LATEST // In Gen9, all non-berry items are restored after battle.
 #define B_SOUL_DEW_BOOST            GEN_LATEST // In Gens3-6, Soul Dew boosts Latis' Sp. Atk and Sp. Def. In Gen7+ it boosts the power of their Psychic and Dragon type moves instead.
 #define B_NET_BALL_MODIFIER         GEN_LATEST // In Gen7+, Net Ball's catch multiplier is x5 instead of x3.
-#define B_DIVE_BALL_MODIFIER        GEN_LATEST // In Gen4+, Dive Ball's effectiveness increases by when Surfing or Fishing.
+#define B_DIVE_BALL_MODIFIER        GEN_LATEST // In Gen4+, Dive Ball's effectiveness increases by x3.5 when Surfing or Fishing.
 #define B_NEST_BALL_MODIFIER        GEN_LATEST // Nest Ball's formula varies depending on the Gen. See Cmd_handleballthrow.
 #define B_REPEAT_BALL_MODIFIER      GEN_LATEST // In Gen7+, Repeat Ball's catch multiplier is x3.5 instead of x3.
 #define B_TIMER_BALL_MODIFIER       GEN_LATEST // In Gen5+, Timer Ball's effectiveness increases by x0.3 per turn instead of x0.1
@@ -167,18 +184,24 @@
 #define B_DREAM_BALL_MODIFIER       GEN_LATEST // In Gen8+, Dream Ball's catch multiplier is x4 when the target is asleep or has the ability Comatose.
 #define B_SPORT_BALL_MODIFIER       GEN_LATEST // In Gen8+, Sport Ball's catch multiplier was reduced from x1.5 to x1.
 #define B_SAFARI_BALL_MODIFIER      GEN_LATEST // In Gen8+, Safari Ball's catch multiplier was reduced from x1.5 to x1.
+#define B_FRIEND_BALL_MODIFIER      GEN_LATEST // In Gen8+, Friend Ball's friendship boost was reduced from 200 to 150.
 #define B_SERENE_GRACE_BOOST        GEN_LATEST // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
+#define B_IRON_BALL                 GEN_LATEST // In Gen5+, Flying-type Pokemon holding Iron Ball take x1 damage from Ground-type moves regardless of their other types, except during Inverse Battles or if the Pokemon is grounded by any other effect.
 
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define B_FLAG_INVERSE_BATTLE       FLAG_UNUSED_0x264     // If this flag is set, the battle's type effectiveness are inversed. For example, fire is super effective against water.
+#define B_FLAG_INVERSE_BATTLE       FLAG_SYS_INVERSE_BATTLE     // If this flag is set, the battle's type effectiveness are inversed. For example, fire is super effective against water.
 #define B_FLAG_FORCE_DOUBLE_WILD    0     // If this flag is set, all land and surfing wild battles will be double battles.
 #define B_SMART_WILD_AI_FLAG        0     // If not 0, you can set this flag in a script to enable smart wild pokemon
 #define B_FLAG_NO_BAG_USE           0     // If this flag is set, the ability to use the bag in battle is disabled.
 #define B_FLAG_NO_CATCHING          0     // If this flag is set, the ability to catch wild Pokémon is disabled.
+#define B_FLAG_NO_RUNNING           0     // If this flag is set, the ability to escape from wild battles is disabled. Also makes Roar/Whirlwind and Teleport (under Gen8) fail.
 #define B_FLAG_AI_VS_AI_BATTLE      0     // If this flag is set, the player's mons will be controlled by the ai next battles.
 #define B_FLAG_DYNAMAX_BATTLE       0     // If this flag is set, the ability to Dynamax in battle is enabled for all trainers.
+#define B_FLAG_TERA_ORB_CHARGED     0     // If this flag is set, the Tera Orb is charged. It is automatically set upon healing and cleared upon Terastallizing once configured.
+#define B_FLAG_TERA_ORB_NO_COST     0     // If this flag is set, the Tera Orb does not use up its charge upon Terastallization. In S/V, this occurs after an event with Terapagos.
+#define B_FLAG_SLEEP_CLAUSE         0     // If this flag is set, sleep clause is enabled; if the player / AI has already put a Pokémon on the opponent's side to sleep and it is still sleeping, another one can't be put to sleep. AI requires AI_FLAG_CHECK_BAD_MOVE to understand.
 
 // Var Settings
 // To use the following features in scripting, replace the 0s with the var ID you're assigning it to.
@@ -186,6 +209,7 @@
 #define B_VAR_STARTING_STATUS       0     // If this var has a value, assigning a STATUS_FIELD_xx_TERRAIN to it before battle causes the battle to start with that terrain active.
 #define B_VAR_STARTING_STATUS_TIMER 0     // If this var has a value greater or equal than 1 field terrains will last that number of turns, otherwise they will last until they're overwritten.
 #define B_VAR_WILD_AI_FLAGS         0     // If not 0, you can use this var to add to default wild AI flags. NOT usable with flags above (1 << 15)
+#define B_VAR_DIFFICULTY            0     // If not 0, you can use this var to control which difficulty version of a Trainer is loaded. This should be manually set by the developer using Script_SetDifficulty AFTER NewGameInitData has run.
 
 // Sky Battles
 #define B_FLAG_SKY_BATTLE                 0     // If this flag has a value, the player will be able to engage in scripted Sky Battles.
@@ -195,26 +219,34 @@
 // Flag and Var settings
 #define B_RESET_FLAGS_VARS_AFTER_WHITEOUT TRUE // If TRUE, Overworld_ResetBattleFlagsAndVars will reset battle-related Flags and Vars when the player whites out.
 
+// Ingame partner flag
+#define B_SHOW_PARTNER_TARGET             FALSE // Shows the battler partner will target.
+
+// Move description menu
+#define B_SHOW_MOVE_DESCRIPTION     FALSE       // Shows move information in battler
+
 // Terrain settings
 #define B_TERRAIN_BG_CHANGE         TRUE       // If set to TRUE, terrain moves permanently change the default battle background until the effect fades.
 #define B_THUNDERSTORM_TERRAIN      TRUE       // If TRUE, overworld Thunderstorm generates Rain and Electric Terrain as in Gen 8.
-#define B_FOG_TERRAIN               TRUE       // If TRUE, overworld Fog generates Misty Terrain as in Gen 8.
 #define B_TERRAIN_TYPE_BOOST        GEN_LATEST // In Gen8, damage is boosted by 30% instead of 50%.
 #define B_SECRET_POWER_EFFECT       GEN_LATEST // Secret Power's effects change depending on terrain and generation. See MOVE_EFFECT_SECRET_POWER's case in `SetMoveEffect`.
 #define B_SECRET_POWER_ANIMATION    GEN_LATEST // Secret Power's animations change depending on terrain and generation.
 #define B_NATURE_POWER_MOVES        GEN_LATEST // Nature Power calls different moves depending on terrain and generation. See sNaturePowerMoves.
 #define B_CAMOUFLAGE_TYPES          GEN_LATEST // Camouflage changes the user to different types depending on terrain and generation. See sTerrainToType.
+#define B_NEW_TERRAIN_BACKGROUNDS   FALSE      // If set to TRUE, uses new terrain backgrounds for Electric, Misty, Grassy and Psychic Terrain.
 
 // Interface settings
 #define B_ABILITY_POP_UP            TRUE  // In Gen5+, the Pokémon abilities are displayed in a pop-up, when they activate in battle.
-#define B_FAST_INTRO                TRUE  // If set to TRUE, battle intro texts print at the same time as animation of a Pokémon, as opposing to waiting for the animation to end.
-#define B_FAST_HP_DRAIN             TRUE  // If set to TRUE, HP bars will move faster to accomodate higher max HP amounts.
+#define B_FAST_INTRO_PKMN_TEXT      TRUE  // If set to TRUE, battle intro texts print at the same time as animation of a Pokémon, as opposing to waiting for the animation to end.
+#define B_FAST_INTRO_NO_SLIDE       FALSE // If set to TRUE, the slide animation that happens at the beginning of the battle is skipped.
+#define B_FAST_HP_DRAIN             TRUE  // If set to TRUE, HP bars will move faster.
+#define B_FAST_EXP_GROW             TRUE  // If set to TRUE, EXP bars will move faster.
 #define B_SHOW_TARGETS              TRUE  // If set to TRUE, all available targets, for moves hitting 2 or 3 Pokémon, will be shown before selecting a move.
-#define B_SHOW_CATEGORY_ICON        TRUE  // If set to TRUE, it will show an icon in the summary showing the move's category.
+#define B_SHOW_CATEGORY_ICON        TRUE  // If set to TRUE, it will show an icon in the summary and move relearner showing the move's category.
 #define B_HIDE_HEALTHBOX_IN_ANIMS   TRUE  // If set to TRUE, hides healthboxes during move animations.
-#define B_EXPANDED_MOVE_NAMES       FALSE // If set to TRUE, move names are increased from 12 characters to 16 characters.
-#define B_WAIT_TIME_MULTIPLIER      2    // This determines how long text pauses in battle last. Vanilla is 16. Lower values result in faster battles.
+#define B_WAIT_TIME_MULTIPLIER      16    // This determines how long text pauses in battle last. Vanilla is 16. Lower values result in faster battles.
 #define B_QUICK_MOVE_CURSOR_TO_RUN  FALSE // If set to TRUE, pushing B in the battle options against a wild encounter will move the cursor to the run option
+#define B_MOVE_DESCRIPTION_BUTTON   L_BUTTON // If set to a button other than B_LAST_USED_BALL_BUTTON, pressing this button will open the move description menu
 
 // Catching settings
 #define B_SEMI_INVULNERABLE_CATCH   GEN_LATEST // In Gen4+, you cannot throw a ball against a Pokemon that is in a semi-invulnerable state (dig/fly/etc)
@@ -223,6 +255,8 @@
 #define B_LAST_USED_BALL            TRUE       // If TRUE, the "last used ball" feature from Gen 7 will be implemented
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON   // If last used ball is implemented, this button (or button combo) will trigger throwing the last used ball.
 #define B_LAST_USED_BALL_CYCLE      TRUE       // If TRUE, then holding B_LAST_USED_BALL_BUTTON while pressing the D-Pad cycles through the balls
+#define B_CATCH_SWAP_INTO_PARTY     GEN_LATEST // In Gen 7+, the option to swap the caught wild mon to the party will appear, allowing you to send a different mon to the box.
+#define B_CATCH_SWAP_CHECK_HMS      TRUE       // If TRUE, the catch swap feature above will prevent returning mons to the box if they know HMs.
 
 // Other settings
 #define B_DOUBLE_WILD_CHANCE            0          // % chance of encountering two Pokémon in a Wild Encounter.
@@ -233,28 +267,54 @@
 #define B_AFFECTION_MECHANICS           TRUE       // In Gen6+, there's a stat called affection that can trigger different effects in battle. From LGPE onwards, those effects use friendship instead.
 #define B_TRAINER_CLASS_POKE_BALLS      GEN_LATEST // In Gen7+, trainers will use certain types of Poké Balls depending on their trainer class.
 #define B_TRAINER_MON_RANDOM_ABILITY    FALSE      // If this is set to TRUE a random legal ability will be generated for a trainer mon
-#define B_OBEDIENCE_MECHANICS           GEN_LATEST // In PLA+ (here Gen8+), obedience restrictions also apply to non-outsider Pokémon, albeit based on their level met rather than actual level
-#define B_USE_FROSTBITE                 FALSE      // In PLA, Frostbite replaces Freeze. Enabling this flag does the same here. Moves can still be cherry-picked to either Freeze or Frostbite. Freeze-Dry, Secret Power & Tri Attack depend on this config.
-#define B_OVERWORLD_SNOW                GEN_LATEST // In Gen9+, overworld Snow will summon snow instead of hail.
+#define B_OBEDIENCE_MECHANICS           GEN_6 // In PLA+ (here Gen8+), obedience restrictions also apply to non-outsider Pokémon, albeit based on their level met rather than actual level
+#define B_USE_FROSTBITE                 TRUE      // In PLA, Frostbite replaces Freeze. Enabling this flag does the same here. Moves can still be cherry-picked to either Freeze or Frostbite. Freeze-Dry, Secret Power & Tri Attack depend on this config.
+#define B_OVERWORLD_SNOW                GEN_LATEST // In Gen9+, overworld Snow will summon snow instead of hail in battle.
+#define B_OVERWORLD_FOG                 GEN_3 // In Gen8+, overworld Fog summons Misty Terrain in battle. In Gen4 only, overworld Fog summons the unique fog weather condition in battle.
 #define B_TOXIC_REVERSAL                GEN_LATEST // In Gen5+, bad poison will change to regular poison at the end of battles.
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // In Gen4+, trying to catch a Trainer's Pokémon does not consume the Poké Ball.
+#define B_SLEEP_CLAUSE                  FALSE      // Enables Sleep Clause all the time in every case, overriding B_FLAG_SLEEP_CLAUSE. Use that for modularity.
 
 // Animation Settings
-#define B_NEW_SWORD_PARTICLE            TRUE    // If set to TRUE, it updates Swords Dance's particle.
-#define B_NEW_LEECH_SEED_PARTICLE       TRUE    // If set to TRUE, it updates Leech Seed's animation particle.
-#define B_NEW_HORN_ATTACK_PARTICLE      TRUE    // If set to TRUE, it updates Horn Attack's horn particle.
-#define B_NEW_ROCKS_PARTICLE            TRUE    // If set to TRUE, it updates rock particles.
-#define B_NEW_LEAF_PARTICLE             TRUE    // If set to TRUE, it updates leaf particle.
-#define B_NEW_EMBER_PARTICLES           TRUE    // If set to TRUE, it updates Ember's fire particle.
-#define B_NEW_MEAN_LOOK_PARTICLE        TRUE    // If set to TRUE, it updates Mean Look's eye particle.
-#define B_NEW_TEETH_PARTICLE            TRUE    // If set to TRUE, it updates Bite/Crunch teeth particle.
-#define B_NEW_HANDS_FEET_PARTICLE       TRUE    // If set to TRUE, it updates chop/kick/punch particles.
-#define B_NEW_SPIKES_PARTICLE           TRUE    // If set to TRUE, it updates Spikes particle.
-#define B_NEW_FLY_BUBBLE_PARTICLE       TRUE    // If set to TRUE, it updates Fly's 'bubble' particle.
-#define B_NEW_CURSE_NAIL_PARTICLE       TRUE    // If set to TRUE, it updates Curse's nail.
-#define B_NEW_BATON_PASS_BALL_PARTICLE  TRUE    // If set to TRUE, it updates Baton Pass' Poké Ball sprite.
-#define B_NEW_MORNING_SUN_STAR_PARTICLE TRUE    // If set to TRUE, it updates Morning Sun's star particles.
-#define B_NEW_IMPACT_PALETTE            TRUE    // If set to TRUE, it updates the basic 'hit' palette.
-#define B_NEW_SURF_PARTICLE_PALETTE     TRUE    // If set to TRUE, it updates Surf's wave palette.
+#define B_NEW_SWORD_PARTICLE            FALSE    // If set to TRUE, it updates Swords Dance's particle.
+#define B_NEW_LEECH_SEED_PARTICLE       FALSE    // If set to TRUE, it updates Leech Seed's animation particle.
+#define B_NEW_HORN_ATTACK_PARTICLE      FALSE    // If set to TRUE, it updates Horn Attack's horn particle.
+#define B_NEW_ROCKS_PARTICLE            FALSE    // If set to TRUE, it updates rock particles.
+#define B_NEW_LEAF_PARTICLE             FALSE    // If set to TRUE, it updates leaf particle.
+#define B_NEW_EMBER_PARTICLES           FALSE    // If set to TRUE, it updates Ember's fire particle.
+#define B_NEW_MEAN_LOOK_PARTICLE        FALSE    // If set to TRUE, it updates Mean Look's eye particle.
+#define B_NEW_TEETH_PARTICLE            FALSE    // If set to TRUE, it updates Bite/Crunch teeth particle.
+#define B_NEW_HANDS_FEET_PARTICLE       FALSE    // If set to TRUE, it updates chop/kick/punch particles.
+#define B_NEW_SPIKES_PARTICLE           FALSE    // If set to TRUE, it updates Spikes particle.
+#define B_NEW_FLY_BUBBLE_PARTICLE       FALSE    // If set to TRUE, it updates Fly's 'bubble' particle.
+#define B_NEW_CURSE_NAIL_PARTICLE       FALSE    // If set to TRUE, it updates Curse's nail.
+#define B_NEW_BATON_PASS_BALL_PARTICLE  FALSE    // If set to TRUE, it updates Baton Pass' Poké Ball sprite.
+#define B_NEW_MORNING_SUN_STAR_PARTICLE FALSE    // If set to TRUE, it updates Morning Sun's star particles.
+#define B_NEW_IMPACT_PALETTE            FALSE    // If set to TRUE, it updates the basic 'hit' palette.
+#define B_NEW_SURF_PARTICLE_PALETTE     FALSE    // If set to TRUE, it updates Surf's wave palette.
+
+// Poké Ball animation and sounds
+#define B_ENEMY_THROW_BALLS          GEN_LATEST  // In GEN_6+, enemy Trainers throw Poké Balls into battle instead of them just appearing on the ground and opening.
+#define B_ENEMY_THROW_BALLS_SOUND    GEN_LATEST  // In GEN_5+, enemy Trainer's Poké Balls make a sound when thrown to send out a Pokémon. This can only be used when B_ENEMY_THROW_BALLS is set to GEN_6 or later.
+#define B_PLAYER_THROW_BALLS_SOUND   GEN_LATEST  // In GEN_5+, the player's Poké Balls make a sound when thrown to send out a Pokémon.
+
+#define SHOW_TYPES_NEVER    0
+#define SHOW_TYPES_ALWAYS   1
+#define SHOW_TYPES_CAUGHT   2
+#define B_SHOW_TYPES        SHOW_TYPES_ALWAYS // When defined as SHOW_TYPES_ALWAYS, after selecting "Fight" in battle, the types of all Pokemon are revealed. Whe defined as SHOW_TYPES_OWN, types are only revealed if the player owns the mon in question.
+
+// Pokémon battle sprite settings
+#define B_ENEMY_MON_SHADOW_STYLE        GEN_LATEST // In Gen4+, all enemy Pokemon will have a shadow drawn beneath them.
+
+//  Battle UI settings
+#define B_MOVE_REARRANGEMENT_IN_BATTLE  GEN_LATEST  //  In Gen 4+ move slots cannot be rearranged in battle
+
+#define B_POOL_SETTING_CONSISTENT_RNG       FALSE    // If set to true, the same trainer will always generate the same pool on the same save file
+#define B_POOL_SETTING_USE_FIXED_SEED       FALSE    // If set to true, will use the fixed seed defined in B_POOL_SETTING_FIXED_SEED
+#define B_POOL_SETTING_FIXED_SEED           0x1D4127 // "Random" number, unless a mistake was made, it's へだら in Emerald charmap which should spell he-da-ra
+#define B_POOL_RULE_SPECIES_CLAUSE          FALSE    // Only pick a single pokemon of a unique NatDex number
+#define B_POOL_RULE_EXCLUDE_FORMS           FALSE    // Exclude different forms from the Species Clause
+#define B_POOL_RULE_ITEM_CLAUSE             FALSE    // Only allow each item to be picked once
+#define B_POOL_RULES_USE_ITEM_EXCLUSIONS    FALSE    // Exclude items listed in poolItemClauseExclusions
 
 #endif // GUARD_CONFIG_BATTLE_H

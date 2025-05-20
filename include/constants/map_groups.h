@@ -63,9 +63,8 @@
 #define MAP_UNDERWATER_ROUTE129 (54 | (0 << 8))
 #define MAP_UNDERWATER_ROUTE105 (55 | (0 << 8))
 #define MAP_UNDERWATER_ROUTE125 (56 | (0 << 8))
-#define MAP_HIDDEN_ROOT_GROTTO  (57 | (0 << 8))
-#define MAP_LITTLEROOT_PATH     (58 | (0 << 8))
-#define MAP_DEWFORD_MEADOWS     (59 | (0 << 8))
+#define MAP_DEWFORWD_MEADOWS    (57 | (0 << 8))
+#define MAP_VERDANTURF_MEADOWS  (58 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
@@ -403,14 +402,12 @@
 #define MAP_TERRA_CAVE_END                           (105 | (24 << 8))
 #define MAP_ALTERING_CAVE                            (106 | (24 << 8))
 #define MAP_METEOR_FALLS_STEVENS_CAVE                (107 | (24 << 8))
-#define MAP_RUSTURF_TUNNEL_FLOOR1                    (108 | (24 << 8))
-#define MAP_SCORCHED_SLAB_FLOOR_B1                   (109 | (24 << 8))
-#define MAP_GATHERING_CAVE                           (110 | (24 << 8))
-#define MAP_FLORAL_CAVE                              (111 | (24 << 8))
-#define MAP_SEASPRAY_CAVE_BF1                        (112 | (24 << 8))
-#define MAP_SEASPRAY_CAVE                            (113 | (24 << 8))
-#define MAP_DEWFORD_MANOR_1F                         (114 | (24 << 8))
-#define MAP_PETALBURG_WOODS2                         (115 | (24 << 8))
+#define MAP_SEASPRAY_CAVE                            (108 | (24 << 8))
+#define MAP_SEASPRAY_CAVE_BF1                        (109 | (24 << 8))
+#define MAP_DEWFORD_MANOR                            (110 | (24 << 8))
+#define MAP_FLOWERING_CAVE                           (111 | (24 << 8))
+#define MAP_SCORCHED_SLAB_BF1                        (112 | (24 << 8))
+#define MAP_GATHERING_CAVE                           (113 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))
@@ -585,8 +582,8 @@
 #define MAP_ROUTE110_TRICK_HOUSE_PUZZLE6                 (8 | (29 << 8))
 #define MAP_ROUTE110_TRICK_HOUSE_PUZZLE7                 (9 | (29 << 8))
 #define MAP_ROUTE110_TRICK_HOUSE_PUZZLE8                 (10 | (29 << 8))
-#define MAP_ROUTE110_SEASIDE_CYCLING_ROAD_NORTH_ENTRANCE (11 | (29 << 8))
-#define MAP_ROUTE110_SEASIDE_CYCLING_ROAD_SOUTH_ENTRANCE (12 | (29 << 8))
+#define MAP_ROUTE110_SEASIDE_CYCLING_ROAD_SOUTH_ENTRANCE (11 | (29 << 8))
+#define MAP_ROUTE110_SEASIDE_CYCLING_ROAD_NORTH_ENTRANCE (12 | (29 << 8))
 
 // gMapGroup_IndoorRoute113
 #define MAP_ROUTE113_GLASS_WORKSHOP (0 | (30 << 8))

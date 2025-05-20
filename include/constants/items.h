@@ -32,12 +32,6 @@
 #define ITEM_BEAST_BALL 26
 #define ITEM_CHERISH_BALL 27
 
-// Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
-//       Several places expect the ball IDs to be first and contiguous (e.g. MON_DATA_POKEBALL)
-//       If adding new balls, it's easiest to insert them after the last ball and increment the below IDs (and removing ITEM_034 for example)
-#define FIRST_BALL ITEM_POKE_BALL
-#define LAST_BALL  ITEM_CHERISH_BALL
-
 // Medicine
 #define ITEM_POTION 28
 #define ITEM_SUPER_POTION 29
@@ -428,10 +422,7 @@
 #define ITEM_GALLADITE 336
 #define ITEM_AUDINITE 337
 #define ITEM_DIANCITE 338
-#define ITEM_RELICANTHITE 829
-#define ITEM_MILOTICITE 830
-#define ITEM_SLOWKINGITE 831
-#define ITEM_GYARADOSITE_Y 832
+
 // Gems
 #define ITEM_NORMAL_GEM 339
 #define ITEM_FIRE_GEM 340
@@ -884,7 +875,6 @@
 #define ITEM_POKE_FLUTE 724
 #define ITEM_FAME_CHECKER 725
 #define ITEM_TEACHY_TV 726
-#define ITEM_POKEVIAL 828
 
 // Story Key Items
 #define ITEM_SS_TICKET 727
@@ -1002,11 +992,12 @@
 #define ITEM_TWICE_SPICED_RADISH 826
 #define ITEM_POKESHI_DOLL 827
 
+#define ITEM_STRANGE_BALL 828
 
 // HOPO BERRY
 // LEGEND PLATE
 
-#define ITEMS_COUNT 833
+#define ITEMS_COUNT 829
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
@@ -1031,8 +1022,8 @@
 #define NUM_ROUTE_114_MAN_BERRIES         (LAST_ROUTE_114_MAN_BERRY - FIRST_ROUTE_114_MAN_BERRY + 1)
 #define NUM_ROUTE_114_MAN_BERRIES_SKIPPED (FIRST_ROUTE_114_MAN_BERRY - FIRST_BERRY_INDEX)
 
-#define ITEM_TO_BERRY(itemId)(((itemId) - FIRST_BERRY_INDEX) + 1)
-#define ITEM_TO_MAIL(itemId)((itemId) - FIRST_MAIL_INDEX)
+#define ITEM_TO_BERRY(itemId) (((itemId) - FIRST_BERRY_INDEX) + 1)
+#define ITEM_TO_MAIL(itemId) ((itemId) - FIRST_MAIL_INDEX)
 #define MAIL_NONE 0xFF
 #define ITEM_TO_MULCH(itemId)(((itemId) - ITEM_GROWTH_MULCH) + 1)
 
@@ -1082,6 +1073,7 @@
 #define EFFECT_ITEM_REVIVE                  9
 #define EFFECT_ITEM_RESTORE_PP              10
 #define EFFECT_ITEM_INCREASE_ALL_STATS      11
+#define EFFECT_ITEM_USE_POKE_FLUTE          12
 
 // Enigma Berry dummy constant
 #define EFFECT_ITEM_ENIGMA_BERRY_EREADER    1

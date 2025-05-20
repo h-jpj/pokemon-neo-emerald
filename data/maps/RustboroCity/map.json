@@ -111,7 +111,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
       "x": 24,
-      "y": 50,
+      "y": 51,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -124,7 +124,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
       "x": 25,
-      "y": 50,
+      "y": 51,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -175,8 +175,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 35,
-      "y": 55,
+      "x": 36,
+      "y": 51,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -237,6 +237,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_Boy1",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 3,
+      "y": 55,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_LINKING_CORD",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_LINKING_CORD0"
     }
   ],
   "warp_events": [
@@ -599,19 +612,11 @@
     },
     {
       "type": "hidden_item",
-      "x": 3,
-      "y": 55,
-      "elevation": 0,
-      "item": "ITEM_FLOAT_STONE",
-      "flag": "FLAG_ITEM_FLOAT_STONE"
-    },
-    {
-      "type": "hidden_item",
       "x": 6,
       "y": 58,
       "elevation": 0,
-      "item": "ITEM_SCOPE_LENS",
-      "flag": "FLAG_ITEM_SCOPE_LENS"
+      "item": "ITEM_SUPER_REPEL",
+      "flag": "FLAG_SUPER_REPEL_RUSTBOROCITY"
     }
   ]
 }

@@ -111,9 +111,10 @@ PetalburgCity_Gym_EventScript_Norman::
 	case 3, PetalburgCity_Gym_EventScript_NormanOneBadge
 	case 4, PetalburgCity_Gym_EventScript_NormanTwoBadges
 	case 5, PetalburgCity_Gym_EventScript_NormanThreeBadges
-	case 6, PetalburgCity_Gym_EventScript_NormanBattle
-	case 7, PetalburgCity_Gym_EventScript_NormanPostBattle
-	case 8, PetalburgCity_Gym_EventScript_NormanRematch
+	case 6, PetalburgCity_Gym_EventScript_NormanGiveKeystone
+	case 7, PetalburgCity_Gym_EventScript_NormanBattle
+	case 8, PetalburgCity_Gym_EventScript_NormanPostBattle
+	case 9, PetalburgCity_Gym_EventScript_NormanRematch
 	msgbox PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon, MSGBOX_DEFAULT
 	closemessage
 	switch VAR_FACING
@@ -371,7 +372,7 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry::
 	release
 	end
 
-	PetalburgCity_Gym_EventScript_NormanGiveKeystone::
+PetalburgCity_Gym_EventScript_NormanGiveKeystone::
 	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_NormanBattle
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	giveitem ITEM_MEGA_RING

@@ -13,28 +13,13 @@ MossdeepCity_Mart_EventScript_Clerk::
 
 	.align 2
 MossdeepCity_Mart_Pokemart:
-	.2byte ITEM_BLACK_BELT
-	.2byte ITEM_BLACK_GLASSES
-	.2byte ITEM_CHARCOAL
-	.2byte ITEM_DRAGON_FANG
-	.2byte ITEM_FAIRY_FEATHER
-	.2byte ITEM_HARD_STONE
-	.2byte ITEM_HARD_STONE
-	.2byte ITEM_MAGNET
-	.2byte ITEM_METAL_COAT
-	.2byte ITEM_MIRACLE_SEED
-	.2byte ITEM_MYSTIC_WATER
-	.2byte ITEM_NEVER_MELT_ICE
-	.2byte ITEM_POISON_BARB
-	.2byte ITEM_SHARP_BEAK
-	.2byte ITEM_SILK_SCARF
-	.2byte ITEM_SILVER_POWDER
-	.2byte ITEM_SOFT_SAND
-	.2byte ITEM_SPELL_TAG
-	.2byte ITEM_TWISTED_SPOON
-	.2byte ITEM_NONE
-	release
-	end
+    .2byte ITEM_AIR_BALLOON
+    .2byte ITEM_ELECTRIC_SEED
+    .2byte ITEM_GRASSY_SEED
+    .2byte ITEM_MISTY_SEED
+    .2byte ITEM_PSYCHIC_SEED
+	.2byte ITEM_SHADOW_MAIL
+	pokemartlistend
 
 MossdeepCity_Mart_EventScript_Woman::
 	msgbox MossdeepCity_Mart_Text_ReviveIsFantastic, MSGBOX_NPC

@@ -45,8 +45,6 @@ Route111_WinstrateFamilysHouse_EventScript_Vicky::
 	setvar VAR_0x8008, LOCALID_VICKY
 	goto_if_set FLAG_TEMP_4, Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
 	msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrong, MSGBOX_DEFAULT
-	giveitem ITEM_LIFE_ORB
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_TEMP_4
 	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 	end
@@ -99,9 +97,7 @@ Route111_WinstrateFamilysHouse_Text_GrandsonStrong:
 	.string "He must be challenging the POKéMON\n"
 	.string "LEAGUE CHAMPION by now.\p"
 	.string "Knowing my grandson, he could be the\n"
-	.string "CHAMPION already!\p"
-	.string "If you're ever going to hope to\n"
-	.string "beat my grandson, youll need this.$"
+	.string "CHAMPION already!$"
 
 Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort:
 	.string "My grandson must be challenging the\n"

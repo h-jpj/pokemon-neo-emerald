@@ -119,17 +119,17 @@
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 10,
-      "y": 24,
+      "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
+      "x": 12,
+      "y": 4,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_BANETTITE",
-      "script": "Mt_Pyre_Summit_Banettite",
-      "flag": "FLAG_MT_PYRE_SUMMIT_BANETTITE"
+      "trainer_sight_or_berry_tree_id": "ITEM_GENGARITE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_GENGARITE"
     }
   ],
   "warp_events": [

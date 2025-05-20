@@ -4,6 +4,28 @@ FallarborTown_CozmosHouse_MapScripts::
 FallarborTown_CozmosHouse_EventScript_ProfCozmo::
 	lock
 	faceplayer
+	// Check if player has Deoxys in party
+	specialvar VAR_RESULT, CheckPartyForDeoxys
+	goto_if_eq VAR_RESULT, PARTY_SIZE, FallarborTown_CozmosHouse_EventScript_NoDeoxys
+	// Player has Deoxys, offer to change form
+	msgbox FallarborTown_CozmosHouse_Text_NoticeDeoxys, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, FallarborTown_CozmosHouse_EventScript_RegularCozmoDialogue
+	// Store Deoxys party position in VAR_0x8004
+	copyvar VAR_0x8004, VAR_RESULT
+	// Show form selection menu
+	goto FallarborTown_CozmosHouse_EventScript_ChangeDeoxysForm
+	end
+
+FallarborTown_CozmosHouse_EventScript_NoDeoxys::
+	// Check if player has Deoxys in party
+	specialvar VAR_RESULT, CheckPartyForDeoxys
+	goto_if_ne VAR_RESULT, PARTY_SIZE, FallarborTown_CozmosHouse_EventScript_RegularCozmoDialogue
+	// Player doesn't have Deoxys, show special message
+	msgbox FallarborTown_CozmosHouse_Text_ComeBackWithDeoxys, MSGBOX_DEFAULT
+	release
+	end
+
+FallarborTown_CozmosHouse_EventScript_RegularCozmoDialogue::
 	goto_if_set FLAG_RECEIVED_TM_RETURN, FallarborTown_CozmosHouse_EventScript_GaveMeteorite
 	checkitem ITEM_METEORITE
 	goto_if_eq VAR_RESULT, TRUE, FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite
@@ -115,4 +137,57 @@ FallarborTown_CozmosHouse_Text_FeelSorryForCozmo:
 FallarborTown_CozmosHouse_Text_CozmoIsSoHappy:
 	.string "Look at PROF. COZMO…\n"
 	.string "He's so happy! I think it's cute.$"
+
+@ Deoxys form change scripts
+FallarborTown_CozmosHouse_EventScript_ChangeDeoxysForm::
+	message FallarborTown_CozmosHouse_Text_ChooseDeoxysForm
+	waitmessage
+	multichoice 0, 0, MULTI_DEOXYS_FORMS, FALSE
+	switch VAR_RESULT
+	case 0, FallarborTown_CozmosHouse_EventScript_ChangeToNormalForme
+	case 1, FallarborTown_CozmosHouse_EventScript_ChangeToAttackForme
+	case 2, FallarborTown_CozmosHouse_EventScript_ChangeToDefenseForme
+	case 3, FallarborTown_CozmosHouse_EventScript_ChangeToSpeedForme
+	case MULTI_B_PRESSED, FallarborTown_CozmosHouse_EventScript_CancelFormChange
+	end
+
+FallarborTown_CozmosHouse_EventScript_ChangeToNormalForme::
+	setvar VAR_0x8005, 0 @ Normal Forme
+	special ChangeDeoxysForm
+	playmoncry SPECIES_DEOXYS, CRY_MODE_NORMAL
+	msgbox FallarborTown_CozmosHouse_Text_ChangedToNormalForme, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+FallarborTown_CozmosHouse_EventScript_ChangeToAttackForme::
+	setvar VAR_0x8005, 1 @ Attack Forme
+	special ChangeDeoxysForm
+	playmoncry SPECIES_DEOXYS_ATTACK, CRY_MODE_NORMAL
+	msgbox FallarborTown_CozmosHouse_Text_ChangedToAttackForme, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+FallarborTown_CozmosHouse_EventScript_ChangeToDefenseForme::
+	setvar VAR_0x8005, 2 @ Defense Forme
+	special ChangeDeoxysForm
+	playmoncry SPECIES_DEOXYS_DEFENSE, CRY_MODE_NORMAL
+	msgbox FallarborTown_CozmosHouse_Text_ChangedToDefenseForme, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+FallarborTown_CozmosHouse_EventScript_ChangeToSpeedForme::
+	setvar VAR_0x8005, 3 @ Speed Forme
+	special ChangeDeoxysForm
+	playmoncry SPECIES_DEOXYS_SPEED, CRY_MODE_NORMAL
+	msgbox FallarborTown_CozmosHouse_Text_ChangedToSpeedForme, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+FallarborTown_CozmosHouse_EventScript_CancelFormChange::
+	release
+	end
 

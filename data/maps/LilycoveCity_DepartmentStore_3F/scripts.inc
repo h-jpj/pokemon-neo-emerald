@@ -13,15 +13,16 @@ LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft::
 
 	.align 2
 LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins:
-	.2byte ITEM_PROTEIN
-	.2byte ITEM_CALCIUM
-	.2byte ITEM_IRON
-	.2byte ITEM_ZINC
-	.2byte ITEM_CARBOS
-	.2byte ITEM_HP_UP
-	.2byte ITEM_NONE
-	release
-	end
+	.2byte ITEM_BLACK_BELT
+	.2byte ITEM_BLACK_GLASSES
+	.2byte ITEM_CHARCOAL
+	.2byte ITEM_DRAGON_FANG
+	.2byte ITEM_FAIRY_FEATHER
+	.2byte ITEM_HARD_STONE
+	.2byte ITEM_HARD_STONE
+	.2byte ITEM_MAGNET
+	.2byte ITEM_METAL_COAT
+	pokemartlistend
 
 LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight::
 	lock
@@ -35,16 +36,17 @@ LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight::
 
 	.align 2
 LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_SP_ATK
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFENSE
-	.2byte ITEM_DIRE_HIT
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_X_ACCURACY
-	.2byte ITEM_NONE
-	release
-	end
+	.2byte ITEM_MIRACLE_SEED
+	.2byte ITEM_MYSTIC_WATER
+	.2byte ITEM_NEVER_MELT_ICE
+	.2byte ITEM_POISON_BARB
+	.2byte ITEM_SHARP_BEAK
+	.2byte ITEM_SILK_SCARF
+	.2byte ITEM_SILVER_POWDER
+	.2byte ITEM_SOFT_SAND
+	.2byte ITEM_SPELL_TAG
+	.2byte ITEM_TWISTED_SPOON
+	pokemartlistend
 
 LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM::
 	msgbox LilycoveCity_DepartmentStore_3F_Text_ItemsBestForTougheningPokemon, MSGBOX_NPC

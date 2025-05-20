@@ -479,7 +479,10 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	special InitRoamer
 	copyvar VAR_ROAMER_POKEMON, VAR_RESULT
 	msgbox PlayersHouse_1F_Text_StillUnknownPokemon, MSGBOX_DEFAULT
+	giveitem ITEM_EON_TICKET
+	setflag FLAG_SYS_RECEIVED_EON_TICKET
 	closemessage
+	msgbox Playerhouse_1F_Text_Ticket, MSGBOX_DEFAULT
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
 	releaseall

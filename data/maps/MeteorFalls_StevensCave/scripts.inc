@@ -16,6 +16,8 @@ MeteorFalls_StevensCave_EventScript_Steven::
 	waitmovement 0
 	msgbox MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_STEVEN, MeteorFalls_StevensCave_Text_StevenDefeat
+	giveitem ITEM_AURORA_TICKET
+	setflag FLAG_RECEIVED_AURORA_TICKET  
 	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_METEOR_FALLS_STEVEN
 	release
@@ -43,7 +45,8 @@ MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst:
 
 MeteorFalls_StevensCave_Text_StevenDefeat:
 	.string "You…\n"
-	.string "I had no idea you'd become so strong…$"
+	.string "I had no idea you'd become so strong…\p"
+	.string "You truly deserve this more than me.$"
 
 MeteorFalls_StevensCave_Text_MyPredictionCameTrue:
 	.string "STEVEN: Come to think of it, ever since\n"

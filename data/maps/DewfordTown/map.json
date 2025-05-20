@@ -24,7 +24,7 @@
       "direction": "right"
     },
     {
-      "map": "MAP_DEWFORD_MEADOWS",
+      "map": "MAP_DEWFORWD_MEADOWS",
       "offset": -2,
       "direction": "left"
     }
@@ -176,22 +176,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "DewfordTown_EventScript_HallSign"
-    },
-    {
-      "type": "sign",
-      "x": 10,
-      "y": 10,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
-    },
-    {
-      "type": "hidden_item",
-      "x": 15,
-      "y": 10,
-      "elevation": 3,
-      "item": "ITEM_HEART_SCALE",
-      "flag": "FLAG_HIDDEN_ITEM_DEFORWD_BOTTLE_CAP"
     }
   ]
 }

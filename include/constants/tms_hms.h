@@ -8,7 +8,7 @@
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
-    F(HAIL) \
+    F(SNOWSCAPE) \
     F(BULK_UP) \
     F(BULLET_SEED) \
     F(HIDDEN_POWER) \
@@ -51,7 +51,32 @@
     F(STEEL_WING) \
     F(SKILL_SWAP) \
     F(SNATCH) \
-    F(OVERHEAT)
+    F(OVERHEAT) \
+    F(THUNDER_WAVE) \
+    F(CONFUSE_RAY) \
+    F(TRICK_ROOM) \
+    F(TIDY_UP) \
+    F(HONE_CLAWS) \
+    F(U_TURN) \
+    F(FOCUS_BLAST) \
+    F(DRAIN_PUNCH) \
+    F(FOUL_PLAY) \
+    F(SMART_STRIKE) \
+    F(SWORDS_DANCE) \
+    F(FROST_BREATH) \
+    F(LEECH_LIFE) \
+    F(DAZZLING_GLEAM) \
+    F(ENERGY_BALL) \
+    F(PLAY_ROUGH) \
+    F(DRILL_RUN) \
+    F(STONE_EDGE) \
+    F(POISON_JAB) \
+    F(DARK_PULSE) \
+    F(ROCK_SLIDE) \
+    F(DRAGON_PULSE) \
+    F(WEATHER_BALL) \
+    F(RAPID_SPIN) \
+    F(STEALTH_ROCK)
 
 #define FOREACH_HM(F) \
     F(CUT) \

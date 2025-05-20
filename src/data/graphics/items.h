@@ -6,6 +6,9 @@ const u32 gItemIconPalette_ReturnToFieldArrow[] = INCBIN_U32("graphics/items/ico
 
 // Poké Balls
 
+const u32 gItemIcon_StrangeBall[] = INCBIN_U32("graphics/items/icons/strange_ball.4bpp.lz");
+const u32 gItemIconPalette_StrangeBall[] = INCBIN_U32("graphics/items/icon_palettes/strange_ball.gbapal.lz");
+
 const u32 gItemIcon_PokeBall[] = INCBIN_U32("graphics/items/icons/poke_ball.4bpp.lz");
 const u32 gItemIconPalette_PokeBall[] = INCBIN_U32("graphics/items/icon_palettes/poke_ball.gbapal.lz");
 
@@ -954,12 +957,6 @@ const u32 gItemIconPalette_Audinite[] = INCBIN_U32("graphics/items/icon_palettes
 
 const u32 gItemIcon_Diancite[] = INCBIN_U32("graphics/items/icons/diancite.4bpp.lz");
 const u32 gItemIconPalette_Diancite[] = INCBIN_U32("graphics/items/icon_palettes/diancite.gbapal.lz");
-
-const u32 gItemIcon_Dewgongite[] = INCBIN_U32("graphics/items/icons/dewgongite.4bpp.lz");
-const u32 gItemIconPalette_Dewgongite[] = INCBIN_U32("graphics/items/icon_palettes/dewgongite.gbapal.lz");
-
-const u32 gItemIcon_Miloticite[] = INCBIN_U32("graphics/items/icons/miloticite.4bpp.lz");
-const u32 gItemIconPalette_Miloticite[] = INCBIN_U32("graphics/items/icon_palettes/miloticite.gbapal.lz");
 
 // Gems
 

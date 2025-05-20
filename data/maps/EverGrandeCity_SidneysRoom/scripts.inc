@@ -43,14 +43,25 @@ EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor::
 	end
 
 EverGrandeCity_SidneysRoom_EventScript_Sidney::
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
-	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
-	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
-	end
+    goto_if_set FLAG_IS_CHAMPION, EverGrandeCity_SidneysRoom_EventScript_SidneyRematch
+    lock
+    faceplayer
+    goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
+    playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+    msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+    trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
+    goto EverGrandeCity_SidneysRoom_EventScript_Defeated
+    end
+
+EverGrandeCity_SidneysRoom_EventScript_SidneyRematch::
+    lock
+    faceplayer
+    goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
+    playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+    msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+    trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
+    goto EverGrandeCity_SidneysRoom_EventScript_Defeated
+    end
 
 EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech::
 	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT

@@ -27,8 +27,8 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 12,
-      "y": 65,
+      "x": 11,
+      "y": 64,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -144,8 +144,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 20,
-      "y": 60,
+      "x": 15,
+      "y": 62,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -156,7 +156,7 @@
       "flag": "FLAG_ITEM_ROUTE_115_SUPER_POTION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_GOLD_ITEM_BALL",
       "x": 18,
       "y": 7,
       "elevation": 3,
@@ -170,8 +170,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 24,
-      "y": 22,
+      "x": 23,
+      "y": 29,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -326,16 +326,16 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 23,
-      "y": 29,
+      "x": 16,
+      "y": 53,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_HERACRONITE",
-      "script": "Route115_Heracronite",
-      "flag": "FLAG_ITEM_HERACRONITE"
+      "trainer_sight_or_berry_tree_id": "ITEM_LINKING_CORD",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_LINKING_CORD5"
     }
   ],
   "warp_events": [
@@ -388,8 +388,8 @@
     },
     {
       "type": "sign",
-      "x": 16,
-      "y": 64,
+      "x": 20,
+      "y": 73,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route115_EventScript_RouteSignRustboro"

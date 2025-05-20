@@ -13,19 +13,17 @@ VerdanturfTown_Mart_EventScript_Clerk::
 
 	.align 2
 VerdanturfTown_Mart_Pokemart:
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFENSE
-	.2byte ITEM_X_SP_ATK
-	.2byte ITEM_X_SP_DEF
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_ACCURACY
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_NEST_BALL
+	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_TIMER_BALL
+	.2byte ITEM_DREAM_BALL
+    .2byte ITEM_LUMINOUS_MOSS
+	.2byte ITEM_SODA_POP
 	.2byte ITEM_X_SP_ATK
 	.2byte ITEM_FLUFFY_TAIL
-	.2byte ITEM_NONE
-	release
-	end
+	.2byte ITEM_LAGGING_TAIL
+	pokemartlistend
 
 VerdanturfTown_Mart_EventScript_Boy::
 	msgbox VerdanturfTown_Mart_Text_XSpecialIsCrucial, MSGBOX_NPC

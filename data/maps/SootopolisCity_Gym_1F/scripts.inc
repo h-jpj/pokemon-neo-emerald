@@ -79,6 +79,19 @@ SootopolisCity_Gym_1F_Movement_FallThroughIce:
 	set_invisible
 	step_end
 
+SootopolisCity_Gym_1F_EventScript_GymLeader::
+	goto_if_set FLAG_IS_CHAMPION, SootopolisCity_Gym_1F_EventScript_Juan
+	goto SootopolisCity_Gym_1F_EventScript_Wallace
+	end
+
+SootopolisCity_Gym_1F_EventScript_Wallace::
+	trainerbattle_single TRAINER_WALLACE_GYM, SootopolisCity_Gym_1F_Text_WallaceIntro, SootopolisCity_Gym_1F_Text_WallaceDefeat, SootopolisCity_Gym_1F_EventScript_WallaceDefeated, NO_MUSIC
+	goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE, SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
+	goto_if_unset FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
+	msgbox SootopolisCity_Gym_1F_Text_WallacePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
 SootopolisCity_Gym_1F_EventScript_Juan::
 	trainerbattle_single TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -86,6 +99,31 @@ SootopolisCity_Gym_1F_EventScript_Juan::
 	goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE, SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
 	goto_if_unset FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
 	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_WallaceDefeated::
+	message SootopolisCity_Gym_1F_Text_ReceivedRainBadgeWallace
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	msgbox SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+	setflag FLAG_BADGE08_GET
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
+	setvar VAR_SOOTOPOLIS_CITY_STATE, 6
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+	setvar VAR_0x8008, 8
+	call Common_EventScript_SetGymTrainers
+	call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
+	closemessage
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox SootopolisCity_Gym_1F_Text_RegisteredWallace, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
 	release
 	end
 
@@ -143,8 +181,14 @@ SootopolisCity_Gym_1F_EventScript_JuanRematch::
 SootopolisCity_Gym_1F_EventScript_GymGuide::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_CHAMPION, SootopolisCity_Gym_1F_EventScript_GymGuidePostGame
 	goto_if_set FLAG_DEFEATED_SOOTOPOLIS_GYM, SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory
 	msgbox SootopolisCity_Gym_1F_Text_GymGuideAdvice, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_GymGuidePostGame::
+	msgbox SootopolisCity_Gym_1F_Text_GymGuidePostGame, MSGBOX_DEFAULT
 	release
 	end
 
@@ -166,7 +210,13 @@ SootopolisCity_Gym_1F_EventScript_RightGymStatue::
 	end
 
 SootopolisCity_Gym_1F_EventScript_GymStatueCertified::
-	msgbox SootopolisCity_Gym_1F_Text_GymStatueCertified, MSGBOX_DEFAULT
+	goto_if_set FLAG_IS_CHAMPION, SootopolisCity_Gym_1F_EventScript_GymStatueJuanCertified
+	msgbox SootopolisCity_Gym_1F_Text_GymStatueWallaceCertified, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SootopolisCity_Gym_1F_EventScript_GymStatueJuanCertified::
+	msgbox SootopolisCity_Gym_1F_Text_GymStatueJuanCertified, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -178,21 +228,47 @@ SootopolisCity_Gym_1F_EventScript_GymStatue::
 SootopolisCity_Gym_1F_Text_GymGuideAdvice:
 	.string "Yo! How's it going, CHAMPION-\n"
 	.string "bound {PLAYER}?\p"
-	.string "SOOTOPOLIS's GYM LEADER JUAN is\n"
+	.string "SOOTOPOLIS's GYM LEADER WALLACE is\n"
 	.string "a master of WATER-type POKéMON.\p"
-	.string "And, to get to JUAN, an icy floor\n"
+	.string "And, to get to WALLACE, an icy floor\n"
 	.string "will hamper your progress…\p"
 	.string "Listen, I'm sorry, but that's all the\n"
 	.string "advice that I have for you.\p"
 	.string "The rest of the way, you have to\n"
 	.string "go for it yourself!$"
 
+SootopolisCity_Gym_1F_Text_GymGuidePostGame:
+	.string "Yo! How's it going, CHAMPION?\p"
+	.string "SOOTOPOLIS's GYM LEADER JUAN is\n"
+	.string "a master of WATER-type POKéMON.\p"
+	.string "I heard he was WALLACE's mentor!\p"
+	.string "After you became CHAMPION, WALLACE\n"
+	.string "left to become the new CHAMPION,\l"
+	.string "and JUAN took over the GYM.$"
+
 SootopolisCity_Gym_1F_Text_GymGuidePostVictory:
-	.string "Yow! You've beaten even JUAN, who\n"
+	.string "Yow! You've beaten even WALLACE, who\n"
 	.string "was supposedly the best in all HOENN!\p"
 	.string "Okay! Check out your TRAINER CARD.\p"
 	.string "If you've gotten all the BADGES, you're\n"
 	.string "set for the POKéMON LEAGUE challenge!$"
+
+SootopolisCity_Gym_1F_Text_WallaceIntro:
+	.string "Allow me to formally introduce\n"
+	.string "myself.\p"
+	.string "I am WALLACE.\n"
+	.string "The GYM LEADER of SOOTOPOLIS.\p"
+	.string "There's something about you…\n"
+	.string "A difference in your demeanor.\p"
+	.string "I think I sense that in you.\p"
+	.string "What happened on top of the SKY\n"
+	.string "PILLAR, and what you did, I will likely\l"
+	.string "learn through our upcoming battle.\p"
+	.string "Now, show me. Show me the power you\n"
+	.string "wield with your POKéMON.\p"
+	.string "And I, in turn, shall present you with\n"
+	.string "a performance of illusions in water\l"
+	.string "by me and my POKéMON!$"
 
 SootopolisCity_Gym_1F_Text_JuanIntro:
 	.string "Let me ask you.\n"
@@ -217,6 +293,17 @@ SootopolisCity_Gym_1F_Text_JuanIntro:
 @ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
 @ after, as well as the otherwise unused array after that. One wonders if that's the reason for
 @ the existence of that unused array of ints.
+SootopolisCity_Gym_1F_Text_WallaceDefeat:
+	.string "I'm dazzled!\n"
+	.string "Brilliant! Very well, you are the winner.\p"
+	.string "From you, I sense the brilliant shine\n"
+	.string "of skill that will overcome all.\p"
+	.string "You deserve every credit for your victory.\n"
+	.string "You are a truly noble POKéMON TRAINER!\p"
+	.string "The RAIN BADGE is yours!\n"
+	.string "I am sure you will continue onward\l"
+	.string "to the POKéMON LEAGUE!$"
+
 SootopolisCity_Gym_1F_Text_JuanDefeat:
 	.string "Ahahaha, excellent!\n"
 	.string "Very well, you are the winner.\p"
@@ -231,6 +318,10 @@ SootopolisCity_Gym_1F_Text_JuanDefeat:
 	.string "Hahaha, I merely jest!\p"
 	.string "Rather than my clothes, I shall reward\n"
 	.string "you with this, the RAIN BADGE!$"
+
+SootopolisCity_Gym_1F_Text_ReceivedRainBadgeWallace:
+	.string "{PLAYER} received the RAIN BADGE\n"
+	.string "from WALLACE.$"
 
 SootopolisCity_Gym_1F_Text_ReceivedRainBadge:
 	.string "{PLAYER} received the RAIN BADGE\n"
@@ -248,14 +339,28 @@ SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis:
 
 SootopolisCity_Gym_1F_Text_ExplainWaterPulse:
 	.string "The TECHNICAL MACHINE I handed you\n"
-	.string "contains SCALD.\p"
-	.string "In use, it will occasionally burn\n"
-	.string "the target with scalding water.\p"
+	.string "contains WATER PULSE.\p"
+	.string "In use, it will occasionally confuse\n"
+	.string "the target with ultrasonic waves.\p"
 	.string "… … … … … …$"
+
+SootopolisCity_Gym_1F_Text_RegisteredWallace:
+	.string "Registered GYM LEADER WALLACE\n"
+	.string "in the POKéNAV.$"
 
 SootopolisCity_Gym_1F_Text_RegisteredJuan:
 	.string "Registered GYM LEADER JUAN\n"
 	.string "in the POKéNAV.$"
+
+SootopolisCity_Gym_1F_Text_WallacePostBattle:
+	.string "The TRAINERS who have gathered all\n"
+	.string "the GYM BADGES of HOENN should make\l"
+	.string "way to the ultimate destination.\p"
+	.string "The POKéMON LEAGUE.\p"
+	.string "Travel to the easternmost reaches\n"
+	.string "of HOENN, to the island EVER GRANDE.\p"
+	.string "There, you shall find the POKéMON\n"
+	.string "LEAGUE.$"
 
 SootopolisCity_Gym_1F_Text_JuanPostBattle:
 	.string "The TRAINERS who have gathered all\n"
@@ -277,7 +382,12 @@ SootopolisCity_Gym_1F_Text_GoGetFortreeBadge:
 SootopolisCity_Gym_1F_Text_GymStatue:
 	.string "SOOTOPOLIS CITY POKéMON GYM$"
 
-SootopolisCity_Gym_1F_Text_GymStatueCertified:
+SootopolisCity_Gym_1F_Text_GymStatueWallaceCertified:
+	.string "SOOTOPOLIS CITY POKéMON GYM\p"
+	.string "WALLACE'S CERTIFIED TRAINERS:\n"
+	.string "{PLAYER}$"
+
+SootopolisCity_Gym_1F_Text_GymStatueJuanCertified:
 	.string "SOOTOPOLIS CITY POKéMON GYM\p"
 	.string "JUAN'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"

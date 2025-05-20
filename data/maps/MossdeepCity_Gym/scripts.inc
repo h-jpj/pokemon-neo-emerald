@@ -49,8 +49,9 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles::
 	end
 
 MossdeepCity_Gym_EventScript_TateAndLiza::
-	setflag FLAG_UNUSED_0x264
+	setflag FLAG_SYS_INVERSE_BATTLE
 	trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+	clearflag FLAG_SYS_INVERSE_BATTLE
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, MossdeepCity_Gym_EventScript_TateAndLizaRematch
 	goto_if_unset FLAG_RECEIVED_TM_CALM_MIND, MossdeepCity_Gym_EventScript_GiveCalmMind2
@@ -75,6 +76,7 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+	clearflag FLAG_SYS_INVERSE_BATTLE
 	setvar VAR_MOSSDEEP_CITY_STATE, 1
 	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
 	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
@@ -558,7 +560,10 @@ MossdeepCity_Gym_Text_TateAndLizaIntro:
 	.string "TATE: The other is thinking…\n"
 	.string "LIZA: All in our minds!\p"
 	.string "TATE: This combination of ours…\n"
-	.string "LIZA: Can you beat it?$"
+	.string "LIZA: An Inverse Battle.\n"
+	.string "TATE: The Type effectiveness...\p"
+	.string "LIZA: Is opposite!\n"
+	.string "TATE: Can you beat it?$"
 
 MossdeepCity_Gym_Text_TateAndLizaDefeat:
 	.string "TATE: What?! Our combination…\n"

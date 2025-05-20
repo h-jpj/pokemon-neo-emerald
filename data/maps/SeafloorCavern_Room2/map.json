@@ -153,13 +153,6 @@
 
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 7,
-      "y": 5,
-      "elevation": 0,
-      "item": "ITEM_DOME_FOSSIL",
-      "flag": "FLAG_DOME_FOSSIL_SEAFLOOR_CAVERN_ROOM2"
-    }
+
   ]
 }

@@ -14,6 +14,7 @@
 #include "decoration_inventory.h"
 #include "agb_flash.h"
 #include "event_data.h"
+#include "constants/event_objects.h"
 
 static void ApplyNewEncryptionKeyToAllEncryptedData(u32 encryptionKey);
 
@@ -43,11 +44,11 @@ EWRAM_DATA struct LoadedSaveData gLoadedSaveData = {0};
 EWRAM_DATA u32 gLastEncryptionKey = 0;
 
 // IWRAM common
-bool32 gFlashMemoryPresent;
-struct SaveBlock1 *gSaveBlock1Ptr;
-struct SaveBlock2 *gSaveBlock2Ptr;
+COMMON_DATA bool32 gFlashMemoryPresent = 0;
+COMMON_DATA struct SaveBlock1 *gSaveBlock1Ptr = NULL;
+COMMON_DATA struct SaveBlock2 *gSaveBlock2Ptr = NULL;
 IWRAM_INIT struct SaveBlock3 *gSaveBlock3Ptr = &gSaveblock3;
-struct PokemonStorage *gPokemonStoragePtr;
+COMMON_DATA struct PokemonStorage *gPokemonStoragePtr = NULL;
 
 // code
 void CheckForFlashMemory(void)
@@ -202,17 +203,45 @@ void LoadPlayerParty(void)
 void SaveObjectEvents(void)
 {
     int i;
+    u16 graphicsId;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
         gSaveBlock1Ptr->objectEvents[i] = gObjectEvents[i];
+        // Swap graphicsId bytes when saving and loading
+        // This keeps compatibility with vanilla,
+        // since the lower graphicsIds will be in the same place as vanilla
+        graphicsId = gObjectEvents[i].graphicsId;
+        gSaveBlock1Ptr->objectEvents[i].graphicsId = (graphicsId >> 8) | (graphicsId << 8);
+        gSaveBlock1Ptr->objectEvents[i].spriteId = 127; // magic number
+        // To avoid crash on vanilla, save follower as inactive
+        if (gObjectEvents[i].localId == OBJ_EVENT_ID_FOLLOWER)
+            gSaveBlock1Ptr->objectEvents[i].active = FALSE;
+    }
 }
 
 void LoadObjectEvents(void)
 {
     int i;
+    u16 graphicsId;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
         gObjectEvents[i] = gSaveBlock1Ptr->objectEvents[i];
+        // Swap graphicsId bytes when saving and loading
+        // This keeps compatibility with vanilla,
+        // since the lower graphicsIds will be in the same place as vanilla
+        graphicsId = gObjectEvents[i].graphicsId;
+        gObjectEvents[i].graphicsId = (graphicsId >> 8) | (graphicsId << 8);
+        if (gObjectEvents[i].spriteId != 127)
+            gObjectEvents[i].graphicsId &= 0xFF;
+        gObjectEvents[i].spriteId = 0;
+        // Try to restore saved inactive follower
+        if (gObjectEvents[i].localId == OBJ_EVENT_ID_FOLLOWER &&
+            !gObjectEvents[i].active &&
+            gObjectEvents[i].graphicsId & OBJ_EVENT_MON)
+            gObjectEvents[i].active = TRUE;
+    }
 }
 
 void CopyPartyAndObjectsToSave(void)
@@ -251,21 +280,6 @@ void LoadPlayerBag(void)
     for (i = 0; i < BAG_BERRIES_COUNT; i++)
         gLoadedSaveData.berries[i] = gSaveBlock1Ptr->bagPocket_Berries[i];
 
-    for (i = 0; i < BAG_MEDICINE_COUNT; i++)
-        gLoadedSaveData.medicine[i] = gSaveBlock1Ptr->bagPocket_Medicine[i];
-
-        // load player megastone.
-    for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
-        gLoadedSaveData.megaStones[i] = gSaveBlock1Ptr->bagPocket_MegaStones[i];
-
-    // load player battle items.
-    for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
-        gLoadedSaveData.battleItems[i] = gSaveBlock1Ptr->bagPocket_BattleItems[i];
-
-    // load player treasures.
-    for (i = 0; i < BAG_TREASURES_COUNT; i++)
-        gLoadedSaveData.treasures[i] = gSaveBlock1Ptr->bagPocket_Treasures[i];
-
     // load mail.
     for (i = 0; i < MAIL_COUNT; i++)
         gLoadedSaveData.mail[i] = gSaveBlock1Ptr->mail[i];
@@ -299,23 +313,23 @@ void SavePlayerBag(void)
         gSaveBlock1Ptr->bagPocket_Berries[i] = gLoadedSaveData.berries[i];
 
     for (i = 0; i < BAG_MEDICINE_COUNT; i++)
-        gSaveBlock1Ptr->bagPocket_Medicine[i] = gLoadedSaveData.medicine[i]; 
+        gLoadedSaveData.medicine[i] = gSaveBlock1Ptr->bagPocket_Medicine[i];
+
+        // load player megastone.
+    for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
+        gLoadedSaveData.megaStones[i] = gSaveBlock1Ptr->bagPocket_MegaStones[i];
+
+    // load player battle items.
+    for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
+        gLoadedSaveData.battleItems[i] = gSaveBlock1Ptr->bagPocket_BattleItems[i];
+
+    // load player treasures.
+    for (i = 0; i < BAG_TREASURES_COUNT; i++)
+        gLoadedSaveData.treasures[i] = gSaveBlock1Ptr->bagPocket_Treasures[i];
 
     // save mail.
     for (i = 0; i < MAIL_COUNT; i++)
         gSaveBlock1Ptr->mail[i] = gLoadedSaveData.mail[i];
-
-    // save player megastones.
-    for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
-        gSaveBlock1Ptr->bagPocket_MegaStones[i] = gLoadedSaveData.megaStones[i];
-
-    // save player battle items.
-    for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
-        gSaveBlock1Ptr->bagPocket_BattleItems[i] = gLoadedSaveData.battleItems[i];
-
-    // save player treasures.
-    for (i = 0; i < BAG_TREASURES_COUNT; i++)
-        gSaveBlock1Ptr->bagPocket_Treasures[i] = gLoadedSaveData.treasures[i];
 
     encryptionKeyBackup = gSaveBlock2Ptr->encryptionKey;
     gSaveBlock2Ptr->encryptionKey = gLastEncryptionKey;

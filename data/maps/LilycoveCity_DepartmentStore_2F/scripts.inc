@@ -25,25 +25,15 @@ LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft::
 
 	.align 2
 LilycoveCity_DepartmentStore_2F_Pokemart1:
-	.2byte ITEM_HEAL_BALL
-	.2byte ITEM_QUICK_BALL
-	.2byte ITEM_DUSK_BALL
-	.2byte ITEM_DIVE_BALL
-	.2byte ITEM_NET_BALL
-	.2byte ITEM_TIMER_BALL
-	.2byte ITEM_REPEAT_BALL
-	.2byte ITEM_NEST_BALL
-	.2byte ITEM_LUXURY_BALL
-    .2byte ITEM_FAST_BALL
-    .2byte ITEM_LEVEL_BALL
-    .2byte ITEM_LURE_BALL
-    .2byte ITEM_HEAVY_BALL
-    .2byte ITEM_LOVE_BALL
-    .2byte ITEM_FRIEND_BALL
-    .2byte ITEM_MOON_BALL
-	.2byte ITEM_NONE
-	release
-	end
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_IRON
+	.2byte ITEM_ZINC
+	.2byte ITEM_CARBOS
+	.2byte ITEM_HP_UP
+	.2byte ITEM_RARE_CANDY
+	.2byte ITEM_FLUFFY_TAIL
+	pokemartlistend
 
 LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight::
 	lock
@@ -57,21 +47,22 @@ LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight::
 
 	.align 2
 LilycoveCity_DepartmentStore_2F_Pokemart2:
-	.2byte ITEM_GRIP_CLAW
-	.2byte ITEM_RAZOR_CLAW
-	.2byte ITEM_RAZOR_FANG
-	.2byte ITEM_SCOPE_LENS
-	.2byte ITEM_ZOOM_LENS
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_FULL_RESTORE
 	.2byte ITEM_REVIVE
 	.2byte ITEM_REPEL
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_ETHER
+	.2byte ITEM_ELIXIR
+	.2byte ITEM_MAX_ETHER
+	.2byte ITEM_MAX_ELIXIR
 	.2byte ITEM_WAVE_MAIL
 	.2byte ITEM_MECH_MAIL
-	.2byte ITEM_FLUFFY_TAIL
-	.2byte ITEM_NONE
-	release
-	end
+	pokemartlistend
 
 LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly:
 	.string "Learn to use items properly.\n"

@@ -23,9 +23,9 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_STEELIXITE",
-      "script": "GraniteCave_F2_Item_Steelixite",
-      "flag": "FLAG_ITEM_STEELIXITE"
+      "trainer_sight_or_berry_tree_id": "ITEM_HEAVY_DUTY_BOOTS",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_HEAVY_DUTY_BOOTS"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -130,6 +130,32 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_RockSmash",
       "flag": "FLAG_TEMP_17"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
+      "x": 21,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SABLENITE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SABLENITE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
+      "x": 28,
+      "y": 6,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_STEELIXITE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_STEELIXITE"
     }
   ],
   "warp_events": [
@@ -175,19 +201,19 @@
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 28,
-      "y": 6,
+      "x": 30,
+      "y": 1,
       "elevation": 3,
-      "item": "ITEM_EVERSTONE",
-      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_B2F_EVERSTONE_1"
+      "item": "ITEM_ABILITY_PATCH",
+      "flag": "FLAG_HIDDEN_ITEM_GRANITE_ASSAULT_VEST"
     },
     {
       "type": "hidden_item",
       "x": 15,
       "y": 11,
       "elevation": 3,
-      "item": "ITEM_EVERSTONE",
-      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_B2F_EVERSTONE_2"
+      "item": "ITEM_HARD_STONE",
+      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_HARD_STONE"
     }
   ]
 }

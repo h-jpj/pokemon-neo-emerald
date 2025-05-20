@@ -44,13 +44,6 @@
     }
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 3,
-      "y": 3,
-      "elevation": 0,
-      "item": "ITEM_ROTOM_CATALOG",
-      "flag": "FLAG_ROTOM_CATALOG"
-    }
+
   ]
 }

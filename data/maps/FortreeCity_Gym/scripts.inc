@@ -5,6 +5,7 @@ FortreeCity_Gym_MapScripts::
 
 FortreeCity_Gym_OnTransition:
 	special RotatingGate_InitPuzzle
+	setflag FLAG_TEMP_HIDE_FOLLOWER @ Hide follower bc of rotating gates
 	end
 
 FortreeCity_Gym_OnWarp:
@@ -262,10 +263,10 @@ FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis:
 	.string "This is a gift from me.$"
 
 FortreeCity_Gym_Text_ExplainAerialAce:
-	.string "TM40 contains ROOST.\p"
-	.string "Its a defensive move, allowing your …\n"
-	.string "POKéMON to heal 50% of their max hp,\p"
-	.string "temporarly removing the flying type too.$"
+	.string "TM40 contains AERIAL ACE.\p"
+	.string "Its speed…\n"
+	.string "No POKéMON should be able to avoid it.\p"
+	.string "… … … … … …$"
 
 FortreeCity_Gym_Text_RegisteredWinona:
 	.string "Registered GYM LEADER WINONA\n"

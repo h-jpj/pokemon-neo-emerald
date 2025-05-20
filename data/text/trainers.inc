@@ -1240,7 +1240,9 @@ Route111_Text_DrewIntro:
 
 Route111_Text_DrewDefeat:
 	.string "I couldn't see what was happening at\n"
-	.string "my sides because of the GO-GOGGLES.$"
+	.string "my sides because of the GO-GOGGLES.\p"
+	.string "I wont be able to find it with these\n"
+	.string "things on!$"
 
 Route111_Text_DrewPostBattle:
 	.string "The GO-GOGGLES make it possible to\n"
@@ -1253,18 +1255,24 @@ Route111_Text_HeidiIntro:
 	.string "so I can enjoy a battle here, too!$"
 
 Route111_Text_HeidiDefeat:
-	.string "Ohhh! You're mean!$"
+	.string "Ohhh! You're mean!\n"
+	.string "Now I have no change in looking\p"
+	.string "for that new species.$"
 
 Route111_Text_HeidiPostBattle:
 	.string "When you're battling in a sandstorm,\n"
 	.string "watch out for your POKéMON's HP.\p"
 	.string "It can faint if you don't keep\n"
-	.string "an eye on it!$"
+	.string "an eye on it!\p"
+	.string "I guess you're toughing the storm\n"
+	.string "out looking for that new species\p"
+	.string "too aye? I'll find it first!$"
 
 Route111_Text_BeauIntro:
 	.string "Wearing these GO-GOGGLES makes me\n"
-	.string "feel like a superhero.\l"
-	.string "Right now, nobody can beat me!$"
+	.string "feel like a superhero.\p"
+	.string "Right now, nobody can beat me\n"
+	.string "in finding that new species!$"
 
 Route111_Text_BeauDefeat:
 	.string "I can't win on spirit alone…$"
@@ -1283,7 +1291,9 @@ Route111_Text_BeckyDefeat:
 
 Route111_Text_BeckyPostBattle:
 	.string "If they can find fossils in the desert,\n"
-	.string "it must have been a sea before.$"
+	.string "it must have been a sea before... Right?\p"
+	.string "But who cares, I'm looking for that new\n"
+	.string "species that's rumored to be here!$"
 
 Route111_Text_DustyIntro:
 	.string "For thirty years I have searched for\n"
@@ -1298,7 +1308,9 @@ Route111_Text_DustyPostBattle:
 	.string "For thirty years I have searched for\n"
 	.string "ancient ruins!\p"
 	.string "No, wait, was that forty years?\n"
-	.string "Which was it now?$"
+	.string "Which was it now?\p"
+	.string "Wait... Was is actually this place\n"
+	.string "that new species is..?$"
 
 Route111_Text_DustyRegister:
 	.string "I haven't been searching for any\n"
@@ -2630,15 +2642,11 @@ Route118_Text_ChesterPostBattle:
 
 Route118_Text_BarnyIntro:
 	.string "I'm a FISHERMAN, but also a TRAINER.\n"
-	.string "I'm raising the POKéMON I caught.\l"
-	.string "If you beat me, I'll give you\n"
-	.string "something special.\p"
-	.string "Better than what that guy over\n"
-	.string "there gave you.$"
+	.string "I'm raising the POKéMON I caught.$"
 
 Route118_Text_BarnyDefeat:
 	.string "I thought I was doing okay in my\n"
-	.string "training… Enjoy the gift my friend.$"
+	.string "training…$"
 
 Route118_Text_BarnyPostBattle:
 	.string "I couldn't win by training POKéMON\n"

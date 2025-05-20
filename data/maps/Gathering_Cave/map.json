@@ -2,7 +2,7 @@
   "id": "MAP_GATHERING_CAVE",
   "name": "Gathering_Cave",
   "layout": "LAYOUT_GATHERING_CAVE",
-  "music": "MUS_DUMMY",
+  "music": "MUS_PETALBURG_WOODS",
   "region_map_section": "MAPSEC_ROUTE_118",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -15,60 +15,32 @@
   "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
-      "x": 3,
-      "y": 5,
+      "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
+      "x": 10,
+      "y": 7,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 2,
-      "y": 1,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "ITEM_SLOWBRONITE",
-      "script": "Gathering_Cave_Slowbronite",
-      "flag": "FLAG_ITEM_SLOWBRONITE"
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SLOWBRONITE"
     }
   ],
   "warp_events": [
     {
-      "x": 9,
-      "y": 26,
+      "x": 10,
+      "y": 19,
       "elevation": 0,
       "dest_map": "MAP_ROUTE118",
-      "dest_warp_id": "0"
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 14,
-      "y": 20,
-      "elevation": 0,
-      "item": "ITEM_HELIX_FOSSIL",
-      "flag": "FLAG_HELIX_FOSSIL_GATHERING_CAVE"
-    },
-    {
-      "type": "hidden_item",
-      "x": 1,
-      "y": 6,
-      "elevation": 0,
-      "item": "ITEM_SLOWKINGITE",
-      "flag": "FLAG_ITEM_SLOWKINGITE_GATHERING_CAVE"
-    }
+
   ]
 }

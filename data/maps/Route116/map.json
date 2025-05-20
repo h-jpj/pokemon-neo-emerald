@@ -75,7 +75,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_ROUTE116_1"
+      "flag": "FLAG_TEMP_11"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
@@ -88,7 +88,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_ROUTE116_2"
+      "flag": "FLAG_TEMP_12"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
@@ -179,7 +179,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_ROUTE116_3"
+      "flag": "FLAG_TEMP_13"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -205,7 +205,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_ROUTE116_4"
+      "flag": "FLAG_TEMP_14"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -338,19 +338,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 34,
-      "y": 7,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_POTION",
-      "script": "Common_EventScript_FindItem",
-      "flag": "FLAG_ITEM_ROUTE_116_POTION"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "x": 30,
       "y": 5,
@@ -361,7 +348,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TREE_ROUTE116_5"
+      "flag": "FLAG_TEMP_15"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -388,6 +375,32 @@
       "trainer_sight_or_berry_tree_id": "5",
       "script": "Route116_EventScript_Devan",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
+      "x": 76,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_LUCARIONITE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_LUCARIONITE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GOLD_ITEM_BALL",
+      "x": 34,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_RAPID_SPIN",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_ROUTE_116_POTION"
     }
   ],
   "warp_events": [
@@ -423,7 +436,7 @@
       "x": 79,
       "y": 6,
       "elevation": 0,
-      "dest_map": "MAP_RUSTURF_TUNNEL_FLOOR1",
+      "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
       "dest_warp_id": "0"
     }
   ],

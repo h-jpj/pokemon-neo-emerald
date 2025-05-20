@@ -47,8 +47,6 @@ VictoryRoad_1F_EventScript_WallyEntranceBattle::
 	copyobjectxytoperm LOCALID_WALLY_ENTRANCE
 	setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
 	copyvar VAR_VICTORY_ROAD_1F_STATE, VAR_0x8008
-	giveitem ITEM_GALLADITE
-	setflag FLAG_ITEM_GALLADITE
 	releaseall
 	end
 

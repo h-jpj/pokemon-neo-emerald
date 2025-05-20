@@ -93,9 +93,8 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125",
-    "HiddenRootGrotto",
-    "LittlerootPath",
-    "Dewford_Meadows"
+    "Dewforwd_Meadows",
+    "Verdanturf_Meadows"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -433,14 +432,12 @@
     "TerraCave_End",
     "AlteringCave",
     "MeteorFalls_StevensCave",
-    "RusturfTunnel_Floor1",
-    "ScorchedSlab_FloorB1",
-    "Gathering_Cave",
-    "Floral_Cave",
-    "Seaspray_Cave_BF1",
     "Seaspray_Cave",
-    "DewfordManor_1F",
-    "PetalburgWoods2"
+    "Seaspray_Cave_BF1",
+    "Dewford_Manor",
+    "Flowering_Cave",
+    "ScorchedSlab_BF1",
+    "Gathering_Cave"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
@@ -615,8 +612,8 @@
     "Route110_TrickHousePuzzle6",
     "Route110_TrickHousePuzzle7",
     "Route110_TrickHousePuzzle8",
-    "Route110_SeasideCyclingRoadNorthEntrance",
-    "Route110_SeasideCyclingRoadSouthEntrance"
+    "Route110_SeasideCyclingRoadSouthEntrance",
+    "Route110_SeasideCyclingRoadNorthEntrance"
   ],
   "gMapGroup_IndoorRoute113": [
     "Route113_GlassWorkshop"

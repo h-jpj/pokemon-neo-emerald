@@ -199,18 +199,8 @@ DewfordTown_Gym_EventScript_TakaoBrightenRoom::
 
 DewfordTown_Gym_EventScript_Jocelyn::
 	trainerbattle_single TRAINER_JOCELYN, DewfordTown_Gym_Text_JocelynIntro, DewfordTown_Gym_Text_JocelynDefeat, DewfordTown_Gym_EventScript_JocelynBrightenRoom
-	lock
-	goto_if_set FLAG_ITEM_EXPERT_BELT_DEWFORD_GYM, DewfordTown_Gym_EventScript_Jocelyn_Belt
 	msgbox DewfordTown_Gym_Text_JocelynPostBattle, MSGBOX_AUTOCLOSE
-	giveitem ITEM_EXPERT_BELT
-	setflag FLAG_ITEM_EXPERT_BELT_DEWFORD_GYM
-	release
 	end
-
-DewfordTown_Gym_EventScript_Jocelyn_Belt::
-	msgbox DewfordTown_Gym_Text_JocelynPostBattle, MSGBOX_AUTOCLOSE
-	release
-	end	
 
 DewfordTown_Gym_EventScript_JocelynBrightenRoom::
 	call DewfordTown_Gym_EventScript_BrightenRoom

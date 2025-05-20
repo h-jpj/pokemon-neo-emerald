@@ -127,7 +127,6 @@ static const u8 sCaughtBall_Gfx[] = INCBIN_U8("graphics/pokedex/caught_ball.4bpp
 static const u8 sText_TenDashes[] = _("----------");
 ALIGNED(4) static const u8 sExpandedPlaceholder_PokedexDescription[] = _("");
 static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size_silhouette.gbapal");
-static const u16 sSizeScreenSilhouette_inverted_Pal[] = INCBIN_U16("graphics/pokedex/hgss/size_silhouette_inverted.gbapal");
 
 static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES");
 static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Toggle   {DPAD_UPDOWN}Moves");
@@ -246,6 +245,12 @@ static const u8 sText_EVO_WATER_SCROLL[] = _("ScrollOfWatrs is used");
 static const u8 sText_EVO_ITEM_NIGHT[] = _("{STR_VAR_2} is used, night");
 static const u8 sText_EVO_ITEM_DAY[] = _("{STR_VAR_2} is used, day");
 static const u8 sText_EVO_ITEM_HOLD[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}");
+static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{LV}{UP_ARROW} after 20x {STR_VAR_2}");
+static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, male");
+static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, female");
+static const u8 sText_EVO_ITEM_COUNT_999[] = _("{LV}{UP_ARROW} with 999 {STR_VAR_2} in bag");
+static const u8 sText_EVO_DEFEAT_THREE_WITH_ITEM[] = _("{LV}{UP_ARROW} defeating 3 {STR_VAR_3} holding {STR_VAR_2}");
+static const u8 sText_EVO_OVERWORLD_STEPS[] = _("{LV}{UP_ARROW} after {STR_VAR_2} steps");
 static const u8 sText_EVO_UNKNOWN[] = _("Method unknown");
 static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} has no evolution.");
 
@@ -258,24 +263,14 @@ static const u8 sText_PlusSymbol[] = _("+");
 
 // static .rodata graphics
 
-// classic color
 static const u16 sPokedexPlusHGSS_Default_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_default.gbapal");
 static const u16 sPokedexPlusHGSS_National_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_national.gbapal");
 static const u16 sPokedexPlusHGSS_MenuSearch_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_search_menu.gbapal");
 static const u16 sPokedexPlusHGSS_SearchResults_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_search_results.gbapal");
-
-// dark color
 static const u16 sPokedexPlusHGSS_Default_dark_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_default_dark.gbapal");
 static const u16 sPokedexPlusHGSS_National_dark_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_national_dark.gbapal");
 static const u16 sPokedexPlusHGSS_MenuSearch_dark_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_search_menu_dark.gbapal");
 static const u16 sPokedexPlusHGSS_SearchResults_dark_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_search_results_dark.gbapal");
-
-// darkest color
-static const u16 sPokedexPlusHGSS_Default_darkest_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_default_darkest.gbapal");
-static const u16 sPokedexPlusHGSS_National_darkest_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_national_darkest.gbapal");
-static const u16 sPokedexPlusHGSS_MenuSearch_darkest_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_search_menu_darkest.gbapal");
-static const u16 sPokedexPlusHGSS_SearchResults_darkest_Pal[] = INCBIN_U16("graphics/pokedex/hgss/palette_search_results_darkest.gbapal");
-
 static const u32 sPokedexPlusHGSS_MenuList_Gfx[] = INCBIN_U32("graphics/pokedex/hgss/tileset_menu_list.4bpp.lz");
 static const u32 sPokedexPlusHGSS_MenuList_DECA_Gfx[] = INCBIN_U32("graphics/pokedex/hgss/tileset_menu_list_DECA.4bpp.lz");
 static const u32 sPokedexPlusHGSS_Interface_Gfx[] = INCBIN_U32("graphics/pokedex/hgss/tileset_interface.4bpp.lz");
@@ -301,44 +296,9 @@ static const u32 sPokedexPlusHGSS_ScreenSize_Tilemap[] = INCBIN_U32("graphics/po
 static const u32 sPokedexPlusHGSS_ScreenSearchHoenn_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/tilemap_search_screen_hoenn.bin.lz");
 static const u32 sPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/tilemap_search_screen_national.bin.lz");
 
-enum {
-    HGSS_DEFAULT_PAL,
-    HGSS_NATIONAL_PAL,
-    HGSS_SEARCH_RESULTS_PAL,
-    HGSS_SEARCH_MENU_PAL,
-    HGSS_SILHOUETTE_PAL,
-    HGSS_PAL_TYPE_COUNT
-};
-
-enum {
-    HGSS_CLASSIC,
-    HGSS_DARK,
-    HGSS_DARKEST,
-    HGSS_COLOR_COUNT
-};
-
-static const u16* const sDexPalettes[HGSS_COLOR_COUNT][HGSS_PAL_TYPE_COUNT] =
-{
-    [HGSS_CLASSIC] =    {sPokedexPlusHGSS_Default_Pal, 
-                         sPokedexPlusHGSS_National_Pal, 
-                         sPokedexPlusHGSS_SearchResults_Pal, 
-                         sPokedexPlusHGSS_MenuSearch_Pal,
-                         sSizeScreenSilhouette_Pal},
-    [HGSS_DARK] =       {sPokedexPlusHGSS_Default_dark_Pal, 
-                         sPokedexPlusHGSS_National_dark_Pal, 
-                         sPokedexPlusHGSS_SearchResults_dark_Pal, 
-                         sPokedexPlusHGSS_MenuSearch_dark_Pal,
-                         sSizeScreenSilhouette_Pal},
-    [HGSS_DARKEST] =    {sPokedexPlusHGSS_Default_darkest_Pal, 
-                         sPokedexPlusHGSS_National_darkest_Pal, 
-                         sPokedexPlusHGSS_SearchResults_darkest_Pal, 
-                         sPokedexPlusHGSS_MenuSearch_darkest_Pal,
-                         sSizeScreenSilhouette_inverted_Pal},
-};
-
-#define HGSS_COLOR_MODE HGSS_DARKEST
 #define SCROLLING_MON_X 146
 #define HGSS_DECAPPED FALSE
+#define HGSS_DARK_MODE TRUE
 #define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES FALSE
 
 // For scrolling search parameter
@@ -500,7 +460,8 @@ struct PokedexView
     u16 maxScrollTimer;
     u16 scrollSpeed;
     u16 unkArr1[4]; // Cleared, never read
-    u8 filler[8];
+    u16 originalSearchSelectionNum;
+    u8 filler[6];
     u8 currentPage;
     u8 currentPageBackup;
     bool8 isSearchResults:1;
@@ -755,92 +716,6 @@ static const struct SpritePalette sStatBarSpritePal[] = //{sStatBarPalette, TAG_
     {sStatBarPalette, TAG_STAT_BAR},
     {sStatBarPalette, TAG_STAT_BAR_BG},
     {0}
-};
-static const u16 sStatBarPaletteDark[16] = {
-    [COLOR_ID_ALPHA] = RGB(0, 0, 10),
-    [COLOR_ID_BAR_WHITE] = RGB_BLACK,
-
-    [COLOR_ID_FILL + COLOR_BEST * 2] = RGB(2, 25, 25),
-    [COLOR_ID_FILL_SHADOW + COLOR_BEST * 2] = RGB(13, 27, 27),
-
-    [COLOR_ID_FILL + COLOR_VERY_GOOD * 2] = RGB(11, 25, 2),
-    [COLOR_ID_FILL_SHADOW + COLOR_VERY_GOOD * 2] = RGB(19, 27, 13),
-
-    [COLOR_ID_FILL + COLOR_GOOD * 2] = RGB(22, 25, 2),
-    [COLOR_ID_FILL_SHADOW + COLOR_GOOD * 2] = RGB(26, 27, 13),
-
-    [COLOR_ID_FILL + COLOR_AVERAGE * 2] = RGB(25, 22, 2),
-    [COLOR_ID_FILL_SHADOW + COLOR_AVERAGE * 2] = RGB(27, 26, 13),
-
-    [COLOR_ID_FILL + COLOR_BAD * 2] = RGB(25, 17, 2),
-    [COLOR_ID_FILL_SHADOW + COLOR_BAD * 2] = RGB(27, 22, 13),
-
-    [COLOR_ID_FILL + COLOR_WORST * 2] = RGB(25, 4, 2),
-    [COLOR_ID_FILL_SHADOW + COLOR_WORST * 2] = RGB(27, 15, 13),
-
-    [COLOR_ID_FONT] = RGB_WHITE,
-    [COLOR_ID_FONT_SHADOW] = RGB(10, 10, 10),
-};
-
-static const struct SpritePalette sStatBarSpritePalDark[] = //{sStatBarPalette, TAG_STAT_BAR};
-{
-    {sStatBarPaletteDark, TAG_STAT_BAR},
-    {sStatBarPaletteDark, TAG_STAT_BAR_BG},
-    {0}
-};
-
-#define TAG_CATEGORY_ICONS 30004
-
-static const u16 sCategoryIcons_Pal[] = INCBIN_U16("graphics/interface/category_icons.gbapal");
-static const u32 sCategoryIcons_Gfx[] = INCBIN_U32("graphics/interface/category_icons.4bpp.lz");
-
-static const struct OamData sOamData_CategoryIcons =
-{
-    .size = SPRITE_SIZE(16x16),
-    .shape = SPRITE_SHAPE(16x16),
-    .priority = 0,
-};
-static const struct CompressedSpriteSheet sSpriteSheet_CategoryIcons =
-{
-    .data = sCategoryIcons_Gfx,
-    .size = 16*16*3/2,
-    .tag = TAG_CATEGORY_ICONS,
-};
-static const struct SpritePalette sSpritePal_CategoryIcons =
-{
-    .data = sCategoryIcons_Pal,
-    .tag = TAG_CATEGORY_ICONS
-};
-static const union AnimCmd sSpriteAnim_CategoryIcon0[] =
-{
-    ANIMCMD_FRAME(0, 0),
-    ANIMCMD_END
-};
-static const union AnimCmd sSpriteAnim_CategoryIcon1[] =
-{
-    ANIMCMD_FRAME(4, 0),
-    ANIMCMD_END
-};
-static const union AnimCmd sSpriteAnim_CategoryIcon2[] =
-{
-    ANIMCMD_FRAME(8, 0),
-    ANIMCMD_END
-};
-static const union AnimCmd *const sSpriteAnimTable_CategoryIcons[] =
-{
-    sSpriteAnim_CategoryIcon0,
-    sSpriteAnim_CategoryIcon1,
-    sSpriteAnim_CategoryIcon2,
-};
-static const struct SpriteTemplate sSpriteTemplate_CategoryIcons =
-{
-    .tileTag = TAG_CATEGORY_ICONS,
-    .paletteTag = TAG_CATEGORY_ICONS,
-    .oam = &sOamData_CategoryIcons,
-    .anims = sSpriteAnimTable_CategoryIcons,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy
 };
 
 static const struct OamData sOamData_ScrollBar =
@@ -1316,8 +1191,6 @@ static const struct CompressedSpriteSheet sInterfaceSpriteSheet[] =
 static const struct SpritePalette sInterfaceSpritePalette[] =
 {
     {sPokedexPlusHGSS_Default_Pal, TAG_DEX_INTERFACE},
-    {sPokedexPlusHGSS_Default_dark_Pal, TAG_DEX_INTERFACE},
-    {sPokedexPlusHGSS_Default_darkest_Pal, TAG_DEX_INTERFACE},
     {0}
 };
 
@@ -2267,6 +2140,7 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
         pokedexView->unkArr2[i] = 0;
     for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr3); i++)
         pokedexView->unkArr3[i] = 0;
+    pokedexView->originalSearchSelectionNum = 0;
 }
 
 static void VBlankCB_Pokedex(void)
@@ -2479,14 +2353,27 @@ static void Task_ClosePokedex(u8 taskId)
 
 static void LoadPokedexBgPalette(bool8 isSearchResults)
 {
-    if (isSearchResults == TRUE)
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_SEARCH_RESULTS_PAL] + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
-    else if (!IsNationalPokedexEnabled())
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_DEFAULT_PAL] + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+    if (!HGSS_DARK_MODE)
+    {
+        if (isSearchResults == TRUE)
+            LoadPalette(sPokedexPlusHGSS_SearchResults_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+        else if (!IsNationalPokedexEnabled())
+            LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+        else
+            LoadPalette(sPokedexPlusHGSS_National_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+        LoadPalette(GetOverworldTextboxPalettePtr(), 0xF0, 32);
+    }
     else
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_NATIONAL_PAL] + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
-        
-    LoadPalette(GetOverworldTextboxPalettePtr(), 0xF0, 32);
+    {
+        if (isSearchResults == TRUE)
+            LoadPalette(sPokedexPlusHGSS_SearchResults_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+        else if (!IsNationalPokedexEnabled())
+            LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+        else
+            LoadPalette(sPokedexPlusHGSS_National_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+        LoadPalette(GetOverworldTextboxPalettePtr(), 0xF0, 32);
+    }
+
 }
 
 
@@ -2542,11 +2429,8 @@ static bool8 LoadPokedexListPage(u8 page)
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 8;
         LoadCompressedSpriteSheet(&sInterfaceSpriteSheet[HGSS_DECAPPED]);
-        LoadSpritePalette(&sInterfaceSpritePalette[HGSS_COLOR_MODE]);
-        if (HGSS_COLOR_MODE == HGSS_DARKEST)
-            LoadSpritePalettes(sStatBarSpritePalDark);
-        else
-            LoadSpritePalettes(sStatBarSpritePal);
+        LoadSpritePalettes(sInterfaceSpritePalette);
+        LoadSpritePalettes(sStatBarSpritePal);
         CreateInterfaceSprites(page);
         gMain.state++;
         break;
@@ -2556,6 +2440,13 @@ static bool8 LoadPokedexListPage(u8 page)
     case 3:
         if (page == PAGE_MAIN)
             CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
+        if (sPokedexView->originalSearchSelectionNum != 0)
+        {
+            // when returning to search results after selecting an evo, we have to restore
+            // the original dexNum because the search results page doesn't rebuild the list
+            sPokedexListItem->dexNum = sPokedexView->originalSearchSelectionNum;
+            sPokedexView->originalSearchSelectionNum = 0;
+        }
         CreateMonSpritesAtPos(sPokedexView->selectedPokemon, 0xE);
         sPokedexView->statBarsSpriteId = 0xFF;  //stat bars
         CreateStatBars(&sPokedexView->pokedexList[sPokedexView->selectedPokemon]); //stat bars
@@ -2669,11 +2560,11 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         }
         break;
     case ORDER_ALPHABETICAL:
-        for (i = 0; i < NUM_SPECIES - 1; i++)
+        for (i = 0; i < NATIONAL_DEX_COUNT; i++)
         {
             temp_dexNum = gPokedexOrder_Alphabetical[i];
 
-            if (NationalToHoennOrder(temp_dexNum) <= temp_dexCount && GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
+            if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2687,7 +2578,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Weight[i];
 
-            if (NationalToHoennOrder(temp_dexNum) <= temp_dexCount && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2701,7 +2592,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Weight[i];
 
-            if (NationalToHoennOrder(temp_dexNum) <= temp_dexCount && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2715,7 +2606,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Height[i];
 
-            if (NationalToHoennOrder(temp_dexNum) <= temp_dexCount && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2729,7 +2620,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Height[i];
 
-            if (NationalToHoennOrder(temp_dexNum) <= temp_dexCount && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -3629,14 +3520,14 @@ static void SpriteCB_DexListStartMenuCursor(struct Sprite *sprite)
 //************************************
 
 //Stat bars on main screen, code by DizzyEgg, idea by Jaizu
-#define PIXEL_COORDS_TO_OFFSET(x, y)(			\
-/*Add tiles by X*/								\
-((y / 8) * 32 * 8)								\
-/*Add tiles by X*/								\
-+ ((x / 8) * 32)								\
-/*Add pixels by Y*/								\
-+ ((((y) - ((y / 8) * 8))) * 4)				    \
-/*Add pixels by X*/								\
+#define PIXEL_COORDS_TO_OFFSET(x, y)(           \
+/*Add tiles by X*/                              \
+((y / 8) * 32 * 8)                              \
+/*Add tiles by X*/                              \
++ ((x / 8) * 32)                                \
+/*Add pixels by Y*/                             \
++ ((((y) - ((y / 8) * 8))) * 4)                 \
+/*Add pixels by X*/                             \
 + ((((x) - ((x / 8) * 8)) / 2)))
 
 static inline void WritePixel(u8 *dst, u32 x, u32 y, u32 value)
@@ -4295,11 +4186,17 @@ static void Task_HandleCaughtMonPageInput(u8 taskId)
     // Flicker caught screen color
     else if (++gTasks[taskId].tPalTimer & 16)
     {
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_DEFAULT_PAL] + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
+        if (!HGSS_DARK_MODE)
+            LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
+        else
+            LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
     }
     else
     {
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_DEFAULT_PAL] + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
+        if (!HGSS_DARK_MODE)
+            LoadPalette(sPokedexPlusHGSS_Default_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
+        else
+            LoadPalette(sPokedexPlusHGSS_Default_dark_Pal + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(7));
     }
 }
 
@@ -4511,23 +4408,13 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     else
         value = num;
     ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, digitCount);
-
-    if (HGSS_COLOR_MODE != HGSS_DARKEST)
-        PrintInfoScreenTextWhite(str, 123, 17);
-    else
-        PrintInfoScreenText(str, 123, 17);
-
+    PrintInfoScreenTextWhite(str, 123, 17);
     species = NationalPokedexNumToSpeciesHGSS(num);
     if (species)
         name = GetSpeciesName(species);
     else
         name = sText_TenDashes;
-
-    if (HGSS_COLOR_MODE != HGSS_DARKEST)
-        PrintInfoScreenTextWhite(name, 139 + (6 * digitCount), 17);
-    else
-        PrintInfoScreenText(name, 139 + (6 * digitCount), 17);
-
+    PrintInfoScreenTextWhite(name, 139 + (6 * digitCount), 17);
     if (owned)
     {
         CopyMonCategoryText(species, str2);
@@ -4839,7 +4726,7 @@ static void LoadTilesetTilemapHGSS(u8 page)
 static u8 ShowCategoryIcon(u32 category)
 {
     if (sPokedexView->categoryIconSpriteId == 0xFF)
-        sPokedexView->categoryIconSpriteId = CreateSprite(&sSpriteTemplate_CategoryIcons, 139, 90, 0);
+        sPokedexView->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 139, 90, 0);
 
     gSprites[sPokedexView->categoryIconSpriteId].invisible = FALSE;
     StartSpriteAnim(&gSprites[sPokedexView->categoryIconSpriteId], category);
@@ -4982,8 +4869,8 @@ static void Task_LoadStatsScreen(u8 taskId)
         CreateTypeIconSprites();
         sPokedexView->categoryIconSpriteId = 0xFF;
         LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60);
-        LoadCompressedSpriteSheet(&sSpriteSheet_CategoryIcons);
-        LoadSpritePalette(&sSpritePal_CategoryIcons);
+        LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
+        LoadSpritePalette(&gSpritePal_CategoryIcons);
         gMain.state++;
         break;
     case 4:
@@ -5285,11 +5172,7 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     ConvertIntToDecimalStringN(gStringVar1, (selected+1), STR_CONV_MODE_RIGHT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar2, movesTotal, STR_CONV_MODE_RIGHT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar1, sText_Stats_MoveSelectedMax);
-
-    if (HGSS_COLOR_MODE != HGSS_DARKEST)
-        PrintStatsScreenTextSmallWhite(WIN_STATS_MOVES_TOP, gStringVar1, moves_x-1, moves_y+1);
-    else 
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar1, moves_x-1, moves_y+1);
+    PrintStatsScreenTextSmallWhite(WIN_STATS_MOVES_TOP, gStringVar1, moves_x-1, moves_y+1);
 
     //Move name
     StringCopy(gStringVar3, GetMoveName(move));
@@ -5299,12 +5182,12 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     //Draw move type icon
     if (gTasks[taskId].data[5] == 0)
     {
-        SetTypeIconPosAndPal(gMovesInfo[move].type, moves_x + 146, moves_y + 17, 0);
+        SetTypeIconPosAndPal(GetMoveType(move), moves_x + 146, moves_y + 17, 0);
         SetSpriteInvisibility(1, TRUE);
     }
     else
     {
-        SetTypeIconPosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[move].contestCategory, moves_x + 146, moves_y + 17, 1);
+        SetTypeIconPosAndPal(NUMBER_OF_MON_TYPES + GetMoveContestCategory(move), moves_x + 146, moves_y + 17, 1);
         SetSpriteInvisibility(0, TRUE);
     }
 
@@ -5360,12 +5243,12 @@ static void PrintStatsScreen_Moves_Description(u8 taskId)
     //Move description
     if (gTasks[taskId].data[5] == 0)
     {
-        StringCopy(gStringVar4, gMovesInfo[move].description);
+        StringCopy(gStringVar4, GetMoveDescription(move));
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
     }
     else
     {
-        StringCopy(gStringVar4, gContestEffectDescriptionPointers[gMovesInfo[move].contestEffect]);
+        StringCopy(gStringVar4, gContestEffectDescriptionPointers[GetMoveContestEffect(move)]);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
     }
 }
@@ -5404,27 +5287,28 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
     if (gTasks[taskId].data[5] == 0)
     {
         //Power
-        if (gMovesInfo[move].power < 2)
+        u32 power = GetMovePower(move);
+        if (power < 2)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 45, moves_y);
         //Physical/Special/Status Category
         DestroyCategoryIcon();
         ShowCategoryIcon(GetBattleMoveCategory(move));
         //Accuracy
-        if (gMovesInfo[move].accuracy == 0)
+        u32 accuracy = GetMoveAccuracy(move);
+        if (accuracy == 0)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1,  moves_x + 114, moves_y);
     }
     else //Appeal + Jam
     {
         DestroyCategoryIcon();
-        gSprites[sPokedexView->categoryIconSpriteId].invisible = TRUE;
         //Appeal
-        contest_effectValue = gContestEffects[gMovesInfo[move].contestEffect].appeal;
+        contest_effectValue = gContestEffects[GetMoveContestEffect(move)].appeal;
         if (contest_effectValue != 0xFF)
             contest_appeal = contest_effectValue / 10;
         ConvertIntToDecimalStringN(gStringVar1, contest_appeal, STR_CONV_MODE_RIGHT_ALIGN, 1);
@@ -5433,7 +5317,7 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2, moves_x + 45, moves_y);
 
         //Jam
-        contest_effectValue = gContestEffects[gMovesInfo[move].contestEffect].jam;
+        contest_effectValue = gContestEffects[GetMoveContestEffect(move)].jam;
         if (contest_effectValue != 0xFF)
             contest_jam = contest_effectValue / 10;
         ConvertIntToDecimalStringN(gStringVar1, contest_jam, STR_CONV_MODE_RIGHT_ALIGN, 1);
@@ -5460,7 +5344,7 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
         value = NationalToHoennOrder(num);
     else
         value = num;
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
+    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 4);
     PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, str, base_x, base_y + 10);
 
     //Gender ratio //MON_GENDERLESS == 0xFF
@@ -5960,34 +5844,20 @@ static void PrintStatsScreen_Abilities(u8 taskId)
     if (gTasks[taskId].data[5] == 0)
     {
         ability0 = sPokedexView->sPokemonStats.ability0;
-
-        if (HGSS_COLOR_MODE != HGSS_DARKEST)
-            PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[ability0].name, abilities_x, abilities_y);
-        else
-            PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[ability0].name, abilities_x, abilities_y);
-
+        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[ability0].name, abilities_x, abilities_y);
         PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[ability0].description, abilities_x, abilities_y + 14);
 
         ability1 = sPokedexView->sPokemonStats.ability1;
         if (ability1 != ABILITY_NONE && ability1 != ability0)
         {
-            if (HGSS_COLOR_MODE != HGSS_DARKEST)
-                PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[ability1].name, abilities_x, abilities_y + 30);
-            else
-                PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[ability1].name, abilities_x, abilities_y + 30);
-
+            PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[ability1].name, abilities_x, abilities_y + 30);
             PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[ability1].description, abilities_x, abilities_y + 44);
         }
     }
     else //Hidden abilities
     {
         abilityHidden = sPokedexView->sPokemonStats.abilityHidden;
-
-        if (HGSS_COLOR_MODE != HGSS_DARKEST)
-            PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[abilityHidden].name, abilities_x, abilities_y);
-        else
-            PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[abilityHidden].name, abilities_x, abilities_y);
-
+        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilitiesInfo[abilityHidden].name, abilities_x, abilities_y);
         PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilitiesInfo[abilityHidden].description, abilities_x, abilities_y + 14);
     }
 }
@@ -6286,6 +6156,9 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
         {
             u16 targetSpecies   = sPokedexView->sEvoScreenData.targetSpecies[sPokedexView->sEvoScreenData.menuPos];
             u16 dexNum          = SpeciesToNationalPokedexNum(targetSpecies);
+            if (sPokedexView->isSearchResults && sPokedexView->originalSearchSelectionNum == 0)
+                sPokedexView->originalSearchSelectionNum = sPokedexListItem->dexNum;
+                
             sPokedexListItem->dexNum = dexNum;
             sPokedexListItem->seen   = GetSetPokedexFlag(dexNum, FLAG_GET_SEEN);
             sPokedexListItem->owned  = GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT);
@@ -6752,6 +6625,33 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             CopyItemName(item, gStringVar2);
             StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_HOLD );
             break;
+        case EVO_USE_MOVE_TWENTY_TIMES:
+            StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
+            StringExpandPlaceholders(gStringVar4, sText_EVO_USE_MOVE_TWENTY_TIMES );
+            break;
+        case EVO_RECOIL_DAMAGE_MALE:
+            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 3);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_RECOIL_DAMAGE_MALE);
+            break;
+        case EVO_RECOIL_DAMAGE_FEMALE:
+            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 3);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_RECOIL_DAMAGE_FEMALE);
+            break;
+        case EVO_ITEM_COUNT_999:
+            item = evolutions[i].param;
+            CopyItemName(item, gStringVar2);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_COUNT_999);
+            break;
+         case EVO_DEFEAT_THREE_WITH_ITEM:
+            item = evolutions[i].param;
+            CopyItemName(item, gStringVar2);
+            StringCopy(gStringVar3, GetSpeciesName(species));
+            StringExpandPlaceholders(gStringVar4, sText_EVO_DEFEAT_THREE_WITH_ITEM);
+            break;
+        case EVO_OVERWORLD_STEPS:
+            ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 4);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_OVERWORLD_STEPS);
+            break;
         default:
             StringExpandPlaceholders(gStringVar4, sText_EVO_UNKNOWN);
             break;
@@ -6994,6 +6894,9 @@ static void Task_HandleFormsScreenInput(u8 taskId)
         {
             u8 formId = sPokedexView->sFormScreenData.formIds[menuPos];
             u16 formSpecies = GetFormSpeciesId(NationalPokedexNumToSpecies(sPokedexListItem->dexNum), formId);
+            if (sPokedexView->isSearchResults && sPokedexView->originalSearchSelectionNum == 0)
+                sPokedexView->originalSearchSelectionNum = sPokedexListItem->dexNum;
+
             if (formSpecies == GetFormSpeciesId(formSpecies, 0))
                 sPokedexView->formSpecies = 0;
             else
@@ -7362,7 +7265,7 @@ static void Task_LoadSizeScreen(u8 taskId)
         gSprites[spriteId].oam.priority = 0;
         gSprites[spriteId].y2 = GetTrainerOffsetFromNationalDexNumber(sPokedexListItem->dexNum);
         SetOamMatrix(1, GetTrainerScaleFromNationalDexNumber(sPokedexListItem->dexNum), 0, 0, GetTrainerScaleFromNationalDexNumber(sPokedexListItem->dexNum));
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_SILHOUETTE_PAL], OBJ_PLTT_ID2(gSprites[spriteId].oam.paletteNum), PLTT_SIZE_4BPP);
+        LoadPalette(sSizeScreenSilhouette_Pal, OBJ_PLTT_ID2(gSprites[spriteId].oam.paletteNum), PLTT_SIZE_4BPP);
         gTasks[taskId].tTrainerSpriteId = spriteId;
         gMain.state++;
         break;
@@ -7373,7 +7276,7 @@ static void Task_LoadSizeScreen(u8 taskId)
         gSprites[spriteId].oam.priority = 0;
         gSprites[spriteId].y2 = GetPokemonOffsetFromNationalDexNumber(sPokedexListItem->dexNum);
         SetOamMatrix(2, GetPokemonScaleFromNationalDexNumber(sPokedexListItem->dexNum), 0, 0, GetPokemonScaleFromNationalDexNumber(sPokedexListItem->dexNum));
-        LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_SILHOUETTE_PAL], OBJ_PLTT_ID2(gSprites[spriteId].oam.paletteNum), PLTT_SIZE_4BPP);
+        LoadPalette(sSizeScreenSilhouette_Pal, OBJ_PLTT_ID2(gSprites[spriteId].oam.paletteNum), PLTT_SIZE_4BPP);
         gTasks[taskId].tMonSpriteId = spriteId;
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
         CopyBgTilemapBufferToVram(1);
@@ -7835,18 +7738,8 @@ static void PrintSearchText(const u8 *str, u32 x, u32 y)
     u8 color[3];
 
     color[0] = TEXT_COLOR_TRANSPARENT;
-
-    if (HGSS_COLOR_MODE != HGSS_DARKEST)
-    {
-        color[1] = TEXT_DYNAMIC_COLOR_6;
-        color[2] = TEXT_COLOR_DARK_GRAY;
-    } 
-    else
-    {
-        color[1] = TEXT_COLOR_WHITE;
-        color[2] = TEXT_DYNAMIC_COLOR_6;
-    }
-
+    color[1] = TEXT_DYNAMIC_COLOR_6;
+    color[2] = TEXT_COLOR_DARK_GRAY;
     AddTextPrinterParameterized4(0, FONT_NORMAL, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
 
@@ -7902,19 +7795,17 @@ static void Task_LoadSearchMenu(u8 taskId)
                 CopyToBgTilemapBuffer(3, sPokedexPlusHGSS_ScreenSearchHoenn_Tilemap, 0, 0);
             else
                 CopyToBgTilemapBuffer(3, sPokedexPlusHGSS_ScreenSearchNational_Tilemap, 0, 0);
-            LoadPalette(sDexPalettes[HGSS_COLOR_MODE][HGSS_SEARCH_MENU_PAL] + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
+            if (!HGSS_DARK_MODE)
+                LoadPalette(sPokedexPlusHGSS_MenuSearch_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
+            else
+                LoadPalette(sPokedexPlusHGSS_MenuSearch_dark_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
             gMain.state = 1;
         }
         break;
     case 1:
         LoadCompressedSpriteSheet(&sInterfaceSpriteSheet[HGSS_DECAPPED]);
-        LoadSpritePalette(&sInterfaceSpritePalette[HGSS_COLOR_MODE]);
-
-        if (HGSS_COLOR_MODE != HGSS_DARKEST)
-            LoadSpritePalettes(sStatBarSpritePal);
-        else
-            LoadSpritePalettes(sStatBarSpritePalDark);
-
+        LoadSpritePalettes(sInterfaceSpritePalette);
+        LoadSpritePalettes(sStatBarSpritePal);
         CreateSearchParameterScrollArrows(taskId);
         for (i = 0; i < NUM_TASK_DATA; i++)
             gTasks[taskId].data[i] = 0;

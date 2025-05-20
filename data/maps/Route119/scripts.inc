@@ -137,9 +137,9 @@ Route119_EventScript_GiveFlyHM::
 	giveitem ITEM_BLASTOISINITE
 	giveitem ITEM_CHARIZARDITE_Y
 	giveitem ITEM_VENUSAURITE
-	setflag FLAG_ITEM_BLASTOISINITE
-	setflag FLAG_ITEM_CHARIZARDITE_Y
-	setflag FLAG_ITEM_VENUSAURITE
+	setflag FLAG_BLASTOISINITE
+	setflag FLAG_CHARIZARDITE_Y
+	setflag FLAG_VENUSAURITE
 	return
 
 Route119_EventScript_RivalExitScottArrive::
@@ -508,9 +508,9 @@ Route119_Text_MayExplainFly:
 	.string "MAY: Use FLY, and your POKéMON will\n"
 	.string "instantly carry you to any town you've\l"
 	.string "already visited.\p"
-	.string "But, to use FLY, you have to get\n"
-	.string "the GYM BADGE from FORTREE CITY.\l"
-	.string "That's important, so don't forget.\p"
+	.string "I'll give you these whilst I'm\n"
+	.string "at it. My dad said I should pass\p"
+	.string "them on to you, see you later!p"
 	.string "You should FLY home and visit\n"
 	.string "LITTLEROOT for a change.\p"
 	.string "I bet your mom's worried about you,\n"
@@ -539,9 +539,9 @@ Route119_Text_BrendanExplainFly:
 	.string "BRENDAN: Use FLY, and your POKéMON\n"
 	.string "instantly carries you to any town\l"
 	.string "you've already visited.\p"
-	.string "But you need the FORTREE GYM BADGE \n"
-	.string "to do that.\p"
-	.string "Anyway, I have to move along.$"
+	.string "I'll give you these whilst I'm\n"
+	.string "at it. My dad said I should pass\p"
+	.string "them on to you, see you later!$"
 
 Route119_Text_ScottWayToGoBeSeeingYou:
 	.string "SCOTT: Hahahah!\n"

@@ -34,11 +34,17 @@ Route118_EventScript_GoodRodFisherman::
 Route118_EventScript_ReceiveGoodRod::
 	msgbox Route118_Text_IdenticalMindsTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GOOD_ROD
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_GOOD_ROD
-	giveitem ITEM_GYARADOSITE 
-	setflag FLAG_ITEM_GYARADOSITE
 	msgbox Route118_Text_TryYourLuckFishing, MSGBOX_DEFAULT
+	release
+	end
+
+Route118_EventScript_GYARADOSITE::
+	msgbox Route118_Text_IdenticalMindsTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_GYARADOSITE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GYARADOSITE_RECIEVED
+	msgbox Route118_Text_TryYourLuckGyarados, MSGBOX_DEFAULT
 	release
 	end
 
@@ -203,8 +209,7 @@ Route118_EventScript_RematchRose::
 
 Route118_EventScript_Barny::
 	trainerbattle_single TRAINER_BARNY, Route118_Text_BarnyIntro, Route118_Text_BarnyDefeat
-	giveitem ITEM_GYARADOSITE_Y 
-	setflag FLAG_ITEM_GYARADOSITE_Y
+	goto_if_set FLAG_GYARADOSITE_RECIEVED, Route118_EventScript_GYARADOSITE
 	msgbox Route118_Text_BarnyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -276,14 +281,16 @@ Route118_Text_IdenticalMindsTakeThis:
 	.string "Hmm!\n"
 	.string "We're of identical minds!\p"
 	.string "Hmm!\n"
-	.string "Take this GOOD ROD!\p"
-	.string "Hmm!\n"
-	.string "A little something extra\l"
-	.string "to encourage you to fish!$"
+	.string "Take this GOOD ROD!$"
 
 Route118_Text_TryYourLuckFishing:
 	.string "Wherever there's water, try your luck\n"
 	.string "at fishing.$"
+
+Route118_Text_TryYourLuckGyarados:
+	.string "Wherever there's water, try your luck\n"
+	.string "at fishing. Maybe you'll get some use\p"
+	.string "out of it.$"
 
 Route118_Text_DontYouLikeToFish:
 	.string "Don't you like to fish?$"

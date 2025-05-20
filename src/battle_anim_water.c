@@ -255,31 +255,6 @@ const struct SpriteTemplate gFlamethrowerFlameSpriteTemplate =
     .callback = AnimToTargetInSinWave,
 };
 
-static const union AnimCmd sAnim_ChemthrowerFlame[] =
-{
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(8, 4),
-    ANIMCMD_FRAME(16, 4),
-    ANIMCMD_FRAME(24, 4),
-    ANIMCMD_JUMP(0),
-};
-
-const union AnimCmd *const gAnims_ChemthrowerFlame[] =
-{
-    sAnim_ChemthrowerFlame,
-};
-
-const struct SpriteTemplate gChemthrowerFlameSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_PURPLE_FLAME,
-    .paletteTag = ANIM_TAG_PURPLE_FLAME,
-    .oam = &gOamData_AffineOff_ObjNormal_16x32,
-    .anims = gAnims_ChemthrowerFlame,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimToTargetInSinWave,
-};
-
 const struct SpriteTemplate gFirePledgeSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SMALL_EMBER,
@@ -610,14 +585,14 @@ const struct SpriteTemplate gAquaTailHitSpriteTemplate =
 };
 
 static const union AnimCmd sAnimCmdAnimatedSpark2[] = {
-	ANIMCMD_FRAME((8 * 8) / (16 * 16) * 0, 8),
-	ANIMCMD_FRAME((8 * 8) / (16 * 16) * 1, 8),
-	ANIMCMD_FRAME((8 * 8) / (16 * 16) * 2, 8),
-	ANIMCMD_JUMP(0)
+    ANIMCMD_FRAME((8 * 8) / (16 * 16) * 0, 8),
+    ANIMCMD_FRAME((8 * 8) / (16 * 16) * 1, 8),
+    ANIMCMD_FRAME((8 * 8) / (16 * 16) * 2, 8),
+    ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd *const sAnimCmdTable_AnimatedSpark2[] = {
-	sAnimCmdAnimatedSpark2,
+    sAnimCmdAnimatedSpark2,
 };
 
 const struct SpriteTemplate gSparkBeamSpriteTemplate =
@@ -631,6 +606,10 @@ const struct SpriteTemplate gSparkBeamSpriteTemplate =
     .callback = AnimToTargetInSinWave,
 };
 
+// args[0] - initial sprite x
+// args[1] - initial sprite y
+// args[2] - attacker or target
+// args[3] - affine anim number
 static void AnimAquaTail(struct Sprite *sprite)
 {
     StartSpriteAffineAnim(sprite, gBattleAnimArgs[3]);
@@ -643,6 +622,8 @@ static void AnimAquaTail(struct Sprite *sprite)
     StoreSpriteCallbackInData6(sprite, DestroyAnimSprite);
 }
 
+// args[0] - initial x delta
+// args[1] - initial y delta
 static void AnimKnockOffAquaTail(struct Sprite *sprite)
 {
     if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
@@ -910,6 +891,7 @@ static void AnimToTargetInSinWave_Step(struct Sprite *sprite)
     }
 }
 
+// args[0] - duration
 void AnimTask_StartSinAnimTimer(u8 taskId)
 {
     gTasks[taskId].data[0] = gBattleAnimArgs[0];
@@ -965,7 +947,7 @@ static void AnimHydroCannonBeam(struct Sprite *sprite)
 {
     bool8 animType;
     u8 coordType;
-    if (GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
+    if (IsBattlerAlly(gBattleAnimAttacker, gBattleAnimTarget))
     {
         gBattleAnimArgs[0] *= -1;
         if (GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_PLAYER_LEFT || GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_OPPONENT_LEFT)
@@ -1000,6 +982,10 @@ static void AnimWaterGunDroplet(struct Sprite *sprite)
     StoreSpriteCallbackInData6(sprite, DestroyAnimSprite);
 }
 
+// args[0] - initial sprite x
+// args[1] - initial sprite y
+// args[2] - counter
+// args[3] - attacker or target
 void AnimSmallBubblePair(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[3] != ANIM_ATTACKER)
@@ -1374,25 +1360,11 @@ static u8 GetWaterSpoutPowerForAnim(void)
     u8 i;
     u16 hp;
     u16 maxhp;
-    u16 partyIndex;
-    struct Pokemon *slot;
+    struct Pokemon *slot = GetPartyBattlerData(gBattleAnimAttacker);
 
-    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
-    {
-        partyIndex = gBattlerPartyIndexes[gBattleAnimAttacker];
-        slot =  &gPlayerParty[partyIndex];
-        maxhp = GetMonData(slot, MON_DATA_MAX_HP);
-        hp = GetMonData(slot, MON_DATA_HP);
-        maxhp /= 4;
-    }
-    else
-    {
-        partyIndex = gBattlerPartyIndexes[gBattleAnimAttacker];
-        slot =  &gEnemyParty[partyIndex];
-        maxhp = GetMonData(slot, MON_DATA_MAX_HP);
-        hp = GetMonData(slot, MON_DATA_HP);
-        maxhp /= 4;
-    }
+    maxhp = GetMonData(slot, MON_DATA_MAX_HP);
+    hp = GetMonData(slot, MON_DATA_HP);
+    maxhp /= 4;
     for (i = 0; i < 3; i++)
     {
         if (hp < maxhp * (i + 1))

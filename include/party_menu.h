@@ -27,6 +27,9 @@ extern MainCallback gPostMenuFieldCallback;
 extern u8 gSelectedOrderFromParty[MAX_FRONTIER_PARTY_SIZE];
 extern u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2];
 
+extern const struct SpriteSheet gSpriteSheet_HeldItem;
+extern const u16 gHeldItemPalette[];
+
 extern void (*gItemUseCB)(u8, TaskFunc);
 extern const struct SpriteTemplate gSpriteTemplate_StatusIcons;
 
@@ -43,6 +46,7 @@ u8 GetAilmentFromStatus(u32 status);
 u8 GetMonAilment(struct Pokemon *mon);
 void DisplayPartyMenuStdMessage(u32 stringId);
 bool8 FieldCallback_PrepareFadeInFromMenu(void);
+bool8 FieldCallback_PrepareFadeInForTeleport(void);
 void CB2_ReturnToPartyMenuFromFlyMap(void);
 void LoadHeldItemIcons(void);
 void DrawHeldItemIconsForTrade(u8 *partyCounts, u8 *partySpriteIds, u8 whichParty);

@@ -41,17 +41,17 @@
       "flag": "FLAG_ITEM_MT_PYRE_EXTERIOR_TM_SKILL_SWAP"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
       "x": 9,
-      "y": 9,
+      "y": 8,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_GENGARITE",
-      "script": "Mt_Pyre_Exterior_Gengarite",
-      "flag": "FLAG_ITEM_GENGARITE"
+      "trainer_sight_or_berry_tree_id": "ITEM_BANETTITE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_BANETTITE"
     }
   ],
   "warp_events": [
@@ -127,8 +127,8 @@
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 9,
-      "y": 8,
+      "x": 30,
+      "y": 17,
       "elevation": 0,
       "item": "ITEM_ULTRA_BALL",
       "flag": "FLAG_HIDDEN_ITEM_MT_PYRE_EXTERIOR_ULTRA_BALL"

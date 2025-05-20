@@ -7,7 +7,7 @@
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
-  "allow_cycling": false,
+  "allow_cycling": true,
   "allow_escaping": true,
   "allow_running": true,
   "show_map_name": true,
@@ -18,22 +18,22 @@
   ],
   "warp_events": [
     {
-      "x": 9,
-      "y": 34,
+      "x": 7,
+      "y": 33,
       "elevation": 0,
       "dest_map": "MAP_ROUTE115",
-      "dest_warp_id": "0"
+      "dest_warp_id": "3"
     },
     {
-      "x": 10,
-      "y": 10,
+      "x": 8,
+      "y": 9,
       "elevation": 0,
       "dest_map": "MAP_SEASPRAY_CAVE_BF1",
       "dest_warp_id": "0"
     },
     {
-      "x": 31,
-      "y": 29,
+      "x": 29,
+      "y": 28,
       "elevation": 0,
       "dest_map": "MAP_SEASPRAY_CAVE_BF1",
       "dest_warp_id": "1"

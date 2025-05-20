@@ -435,6 +435,11 @@ PlayersHouse_1F_Text_WhatColorDidTheySay:
 	.string "What color did the announcer say\n"
 	.string "that POKéMON was?$"
 
+Playerhouse_1F_Text_Ticket:
+	.string "MUM: Here, you should have this.\n"
+	.string "As a congratulations.\p"
+	.string "We're very proud of you.$"
+
 PlayersHouse_1F_Text_StillUnknownPokemon:
 	.string "MOM: Well, isn't that something!\n"
 	.string "There are still unknown POKéMON.$"

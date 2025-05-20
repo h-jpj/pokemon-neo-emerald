@@ -154,9 +154,34 @@ SlateportCity_Pokemart_EnergyGuru:
 	.2byte ITEM_ZINC
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_HP_UP
+	pokemartlistend
+
+SlateportCity_EventScript_TackItems::
+	lock
+	faceplayer
+	message SlateportCity_Text_TackItemsSellWhatYouNeed
+	waitmessage
+	pokemart SlateportCity_Pokemart_TackItems
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+SlateportCity_Pokemart_TackItems:
+	.2byte ITEM_UTILITY_UMBRELLA
+	.2byte ITEM_BLUNDER_POLICY
+	.2byte ITEM_ROOM_SERVICE
+	.2byte ITEM_HEAVY_DUTY_BOOTS
+	.2byte ITEM_THROAT_SPRAY
+	.2byte ITEM_EJECT_PACK
+	.2byte ITEM_PROTECTIVE_PADS
 	.2byte ITEM_NONE
 	release
 	end
+
+SlateportCity_Text_TackItemsSellWhatYouNeed:
+	.string "Some call it junk, me?\n"
+	.string "I call it treasure.$"
 
 SlateportCity_EventScript_EffortRibbonWoman::
 	lock
@@ -363,6 +388,14 @@ SlateportCity_EventScript_PokefanF::
 	msgbox SlateportCity_Text_BuyTooMuch, MSGBOX_NPC
 	end
 
+SlateportCity_EventScript_Old_Lady::
+	msgbox SlateportCity_Text_GetOutMyWay, MSGBOX_NPC
+	end
+
+SlateportCity_EventScript_Young_Girl::
+	msgbox SlateportCity_Text_ThatLadyOverThere, MSGBOX_NPC
+	end
+
 SlateportCity_EventScript_Man2::
 	msgbox SlateportCity_Text_BattleTentBuiltRecently, MSGBOX_NPC
 	end
@@ -514,9 +547,7 @@ SlateportCity_PokemartDecor_Dolls:
 	.2byte DECOR_AZURILL_DOLL
 	.2byte DECOR_MARILL_DOLL
 	.2byte DECOR_SKITTY_DOLL
-	.2byte DECOR_NONE
-	release
-	end
+	pokemartlistend
 
 SlateportCity_EventScript_ComeBackWithSecretPower::
 	msgbox gText_ComeBackWithSecretPower, MSGBOX_DEFAULT
@@ -550,9 +581,7 @@ SlateportCity_PokemartDecor:
 	.2byte DECOR_A_NOTE_MAT
 	.2byte DECOR_B_NOTE_MAT
 	.2byte DECOR_C_HIGH_NOTE_MAT
-	.2byte DECOR_NONE
-	release
-	end
+	pokemartlistend
 
 SlateportCity_EventScript_PowerItems::
 	lock
@@ -581,6 +610,7 @@ SlateportCity_Text_PowerItemsSellWhatYouNeed:
 	.string "training?\p"
 	.string "Give these a try!$"
 
+
 SlateportCity_EventScript_PowerTMClerk::
 	lock
 	faceplayer
@@ -595,9 +625,13 @@ SlateportCity_EventScript_PowerTMClerk::
 SlateportCity_Pokemart_PowerTMs:
 	.2byte ITEM_TM_HIDDEN_POWER
 	.2byte ITEM_TM_SECRET_POWER
-	.2byte ITEM_NONE
-	release
-	end
+	.2byte ITEM_TM_SMART_STRIKE
+	.2byte ITEM_TM_THUNDER_WAVE
+	.2byte ITEM_TM_CONFUSE_RAY
+	.2byte ITEM_TM_TRICK_ROOM
+	.2byte ITEM_TM_TIDY_UP
+	.2byte ITEM_TM_HONE_CLAWS
+	pokemartlistend
 
 @ Scene with Capt Sterns interview and Team Aqua announcing plans to steal Submarine
 SlateportCity_EventScript_CaptStern::
@@ -981,6 +1015,10 @@ SlateportCity_Text_EnergyGuruSellWhatYouNeed:
 	.string "I'm the ENERGY GURU! I'll go for it and\n"
 	.string "sell you what you need!$"
 
+SlateportCity_Text_TackMerch_SellWhatYouNeed:
+	.string "Some people can this junk.\n"
+	.string "Me? I call it treasure$"
+
 SlateportCity_Text_OhYourPokemon:
 	.string "Oh?\n"
 	.string "Your {STR_VAR_1}…$"
@@ -1144,6 +1182,14 @@ SlateportCity_Text_SinkOldBoats:
 SlateportCity_Text_BuyTooMuch:
 	.string "Whenever I visit here, I get carried\n"
 	.string "away and buy too much.$"
+
+SlateportCity_Text_ThatLadyOverThere:
+	.string "That old lady up there is always\n"
+	.string "so rude, careful around here.$"
+
+SlateportCity_Text_GetOutMyWay:
+	.string "Get out of my way whippersnapper!\n"
+	.string "The youth of today, honestly.$"
 
 SlateportCity_Text_GetNameRaterToHelpYou:
 	.string "If you want to change your POKéMON's\n"

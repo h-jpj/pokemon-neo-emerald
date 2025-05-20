@@ -191,7 +191,6 @@ enum
     LIST_STATUS4_SALT_CURE,
     LIST_STATUS4_SYRUP_BOMB,
     LIST_STATUS4_GLAIVE_RUSH,
-    LIST_STATUS4_KINDLED_UP,
 };
 
 enum
@@ -219,22 +218,29 @@ enum
     LIST_AI_CHECK_BAD_MOVE,
     LIST_AI_TRY_TO_FAINT,
     LIST_AI_CHECK_VIABILITY,
-    LIST_AI_SETUP_FIRST_TURN,
+    LIST_AI_FORCE_SETUP_FIRST_TURN,
     LIST_AI_RISKY,
-    LIST_AI_PREFER_STRONGEST_MOVE,
+    LIST_AI_TRY_TO_2HKO,
     LIST_AI_PREFER_BATON_PASS,
     LIST_AI_DOUBLE_BATTLE,
     LIST_AI_HP_AWARE,
     LIST_AI_POWERFUL_STATUS,
     LIST_AI_NEGATE_UNAWARE,
     LIST_AI_WILL_SUICIDE,
-    LIST_AI_HELP_PARTNER,
     LIST_AI_PREFER_STATUS_MOVES,
     LIST_AI_STALL,
     LIST_AI_SMART_SWITCHING,
     LIST_AI_ACE_POKEMON,
     LIST_AI_OMNISCIENT,
     LIST_AI_SMART_MON_CHOICES,
+    LIST_AI_CONSERVATIVE,
+    LIST_AI_SEQUENCE_SWITCHING,
+    LIST_AI_DOUBLE_ACE_POKEMON,
+    LIST_AI_WEIGH_ABILITY_PREDICTION,
+    LIST_AI_PREFER_HIGHEST_DAMAGE_MOVE,
+    LIST_AI_PREDICT_SWITCH,
+    LIST_AI_PREDICT_INCOMING_MON,
+    LIST_AI_DYNAMIC_FUNC,
     LIST_AI_ROAMING,
     LIST_AI_SAFARI,
     LIST_AI_FIRST_BATTLE,
@@ -338,7 +344,6 @@ static const u8 sText_OnAir[] = _("On Air");
 static const u8 sText_Underground[] = _("Underground");
 static const u8 sText_Minimized[] = _("Minimized");
 static const u8 sText_ChargedUp[] = _("Charged Up");
-static const u8 sText_KindledUp[] = _("Kindled Up");
 static const u8 sText_Rooted[] = _("Rooted");
 static const u8 sText_Yawn[] = _("Yawn");
 static const u8 sText_ImprisonedOthers[] = _("Imprisoned Others");
@@ -385,22 +390,29 @@ static const u8 sText_Swamp[] = _("Swamp");
 static const u8 sText_CheckBadMove[] = _("Check Bad Move");
 static const u8 sText_TryToFaint[] = _("Try to Faint");
 static const u8 sText_CheckViability[] = _("Check Viability");
-static const u8 sText_SetUpFirstTurn[] = _("Setup First Turn");
+static const u8 sText_ForceSetupFirstTurn[] = _("Force Setup First Turn");
 static const u8 sText_Risky[] = _("Risky");
-static const u8 sText_PreferStrongestMove[] = _("Prefer Strongest Move");
+static const u8 sText_TryTo2HKO[] = _("Try to 2HKO");
 static const u8 sText_PreferBatonPass[] = _("Prefer Baton Pass");
 static const u8 sText_DoubleBattle[] = _("Double Battle");
 static const u8 sText_HpAware[] = _("HP Aware");
 static const u8 sText_PowerfulStatus[] = _("Powerful Status");
 static const u8 sText_NegateUnaware[] = _("Negate Unaware");
 static const u8 sText_WillSuicide[] = _("Will Suicide");
-static const u8 sText_HelpPartner[] = _("Help Partner");
 static const u8 sText_PreferStatusMoves[] = _("Prefer Status Moves");
 static const u8 sText_Stall[] = _("Stall");
 static const u8 sText_SmartSwitching[] = _("Smart Switching");
-static const u8 sText_AcePokemon[] = _("Ace Pokemon");
+static const u8 sText_AcePokemon[] = _("Ace Pokémon");
 static const u8 sText_Omniscient[] = _("Omniscient");
 static const u8 sText_SmartMonChoices[] = _("Smart Mon Choices");
+static const u8 sText_Conservative[] = _("Conservative");
+static const u8 sText_SequenceSwitching[] = _("Sequence Switching");
+static const u8 sText_DoubleAcePokemon[] = _("Double Ace Pokémon");
+static const u8 sText_WeighAbilityPrediction[] = _("Weigh Ability Prediction");
+static const u8 sText_PreferHighestDamageMove[] = _("Prefer Highest Damage Move");
+static const u8 sText_PredictSwitch[] = _("Predict Switch");
+static const u8 sText_PredictIncomingMon[] = _("Predict Incoming Mon");
+static const u8 sText_DynamicFunc[] = _("Dynamic Func");
 static const u8 sText_Roaming[] = _("Roaming");
 static const u8 sText_Safari[] = _("Safari");
 static const u8 sText_FirstBattle[] = _("First Battle");
@@ -409,6 +421,7 @@ static const u8 sText_SubstituteHp[] = _("Substitute HP");
 static const u8 sText_InLove[] = _("In Love");
 static const u8 sText_Unknown[] = _("Unknown");
 static const u8 sText_EmptyString[] = _("");
+static const u8 sText_IsSwitching[] = _("Switching to ");
 
 static const struct BitfieldInfo sStatus1Bitfield[] =
 {
@@ -481,7 +494,7 @@ static const struct BitfieldInfo sAIBitfield[] =
     {/*Check Bad Move*/ 1, 0},
     {/*Try to Faint*/ 1, 1},
     {/*Check Viability*/ 1, 2},
-    {/*Setup First Turn*/ 1, 3},
+    {/*Force Setup First Turn*/ 1, 3},
     {/*Risky*/ 1, 4},
     {/*Prefer Strongest Move*/ 1, 5},
     {/*Prefer Baton Pass*/ 1, 6},
@@ -490,16 +503,20 @@ static const struct BitfieldInfo sAIBitfield[] =
     {/*Powerful Status*/ 1, 9},
     {/*Negate Unaware*/ 1, 10},
     {/*Will Suicide*/ 1, 11},
-    {/*Help Partner*/ 1, 12},
-    {/*Prefer Status Moves*/ 1, 13},
-    {/*Stall*/ 1, 14},
-    {/*Smart Switching*/ 1, 15},
-    {/*Ace Pokemon*/ 1, 16},
-    {/*Omniscient*/ 1, 17},
-    {/*Smart Mon Choices*/ 1, 18},
-    {/*Ace Pokemon*/ 1, 16},
-    {/*Omniscient*/ 1, 17},
-    {/*Smart Mon Choices*/ 1, 18},
+    {/*Prefer Status Moves*/ 1, 12},
+    {/*Stall*/ 1, 13},
+    {/*Smart Switching*/ 1, 14},
+    {/*Ace Pokemon*/ 1, 15},
+    {/*Omniscient*/ 1, 16},
+    {/*Smart Mon Choices*/ 1, 17},
+    {/*Conservative*/ 1, 18},
+    {/*Sequence Switching*/ 1, 19},
+    {/*Double Ace Pokemon*/ 1, 20},
+    {/*Weigh Ability Prediction*/ 1, 21},
+    {/*Prefer Highest Damage Move*/ 1, 22},
+    {/*Predict Switch*/ 1, 23},
+    {/*Predict Incoming Mon*/ 1, 24},
+    {/*Dynamic Func*/ 1, 28},
     {/*Roaming*/ 1, 29},
     {/*Safari*/ 1, 30},
     {/*First Battle*/ 1, 31},
@@ -601,7 +618,6 @@ static const struct ListMenuItem sStatus4ListItems[] =
     {sText_SaltCure, LIST_STATUS4_SALT_CURE},
     {sText_SyrupBomb, LIST_STATUS4_SYRUP_BOMB},
     {sText_GlaiveRush, LIST_STATUS4_GLAIVE_RUSH},
-    {sText_KindledUp, LIST_STATUS4_KINDLED_UP},
 };
 
 static const struct ListMenuItem sSideStatusListItems[] =
@@ -629,22 +645,29 @@ static const struct ListMenuItem sAIListItems[] =
     {sText_CheckBadMove, LIST_AI_CHECK_BAD_MOVE},
     {sText_TryToFaint, LIST_AI_TRY_TO_FAINT},
     {sText_CheckViability, LIST_AI_CHECK_VIABILITY},
-    {sText_SetUpFirstTurn, LIST_AI_SETUP_FIRST_TURN},
+    {sText_ForceSetupFirstTurn, LIST_AI_FORCE_SETUP_FIRST_TURN},
     {sText_Risky, LIST_AI_RISKY},
-    {sText_PreferStrongestMove, LIST_AI_PREFER_STRONGEST_MOVE},
+    {sText_TryTo2HKO, LIST_AI_TRY_TO_2HKO},
     {sText_PreferBatonPass, LIST_AI_PREFER_BATON_PASS},
     {sText_DoubleBattle, LIST_AI_DOUBLE_BATTLE},
     {sText_HpAware, LIST_AI_HP_AWARE},
     {sText_PowerfulStatus, LIST_AI_POWERFUL_STATUS},
     {sText_NegateUnaware, LIST_AI_NEGATE_UNAWARE},
     {sText_WillSuicide, LIST_AI_WILL_SUICIDE},
-    {sText_HelpPartner, LIST_AI_HELP_PARTNER},
     {sText_PreferStatusMoves, LIST_AI_PREFER_STATUS_MOVES},
     {sText_Stall, LIST_AI_STALL},
     {sText_SmartSwitching, LIST_AI_SMART_SWITCHING},
     {sText_AcePokemon, LIST_AI_ACE_POKEMON},
     {sText_Omniscient, LIST_AI_OMNISCIENT},
     {sText_SmartMonChoices, LIST_AI_SMART_MON_CHOICES},
+    {sText_Conservative, LIST_AI_CONSERVATIVE},
+    {sText_SequenceSwitching, LIST_AI_SEQUENCE_SWITCHING},
+    {sText_DoubleAcePokemon, LIST_AI_DOUBLE_ACE_POKEMON},
+    {sText_WeighAbilityPrediction, LIST_AI_WEIGH_ABILITY_PREDICTION},
+    {sText_PreferHighestDamageMove, LIST_AI_PREFER_HIGHEST_DAMAGE_MOVE},
+    {sText_PredictSwitch, LIST_AI_PREDICT_SWITCH},
+    {sText_PredictIncomingMon, LIST_AI_PREDICT_INCOMING_MON},
+    {sText_DynamicFunc, LIST_AI_DYNAMIC_FUNC},
     {sText_Roaming, LIST_AI_ROAMING},
     {sText_Safari, LIST_AI_SAFARI},
     {sText_FirstBattle, LIST_AI_FIRST_BATTLE},
@@ -821,7 +844,7 @@ static void PrintDigitChars(struct BattleDebugMenu *data);
 static void SetUpModifyArrows(struct BattleDebugMenu *data);
 static void UpdateBattlerValue(struct BattleDebugMenu *data);
 static void UpdateMonData(struct BattleDebugMenu *data);
-static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue);
+static u16 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue);
 static bool32 TryMoveDigit(struct BattleDebugModifyArrows *modArrows, bool32 moveUp);
 static void SwitchToDebugView(u8 taskId);
 static void SwitchToDebugViewFromAiParty(u8 taskId);
@@ -949,12 +972,20 @@ static void PutMovesPointsText(struct BattleDebugMenu *data)
             AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, text, 83 + count * 54, i * 15, 0, NULL);
 
             ConvertIntToDecimalStringN(text,
-                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i],
+                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i].expected,
                                        STR_CONV_MODE_RIGHT_ALIGN, 3);
             AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, text, 110 + count * 54, i * 15, 0, NULL);
 
             count++;
         }
+    }
+
+    if (AI_DATA->shouldSwitch & (1u << data->aiBattlerId))
+    {
+        u32 switchMon = GetMonData(&gEnemyParty[AI_DATA->mostSuitableMonId[data->aiBattlerId]], MON_DATA_SPECIES);
+
+        AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, sText_IsSwitching, 74, 64, 0, NULL);
+        AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, gSpeciesInfo[switchMon].speciesName, 74 + 68, 64, 0, NULL);
     }
 
     CopyWindowToVram(data->aiMovesWindowId, COPYWIN_FULL);
@@ -1673,7 +1704,7 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
     case LIST_ITEM_TYPES:
         for (i = 0; i < 3; i++)
         {
-            u8 *types = &gBattleMons[data->battlerId].type1;
+            u8 *types = &gBattleMons[data->battlerId].types[0];
 
             PadString(gTypesInfo[types[i]].name, text);
             printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
@@ -1855,7 +1886,7 @@ static void ValueToCharDigits(u8 *charDigits, u32 newValue, u8 maxDigits)
         charDigits[i] = valueDigits[i] + CHAR_0;
 }
 
-static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
+static u16 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
 {
     struct SideTimer *sideTimer = &gSideTimers[GetBattlerSide(data->battlerId)];
 
@@ -1985,7 +2016,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_DAMAGE_NON_TYPES;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_DAMAGE_NON_TYPES;
-            sideTimer->damageNonTypesType = gMovesInfo[gCurrentMove].type;
+            sideTimer->damageNonTypesType = GetMoveType(gCurrentMove);
         }
         return &sideTimer->damageNonTypesTimer;
     case LIST_SIDE_RAINBOW:
@@ -2073,9 +2104,9 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.minValue = 0;
         data->modifyArrows.maxValue = NUMBER_OF_MON_TYPES - 1;
         data->modifyArrows.maxDigits = 2;
-        data->modifyArrows.modifiedValPtr = (u8 *)((&gBattleMons[data->battlerId].type1) + data->currentSecondaryListItemId);
+        data->modifyArrows.modifiedValPtr = (u8 *)((&gBattleMons[data->battlerId].types[0]) + data->currentSecondaryListItemId);
         data->modifyArrows.typeOfVal = VAL_U8;
-        data->modifyArrows.currValue = *(u8 *)((&gBattleMons[data->battlerId].type1) + data->currentSecondaryListItemId);
+        data->modifyArrows.currValue = *(u8 *)((&gBattleMons[data->battlerId].types[0]) + data->currentSecondaryListItemId);
         break;
     case LIST_ITEM_STATS:
         data->modifyArrows.minValue = 0;
@@ -2272,13 +2303,8 @@ static void UpdateMonData(struct BattleDebugMenu *data)
     {
         if (data->battlerWasChanged[i])
         {
-            struct Pokemon *mon;
+            struct Pokemon *mon = GetPartyBattlerData(i);
             struct BattlePokemon *battleMon = &gBattleMons[i];
-
-            if (GetBattlerSide(i) == B_SIDE_PLAYER)
-                mon = &gPlayerParty[gBattlerPartyIndexes[i]];
-            else
-                mon = &gEnemyParty[gBattlerPartyIndexes[i]];
 
             SetMonData(mon, MON_DATA_HELD_ITEM, &battleMon->item);
             SetMonData(mon, MON_DATA_STATUS, &battleMon->status1);
@@ -2438,6 +2464,7 @@ static const u8 sText_HoldEffectCovertCloak[] = _("Covert Cloak");
 static const u8 sText_HoldEffectLoadedDice[] = _("Loaded Dice");
 static const u8 sText_HoldEffectBoosterEnergy[] = _("Booster Energy");
 static const u8 sText_HoldEffectBerserkGene[] = _("Berserk Gene");
+static const u8 sText_HoldEffectOgerponMask[] = _("Ogerpon Mask");
 static const u8 *const sHoldEffectNames[] =
 {
     [HOLD_EFFECT_NONE] = sText_HoldEffectNone,
@@ -2587,6 +2614,7 @@ static const u8 *const sHoldEffectNames[] =
     [HOLD_EFFECT_COVERT_CLOAK] = sText_HoldEffectCovertCloak,
     [HOLD_EFFECT_LOADED_DICE] = sText_HoldEffectLoadedDice,
     [HOLD_EFFECT_BOOSTER_ENERGY] = sText_HoldEffectBoosterEnergy,
+    [HOLD_EFFECT_OGERPON_MASK] = sText_HoldEffectOgerponMask,
     [HOLD_EFFECT_BERSERK_GENE] = sText_HoldEffectBerserkGene,
 };
 static const u8 *GetHoldEffectName(u16 holdEffect)
