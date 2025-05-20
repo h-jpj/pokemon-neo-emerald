@@ -47960,7 +47960,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM_PLANT": {
+  "WORMADAM_PLANT_CLOAK": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -79310,7 +79310,7 @@
     ],
     "TutorMoves": []
   },
-  "MEOWSTIC_M": {
+  "MEOWSTIC_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -84805,7 +84805,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM_SANDY": {
+  "WORMADAM_SANDY_CLOAK": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -84899,7 +84899,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM_TRASH": {
+  "WORMADAM_TRASH_CLOAK": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -85811,7 +85811,7 @@
       "MOVE_DRACO_METEOR"
     ]
   },
-  "FLOETTE_ETERNAL": {
+  "FLOETTE_ETERNAL_FLOWER": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -85906,7 +85906,7 @@
     ],
     "TutorMoves": []
   },
-  "MEOWSTIC_F": {
+  "MEOWSTIC_FEMALE": {
     "LevelMoves": [
       {
         "Level": 1,

@@ -386,7 +386,6 @@ DirectSoundWaveData_unknown_16::
 DirectSoundWaveData_unknown_17::
 	.incbin "sound/direct_sound_samples/unknown_17.bin"
 
-.if P_CRIES_ENABLED == TRUE
 .if P_FAMILY_BULBASAUR == TRUE
 	.align 2
 Cry_Bulbasaur::
@@ -871,8 +870,8 @@ Cry_SlowbroMega::
 .endif @ P_MEGA_EVOLUTIONS
 .if P_GALARIAN_FORMS == TRUE
 	.align 2
-Cry_SlowpokeGalar::
-	.incbin "sound/direct_sound_samples/cries/slowpoke_galar.bin"
+Cry_SlowpokeGalarian::
+	.incbin "sound/direct_sound_samples/cries/slowpoke_galarian.bin"
 
 .endif @ P_GALARIAN_FORMS
 .endif @ P_FAMILY_SLOWPOKE
@@ -2754,6 +2753,11 @@ Cry_Gorebyss::
 	.align 2
 Cry_Relicanth::
 	.incbin "sound/direct_sound_samples/cries/relicanth.bin"
+.if P_MEGA_EVOLUTIONS == TRUE
+	.align 2
+Cry_RelicanthMega::
+	.incbin "sound/direct_sound_samples/cries/relicanth.bin"
+.endif @ P_MEGA_EVOLUTIONS
 .endif @ P_FAMILY_RELICANTH
 
 .if P_FAMILY_LUVDISC == TRUE
@@ -4259,8 +4263,8 @@ Cry_Floette::
 	.incbin "sound/direct_sound_samples/cries/floette.bin"
 
 	.align 2
-Cry_FloetteEternal::
-	.incbin "sound/direct_sound_samples/cries/floette_eternal.bin"
+Cry_FloetteEternalFlower::
+	.incbin "sound/direct_sound_samples/cries/floette_eternal_flower.bin"
 
 	.align 2
 Cry_Florges::
@@ -5356,21 +5360,21 @@ Cry_Stonjourner::
 
 .if P_FAMILY_EISCUE == TRUE
 	.align 2
-Cry_EiscueIce::
+Cry_EiscueIceFace::
 	.incbin "sound/direct_sound_samples/cries/eiscue_ice_face.bin"
 
 	.align 2
-Cry_EiscueNoice::
+Cry_EiscueNoiceFace::
 	.incbin "sound/direct_sound_samples/cries/eiscue_noice_face.bin"
 .endif @ P_FAMILY_EISCUE
 
 .if P_FAMILY_INDEEDEE == TRUE
 	.align 2
-Cry_IndeedeeM::
+Cry_IndeedeeMale::
 	.incbin "sound/direct_sound_samples/cries/indeedee_male.bin"
 
 	.align 2
-Cry_IndeedeeF::
+Cry_IndeedeeFemale::
 	.incbin "sound/direct_sound_samples/cries/indeedee_female.bin"
 .endif @ P_FAMILY_INDEEDEE
 
@@ -5444,21 +5448,21 @@ Cry_Dragapult::
 
 .if P_FAMILY_ZACIAN == TRUE
 	.align 2
-Cry_ZacianHero::
+Cry_ZacianHeroOfManyBattles::
 	.incbin "sound/direct_sound_samples/cries/zacian_hero_of_many_battles.bin"
 
 	.align 2
-Cry_ZacianCrowned::
+Cry_ZacianCrownedSword::
 	.incbin "sound/direct_sound_samples/cries/zacian_crowned_sword.bin"
 .endif @ P_FAMILY_ZACIAN
 
 .if P_FAMILY_ZAMAZENTA == TRUE
 	.align 2
-Cry_ZamazentaHero::
+Cry_ZamazentaHeroOfManyBattles::
 	.incbin "sound/direct_sound_samples/cries/zamazenta_hero_of_many_battles.bin"
 
 	.align 2
-Cry_ZamazentaCrowned::
+Cry_ZamazentaCrownedShield::
 	.incbin "sound/direct_sound_samples/cries/zamazenta_crowned_shield.bin"
 .endif @ P_FAMILY_ZAMAZENTA
 
@@ -5478,12 +5482,12 @@ Cry_Kubfu::
 	.incbin "sound/direct_sound_samples/cries/kubfu.bin"
 
 	.align 2
-Cry_UrshifuSingleStrike::
-	.incbin "sound/direct_sound_samples/cries/urshifu_single_strike.bin"
+Cry_UrshifuSingleStrikeStyle::
+	.incbin "sound/direct_sound_samples/cries/urshifu_single_strike_style.bin"
 
 	.align 2
-Cry_UrshifuRapidStrike::
-	.incbin "sound/direct_sound_samples/cries/urshifu_rapid_strike.bin"
+Cry_UrshifuRapidStrikeStyle::
+	.incbin "sound/direct_sound_samples/cries/urshifu_rapid_strike_style.bin"
 .endif @ P_FAMILY_KUBFU
 
 .if P_FAMILY_ZARUDE == TRUE
@@ -5523,12 +5527,12 @@ Cry_Calyrex::
 
 .if P_FUSION_FORMS == TRUE
 	.align 2
-Cry_CalyrexIce::
-	.incbin "sound/direct_sound_samples/cries/calyrex_ice.bin"
+Cry_CalyrexIceRider::
+	.incbin "sound/direct_sound_samples/cries/calyrex_ice_rider.bin"
 
 	.align 2
-Cry_CalyrexShadow::
-	.incbin "sound/direct_sound_samples/cries/calyrex_shadow.bin"
+Cry_CalyrexShadowRider::
+	.incbin "sound/direct_sound_samples/cries/calyrex_shadow_rider.bin"
 
 .endif @ P_FUSION_FORMS
 .endif @ P_FAMILY_CALYREX
@@ -5591,12 +5595,12 @@ Cry_Lechonk::
 	.incbin "sound/direct_sound_samples/cries/lechonk.bin"
 
 	.align 2
-Cry_OinkologneM::
-	.incbin "sound/direct_sound_samples/cries/oinkologne_m.bin"
+Cry_OinkologneMale::
+	.incbin "sound/direct_sound_samples/cries/oinkologne_male.bin"
 
 	.align 2
-Cry_OinkologneF::
-	.incbin "sound/direct_sound_samples/cries/oinkologne_f.bin"
+Cry_OinkologneFemale::
+	.incbin "sound/direct_sound_samples/cries/oinkologne_female.bin"
 .endif @ P_FAMILY_LECHONK
 
 .if P_FAMILY_TAROUNTULA == TRUE
@@ -5639,12 +5643,12 @@ Cry_Tandemaus::
 	.incbin "sound/direct_sound_samples/cries/tandemaus.bin"
 
 	.align 2
-Cry_MausholdThree::
-	.incbin "sound/direct_sound_samples/cries/maushold_three.bin"
+Cry_MausholdFamilyOfThree::
+	.incbin "sound/direct_sound_samples/cries/maushold_family_of_three.bin"
 
 	.align 2
-Cry_MausholdFour::
-	.incbin "sound/direct_sound_samples/cries/maushold_four.bin"
+Cry_MausholdFamilyOfFour::
+	.incbin "sound/direct_sound_samples/cries/maushold_family_of_four.bin"
 .endif @ P_FAMILY_TANDEMAUS
 
 .if P_FAMILY_FIDOUGH == TRUE
@@ -6154,7 +6158,6 @@ Cry_Terapagos::
 Cry_Pecharunt::
 	.incbin "sound/direct_sound_samples/cries/pecharunt.bin"
 .endif @ P_FAMILY_PECHARUNT
-.endif @ P_CRIES_ENABLED
 
 	.align 2
 DirectSoundWaveData_register_noise::

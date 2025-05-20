@@ -351,7 +351,8 @@
 #define TRAINER_CLASS_PIKE_QUEEN     0x3f
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_RS_PROTAG      0x41
-#define TRAINER_CLASS_COUNT          0x42
+#define TRAINER_CLASS_HARVEY         0x42
+#define TRAINER_CLASS_COUNT          0x43
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
@@ -371,8 +372,7 @@
 #define F_TRAINER_FEMALE (1 << 7)
 
 // Trainer party defines
-#define TRAINER_MON_MALE          1
-#define TRAINER_MON_FEMALE        2
-#define TRAINER_MON_RANDOM_GENDER 3
+#define TRAINER_MON_MALE    1
+#define TRAINER_MON_FEMALE  2
 
 #endif  // GUARD_TRAINERS_H

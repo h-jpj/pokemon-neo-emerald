@@ -319,7 +319,23 @@ Route104_EventScript_TrainerTipsDoubleBattles::
 	end
 
 Route104_EventScript_Boy1::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_ROUTE_104_FULL_HEAL, Route104_EventScript_Receieved_Full_Heal
 	msgbox Route104_Text_ThrowBallAtWeakenedPokemon, MSGBOX_NPC
+	msgbox Route104_Text_ThrowBallAtWeakenedPokemonFirstTimeTalking, MSGBOX_NPC
+	lock
+	faceplayer
+	giveitem ITEM_FULL_HEAL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	msgbox Route104_Text_ThrowBallAtWeakenedPokemonFollowUp, MSGBOX_NPC
+	setflag FLAG_RECEIVED_ROUTE_104_FULL_HEAL
+	release
+	end
+
+Route104_EventScript_Receieved_Full_Heal::
+	msgbox Route104_Text_ThrowBallAtWeakenedPokemon, MSGBOX_DEFAULT
+	release
 	end
 
 Route104_EventScript_Woman::
@@ -1015,6 +1031,12 @@ Route104_Text_ThrowBallAtWeakenedPokemon:
 	.string "It will be easier to catch if it's been\n"
 	.string "poisoned, burned, or lulled to sleep.$"
 
+Route104_Text_ThrowBallAtWeakenedPokemonFirstTimeTalking::
+	.string "Speaking of which, take this.$"
+
+Route104_Text_ThrowBallAtWeakenedPokemonFollowUp::
+	.string "Good luck in the Petalburg Woods.$"
+
 Route104_Text_OnlyThrowBallAtWildPokemon:
 	.string "You're a thief if you try to steal\n"
 	.string "someone else's POKéMON.\p"
@@ -1039,8 +1061,8 @@ Route104_Text_TMsAreOneTimeUse:
 	.string "A word of advice!\p"
 	.string "A TM, TECHNICAL MACHINE, is good only\n"
 	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
+	.string "Just kidding! You can use them\n"
+	.string "as often as you'd like!$"
 
 Route104_Text_DontNeedThisTakeIt:
 	.string "This FLOWER SHOP started selling\n"

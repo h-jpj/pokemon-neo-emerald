@@ -14,6 +14,7 @@
 #include "text.h"
 #include "constants/event_object_movement.h"
 #include "constants/items.h"
+#include "wild_encounter.h"
 
 static u16 BerryTypeToItemId(u16 berry);
 static u8 BerryTreeGetNumStagesWatered(struct BerryTree *tree);
@@ -1765,6 +1766,116 @@ bool32 ObjectEventInteractionWaterBerryTree(void)
     return TRUE;
 }
 
+// Used when encountering a Pokemon on a growing berry tree to set the encounter to "done"
+void ObjectEventInteractionBerryTreePokemonEncounter(void)
+{
+    struct BerryTree *tree = GetBerryTreeInfo(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+
+    switch (tree->stage)
+    {
+    case BERRY_STAGE_SPROUTED:
+        tree->EncounterSproutStage = TRUE;
+        break;
+    case BERRY_STAGE_TALLER:
+        tree->EncounterTallerStage = TRUE;
+        break;
+    case BERRY_STAGE_FLOWERING:
+        tree->EncounterFlowerStage = TRUE;
+        break;     
+    case BERRY_STAGE_BERRIES:
+        tree->EncounterBerryStage = TRUE;
+        break;
+    default:
+        break;
+    }
+}
+
+// Sets encounter bits for a Berry tree. If true, the player won't encounter a Pokemon at that stage.
+// Should be called when a berry is planted.
+void SetBerryEncounters(void)
+{
+    struct BerryTree *tree = GetBerryTreeInfo(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+
+    if (Random() % 2)
+    {
+        tree->EncounterSproutStage = TRUE;
+    }
+    if (Random() % 2)
+    {
+        tree->EncounterTallerStage = TRUE;
+    }
+    if (Random() % 2)
+    {
+        tree->EncounterFlowerStage = TRUE;
+    }
+    if (Random() % 2)
+    {
+        tree->EncounterBerryStage = TRUE;
+    }
+}
+
+// Checks whether the player should encounter a Pokemon when interacting with a berry tree.
+// Result is stored in gSpecialVar_Result, and is either true or false.
+void GetBerryEncounter(void)
+{
+    struct BerryTree *tree = GetBerryTreeInfo(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+
+    if (VarGet(VAR_REPEL_STEP_COUNT) == 0)
+    {
+        if (tree->EncounterSproutStage && tree->stage == BERRY_STAGE_SPROUTED)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else if (tree->EncounterTallerStage && tree->stage == BERRY_STAGE_TALLER)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else if (tree->EncounterFlowerStage && tree->stage == BERRY_STAGE_FLOWERING)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else if (tree->EncounterBerryStage && tree->stage == BERRY_STAGE_BERRIES)
+        {
+            gSpecialVar_Result = FALSE;
+        }
+        else
+        {
+            gSpecialVar_Result = TRUE;
+        }
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
+void DoBerryEncounter(void)
+{
+    struct BerryTree *tree = GetBerryTreeInfo(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+    // Get encounter list based on growth stage of berry
+
+    u8 berryStage;
+
+    if (tree->stage == BERRY_STAGE_SPROUTED)
+    {
+        berryStage = 0;
+    }
+    else if (tree->stage == BERRY_STAGE_TALLER)
+    {
+        berryStage = 1;
+    }   
+    else if (tree->stage == BERRY_STAGE_FLOWERING)
+    {
+        berryStage = 2;
+    }
+    else
+    {
+        berryStage = 3;
+    }
+
+    BerryWildEncounter(berryStage);
+}
+
 bool8 IsPlayerFacingEmptyBerryTreePatch(void)
 {
     if (GetObjectEventScriptPointerPlayerFacing() == BerryTreeScript
@@ -1817,8 +1928,6 @@ bool32 BerryTreeGrow(struct BerryTree *tree)
         tree->stage = BERRY_STAGE_BERRIES;
         break;
     case BERRY_STAGE_BERRIES:
-        if (OW_BERRY_IMMORTAL)
-            break;
         tree->watered = 0;
         tree->berryYield = 0;
         tree->stage = BERRY_STAGE_SPROUTED;
@@ -1844,16 +1953,16 @@ static u16 GetMulchAffectedGrowthRate(u16 berryDuration, u8 mulch, u8 stage)
 void BerryTreeTimeUpdate(s32 minutes)
 {
     int i;
-    u32 drainVal;
+    u8 drainVal;
     struct BerryTree *tree;
 
     for (i = 0; i < BERRY_TREES_COUNT; i++)
     {
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
-        if (tree->berry && tree->stage && !tree->stopGrowth && (!OW_BERRY_IMMORTAL || tree->stage != BERRY_STAGE_BERRIES))
+        if (tree->berry && tree->stage && !tree->stopGrowth)
         {
-            if ((!OW_BERRY_IMMORTAL) && (minutes >= GetStageDurationByBerryType(tree->berry) * 71))
+            if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
             {
                 *tree = gBlankBerryTree;
             }
@@ -2144,8 +2253,6 @@ void ObjectEventInteractionGetBerryCountString(void)
     u8 treeId = GetObjectEventBerryTreeId(gSelectedObjectEvent);
     u8 berry = GetBerryTypeByBerryTreeId(treeId);
     u8 count = GetBerryCountByBerryTreeId(treeId);
-
-    gSpecialVar_0x8006 = BerryTypeToItemId(berry);
     CopyItemNameHandlePlural(BerryTypeToItemId(berry), gStringVar1, count);
     berry = GetTreeMutationValue(treeId);
     if (berry > 0)
@@ -2388,8 +2495,6 @@ static u8 GetTreeMutationValue(u8 id)
     myMutation.asField.a = tree->mutationA;
     myMutation.asField.b = tree->mutationB;
     myMutation.asField.unused = 0;
-    if (myMutation.value == 0) // no mutation
-        return 0;
     return sBerryMutations[myMutation.value - 1][2];
 #else
     return 0;
@@ -2424,7 +2529,7 @@ static u16 GetBerryPestSpecies(u8 berryId)
             return P_FAMILY_VOLBEAT_ILLUMISE ? SPECIES_ILLUMISE : SPECIES_NONE;
             break;
         case BERRY_COLOR_GREEN:
-            return P_FAMILY_BURMY ? SPECIES_BURMY_PLANT : SPECIES_NONE;
+            return P_FAMILY_BURMY ? SPECIES_BURMY_PLANT_CLOAK : SPECIES_NONE;
             break;
         case BERRY_COLOR_YELLOW:
             return P_FAMILY_COMBEE ? SPECIES_COMBEE : SPECIES_NONE;

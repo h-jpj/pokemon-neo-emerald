@@ -36,6 +36,8 @@ Route118_EventScript_ReceiveGoodRod::
 	giveitem ITEM_GOOD_ROD
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_GOOD_ROD
+	giveitem ITEM_GYARADOSITE 
+	setflag FLAG_ITEM_GYARADOSITE
 	msgbox Route118_Text_TryYourLuckFishing, MSGBOX_DEFAULT
 	release
 	end
@@ -201,6 +203,8 @@ Route118_EventScript_RematchRose::
 
 Route118_EventScript_Barny::
 	trainerbattle_single TRAINER_BARNY, Route118_Text_BarnyIntro, Route118_Text_BarnyDefeat
+	giveitem ITEM_GYARADOSITE_Y 
+	setflag FLAG_ITEM_GYARADOSITE_Y
 	msgbox Route118_Text_BarnyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -272,7 +276,10 @@ Route118_Text_IdenticalMindsTakeThis:
 	.string "Hmm!\n"
 	.string "We're of identical minds!\p"
 	.string "Hmm!\n"
-	.string "Take this GOOD ROD!$"
+	.string "Take this GOOD ROD!\p"
+	.string "Hmm!\n"
+	.string "A little something extra\l"
+	.string "to encourage you to fish!$"
 
 Route118_Text_TryYourLuckFishing:
 	.string "Wherever there's water, try your luck\n"

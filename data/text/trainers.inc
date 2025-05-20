@@ -2630,11 +2630,15 @@ Route118_Text_ChesterPostBattle:
 
 Route118_Text_BarnyIntro:
 	.string "I'm a FISHERMAN, but also a TRAINER.\n"
-	.string "I'm raising the POKéMON I caught.$"
+	.string "I'm raising the POKéMON I caught.\l"
+	.string "If you beat me, I'll give you\n"
+	.string "something special.\p"
+	.string "Better than what that guy over\n"
+	.string "there gave you.$"
 
 Route118_Text_BarnyDefeat:
 	.string "I thought I was doing okay in my\n"
-	.string "training…$"
+	.string "training… Enjoy the gift my friend.$"
 
 Route118_Text_BarnyPostBattle:
 	.string "I couldn't win by training POKéMON\n"

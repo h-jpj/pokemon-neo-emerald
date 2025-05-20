@@ -4,7 +4,7 @@
 #define FOREACH_TM(F) \
     F(FOCUS_PUNCH) \
     F(DRAGON_CLAW) \
-    F(WATER_PULSE) \
+    F(SCALD) \
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
@@ -35,13 +35,13 @@
     F(BRICK_BREAK) \
     F(DOUBLE_TEAM) \
     F(REFLECT) \
-    F(SHOCK_WAVE) \
+    F(VOLT_SWITCH) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
     F(SANDSTORM) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
-    F(AERIAL_ACE) \
+    F(ROOST) \
     F(TORMENT) \
     F(FACADE) \
     F(SECRET_POWER) \

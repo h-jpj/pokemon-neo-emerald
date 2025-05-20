@@ -134,6 +134,12 @@ Route119_EventScript_DefeatedBrendan::
 Route119_EventScript_GiveFlyHM::
 	giveitem ITEM_HM_FLY
 	setflag FLAG_RECEIVED_HM_FLY
+	giveitem ITEM_BLASTOISINITE
+	giveitem ITEM_CHARIZARDITE_Y
+	giveitem ITEM_VENUSAURITE
+	setflag FLAG_ITEM_BLASTOISINITE
+	setflag FLAG_ITEM_CHARIZARDITE_Y
+	setflag FLAG_ITEM_VENUSAURITE
 	return
 
 Route119_EventScript_RivalExitScottArrive::

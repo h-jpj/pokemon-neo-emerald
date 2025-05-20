@@ -255,6 +255,31 @@ const struct SpriteTemplate gFlamethrowerFlameSpriteTemplate =
     .callback = AnimToTargetInSinWave,
 };
 
+static const union AnimCmd sAnim_ChemthrowerFlame[] =
+{
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(8, 4),
+    ANIMCMD_FRAME(16, 4),
+    ANIMCMD_FRAME(24, 4),
+    ANIMCMD_JUMP(0),
+};
+
+const union AnimCmd *const gAnims_ChemthrowerFlame[] =
+{
+    sAnim_ChemthrowerFlame,
+};
+
+const struct SpriteTemplate gChemthrowerFlameSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_PURPLE_FLAME,
+    .paletteTag = ANIM_TAG_PURPLE_FLAME,
+    .oam = &gOamData_AffineOff_ObjNormal_16x32,
+    .anims = gAnims_ChemthrowerFlame,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimToTargetInSinWave,
+};
+
 const struct SpriteTemplate gFirePledgeSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SMALL_EMBER,
@@ -585,14 +610,14 @@ const struct SpriteTemplate gAquaTailHitSpriteTemplate =
 };
 
 static const union AnimCmd sAnimCmdAnimatedSpark2[] = {
-    ANIMCMD_FRAME((8 * 8) / (16 * 16) * 0, 8),
-    ANIMCMD_FRAME((8 * 8) / (16 * 16) * 1, 8),
-    ANIMCMD_FRAME((8 * 8) / (16 * 16) * 2, 8),
-    ANIMCMD_JUMP(0)
+	ANIMCMD_FRAME((8 * 8) / (16 * 16) * 0, 8),
+	ANIMCMD_FRAME((8 * 8) / (16 * 16) * 1, 8),
+	ANIMCMD_FRAME((8 * 8) / (16 * 16) * 2, 8),
+	ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd *const sAnimCmdTable_AnimatedSpark2[] = {
-    sAnimCmdAnimatedSpark2,
+	sAnimCmdAnimatedSpark2,
 };
 
 const struct SpriteTemplate gSparkBeamSpriteTemplate =

@@ -98,7 +98,9 @@ enum {
 
 // Special return values in gBattleBufferB from Battle Controller functions.
 #define RET_VALUE_LEVELED_UP   11
-#define RET_GIMMICK            (1 << 7)
+#define RET_MEGA_EVOLUTION (1 << 7)
+#define RET_ULTRA_BURST    (1 << 6)
+#define RET_DYNAMAX        (1 << 5)
 
 struct UnusedControllerStruct
 {
@@ -125,7 +127,11 @@ struct ChooseMoveStruct
     u8 currentPp[MAX_MON_MOVES];
     u8 maxPp[MAX_MON_MOVES];
     u16 species;
-    u8 monTypes[3];
+    u8 monType1;
+    u8 monType2;
+    u8 monType3;
+    struct MegaEvolutionData mega;
+    struct UltraBurstData burst;
     struct ZMoveData zmove;
 };
 
@@ -255,7 +261,7 @@ void BattleControllerComplete(u32 battler); // Can be used for all the controlle
 void BtlController_Empty(u32 battler); // Empty command, does nothing, only completes the execution.
 void BtlController_TerminatorNop(u32 battler); // Dummy function at the end of the table.
 void BattleControllerDummy(u32 battler);
-void StartSendOutAnim(u32 battler, bool32 dontClearSubstituteBit, bool32 doSlideIn);
+void StartSendOutAnim(u32 battler, bool32 dontClearSubstituteBit);
 void Controller_WaitForString(u32 battler);
 void Controller_WaitForHealthBar(u32 battler);
 
@@ -310,13 +316,6 @@ void ActionSelectionDestroyCursorAt(u8 cursorPos);
 void InitMoveSelectionsVarsAndStrings(u32 battler);
 void MoveSelectionCreateCursorAt(u8 cursorPos, u8 arg1);
 void MoveSelectionDestroyCursorAt(u8 cursorPosition);
-void PlayerHandleChooseMove(u32 battler);
-void HandleInputChooseMove(u32 battler);
-void HandleInputChooseTarget(u32 battler);
-void HandleInputShowEntireFieldTargets(u32 battler);
-void HandleInputShowTargets(u32 battler);
-void HandleMoveSwitching(u32 battler);
-void HandleChooseMoveAfterDma3(u32 battler);
 
 // recorded player controller
 void SetControllerToRecordedPlayer(u32 battler);

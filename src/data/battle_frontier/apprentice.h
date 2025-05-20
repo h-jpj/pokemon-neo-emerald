@@ -606,6 +606,7 @@ static const bool8 sValidApprenticeMoves[MOVES_COUNT] =
     [MOVE_FURY_ATTACK] = FALSE,
     [MOVE_HORN_DRILL] = TRUE,
     [MOVE_TACKLE] = FALSE,
+    [MOVE_SHOUT] = FALSE,
     [MOVE_BODY_SLAM] = TRUE,
     [MOVE_WRAP] = TRUE,
     [MOVE_TAKE_DOWN] = TRUE,

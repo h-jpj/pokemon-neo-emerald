@@ -371,8 +371,24 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry::
 	release
 	end
 
-PetalburgCity_Gym_EventScript_NormanBattle::
+	PetalburgCity_Gym_EventScript_NormanGiveKeystone::
+	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_NormanBattle
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
+	giveitem ITEM_MEGA_RING
+	setflag FLAG_SYS_RECEIVED_KEYSTONE
+	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
+	giveitem ITEM_SCEPTILITE
+	waitmessage
+	giveitem ITEM_BLAZIKENITE
+	waitmessage
+	giveitem ITEM_SWAMPERTITE
+	waitmessage
+	msgbox PetalburgCity_Gym_Text_NormanWheneverReady, MSGBOX_DEFAULT
+	closemessage
+	end
+
+PetalburgCity_Gym_EventScript_NormanBattle::
+	msgbox PetalburgCity_Gym_Text_NormanBattleIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanDefeat
 	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
 	waitmessage
@@ -1256,17 +1272,39 @@ PetalburgCity_Gym_Text_YouHaveGottenStronger:
 	.string "I can tell by the number of BADGES\n"
 	.string "that you've earned.$"
 
-PetalburgCity_Gym_Text_NormanIntro:
-	.string "DAD: Hm…\n"
-	.string "So, you did get four GYM BADGES.\p"
+PetalburgCity_Gym_Text_NormanIntro: @ 8205FE5
+	.string "Dad: Hm…\n"
+	.string "So, you did get four Gym Badges.\p"
 	.string "Fine, as I promised, we will have\n"
-	.string "a POKéMON battle.\p"
+	.string "a Pokémon battle.\p"
+	.string "But first, let me give you this.$"
+
+PetalburgCity_Gym_Text_NormanMegaBracelet:
+	.string "That Mega Bracelet will allow certain\n"
+	.string "Pokémon to Mega Evolve in battle.\p"
+	.string "It's no good on its own, though.\p"
+	.string "To Mega Evolve a Pokémon, you must\n"
+	.string "also let it hold its Mega Stone.\p"
+	.string "Then, press START before choosing a\n"
+	.string "move.\p"
+	.string "Mega Evolution is a very powerful\n"
+	.string "technique, but I think you and your\l"
+	.string "Pokémon are ready for it.\p"
+	.string "If you can, give it a try in our\n"
+	.string "battle!\p"
+	.string "Here, take these Mega Stones too.$"
+
+PetalburgCity_Gym_Text_NormanWheneverReady:
+	.string "Now then, {PLAYER}!\n"
+	.string "I'm ready when you are!$"
+
+PetalburgCity_Gym_Text_NormanBattleIntro:
 	.string "{PLAYER}…\p"
 	.string "I'm so happy that I can have\n"
 	.string "a real battle with my own child.\p"
 	.string "But, a battle is a battle!\p"
 	.string "I will do everything in my power as\n"
-	.string "a GYM LEADER to win.\p"
+	.string "a Gym Leader to win.\p"
 	.string "{PLAYER}, you'd better give it your\n"
 	.string "best shot, too!$"
 
@@ -1592,4 +1630,3 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "capable of battle?\p"
 	.string "Sorry, but you'll have to come back\n"
 	.string "with at least two POKéMON.$"
-

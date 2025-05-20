@@ -54679,7 +54679,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "MEOWSTIC_M": {
+  "MEOWSTIC_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -75050,7 +75050,7 @@
     ],
     "TutorMoves": []
   },
-  "INDEEDEE_M": {
+  "INDEEDEE_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -76790,7 +76790,7 @@
       "MOVE_COACHING"
     ]
   },
-  "URSHIFU_SINGLE_STRIKE": {
+  "URSHIFU_SINGLE_STRIKE_STYLE": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -77588,7 +77588,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "RAICHU_ALOLA": {
+  "RAICHU_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -77747,7 +77747,7 @@
     ],
     "TutorMoves": []
   },
-  "SANDSHREW_ALOLA": {
+  "SANDSHREW_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -77873,7 +77873,7 @@
       "MOVE_STEEL_BEAM"
     ]
   },
-  "SANDSLASH_ALOLA": {
+  "SANDSLASH_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -78022,7 +78022,7 @@
       "MOVE_STEEL_BEAM"
     ]
   },
-  "VULPIX_ALOLA": {
+  "VULPIX_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -78135,7 +78135,7 @@
     ],
     "TutorMoves": []
   },
-  "NINETALES_ALOLA": {
+  "NINETALES_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -78272,7 +78272,7 @@
     ],
     "TutorMoves": []
   },
-  "DIGLETT_ALOLA": {
+  "DIGLETT_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -78376,7 +78376,7 @@
       "MOVE_STEEL_BEAM"
     ]
   },
-  "DUGTRIO_ALOLA": {
+  "DUGTRIO_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -78503,7 +78503,7 @@
       "MOVE_STEEL_BEAM"
     ]
   },
-  "MEOWTH_ALOLA": {
+  "MEOWTH_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -78611,7 +78611,7 @@
     ],
     "TutorMoves": []
   },
-  "PERSIAN_ALOLA": {
+  "PERSIAN_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -78741,7 +78741,7 @@
     ],
     "TutorMoves": []
   },
-  "EXEGGUTOR_ALOLA": {
+  "EXEGGUTOR_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -78885,7 +78885,7 @@
       "MOVE_DRACO_METEOR"
     ]
   },
-  "MAROWAK_ALOLA": {
+  "MAROWAK_ALOLAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -79045,7 +79045,7 @@
     ],
     "TutorMoves": []
   },
-  "MEOWTH_GALAR": {
+  "MEOWTH_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -79158,7 +79158,7 @@
       "MOVE_LASH_OUT"
     ]
   },
-  "PONYTA_GALAR": {
+  "PONYTA_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -79256,7 +79256,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "RAPIDASH_GALAR": {
+  "RAPIDASH_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -79385,7 +79385,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "SLOWPOKE_GALAR": {
+  "SLOWPOKE_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -79522,7 +79522,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "SLOWBRO_GALAR": {
+  "SLOWBRO_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -79690,7 +79690,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "FARFETCHD_GALAR": {
+  "FARFETCHD_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -79801,7 +79801,7 @@
       "MOVE_DUAL_WINGBEAT"
     ]
   },
-  "WEEZING_GALAR": {
+  "WEEZING_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -79958,7 +79958,7 @@
       "MOVE_MISTY_EXPLOSION"
     ]
   },
-  "MR_MIME_GALAR": {
+  "MR_MIME_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -80147,7 +80147,7 @@
       "MOVE_TRIPLE_AXEL"
     ]
   },
-  "ARTICUNO_GALAR": {
+  "ARTICUNO_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -80258,7 +80258,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "ZAPDOS_GALAR": {
+  "ZAPDOS_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -80373,7 +80373,7 @@
       "MOVE_COACHING"
     ]
   },
-  "MOLTRES_GALAR": {
+  "MOLTRES_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -80480,7 +80480,7 @@
       "MOVE_LASH_OUT"
     ]
   },
-  "SLOWKING_GALAR": {
+  "SLOWKING_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -80657,7 +80657,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "CORSOLA_GALAR": {
+  "CORSOLA_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -80776,7 +80776,7 @@
       "MOVE_METEOR_BEAM"
     ]
   },
-  "ZIGZAGOON_GALAR": {
+  "ZIGZAGOON_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -80890,7 +80890,7 @@
       "MOVE_LASH_OUT"
     ]
   },
-  "LINOONE_GALAR": {
+  "LINOONE_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -81030,7 +81030,7 @@
       "MOVE_LASH_OUT"
     ]
   },
-  "DARUMAKA_GALAR": {
+  "DARUMAKA_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -81147,7 +81147,7 @@
     ],
     "TutorMoves": []
   },
-  "DARMANITAN_GALAR": {
+  "DARMANITAN_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -81289,7 +81289,7 @@
       "MOVE_LASH_OUT"
     ]
   },
-  "YAMASK_GALAR": {
+  "YAMASK_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -81403,7 +81403,7 @@
       "MOVE_POLTERGEIST"
     ]
   },
-  "STUNFISK_GALAR": {
+  "STUNFISK_GALARIAN": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -82254,7 +82254,7 @@
       "MOVE_SCALE_SHOT"
     ]
   },
-  "MEOWSTIC_F": {
+  "MEOWSTIC_FEMALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -82839,7 +82839,7 @@
       "MOVE_RISING_VOLTAGE"
     ]
   },
-  "INDEEDEE_F": {
+  "INDEEDEE_FEMALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -82945,7 +82945,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "URSHIFU_RAPID_STRIKE": {
+  "URSHIFU_RAPID_STRIKE_STYLE": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -83081,7 +83081,7 @@
       "MOVE_COACHING"
     ]
   },
-  "CALYREX_ICE": {
+  "CALYREX_ICE_RIDER": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -83292,7 +83292,7 @@
       "MOVE_LASH_OUT"
     ]
   },
-  "CALYREX_SHADOW": {
+  "CALYREX_SHADOW_RIDER": {
     "LevelMoves": [
       {
         "Level": 1,
